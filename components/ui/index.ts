@@ -1,4 +1,4 @@
 import Button from "./Button";
-import Sidenav from "./Sidenav";
+import Sidenav from "./dashboard/Sidenav";
 
 export { Button, Sidenav }
