@@ -107,8 +107,8 @@ const renderCell = (
           <Image
             src={record.imgUrl}
             alt={`${record.name} avatar`}
-            width={20}
-            height={20}
+            width={21}
+            height={21}
             className="rounded-full"
           />
         )}
@@ -160,8 +160,8 @@ export default async function Page() {
   const enrichedRepos = await fetchGitHubRepos(repoNames, githubApiUrl, githubToken);
 
   return (
-    <main className="min-h-screen px-8 py-5 text-sm text-white bg-black">
-      <h1 className="text-xl font-bold mb-6">Trending Repositories</h1>
+    <main className="min-h-screen px-8 py-9 text-sm text-white bg-black">
+      <h1 className="text-xl font-bold mb-6">Latest Trending Projects</h1>
 
       {baseRepos.length > 0 ? (
         <>

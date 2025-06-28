@@ -2,15 +2,15 @@ import React from 'react'
 import Link from 'next/link'
 export default function Navbar() {
     return (
-        <div className="border-b sticky top-0 z-10 flex justify-center border-t w-full bg-black border-neutral-700/60 border-dashed">
+        <div className="border-b-2   sticky top-0 z-10 flex justify-center w-full bg-black border-neutral-700/60">
             <div className="w-full max-w-full">
                 <div className="flex px-10 py-3 flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <Link href="/">
                         <div className="flex items-center gap-1 min-w-[14rem] justify-center md:justify-start">
                             <svg
                                 id="logo-35"
-                                width="35"
-                                height="39"
+                                width="30"
+                                height="30"
                                 viewBox="0 0 50 39"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +27,7 @@ export default function Navbar() {
                                     fill="#404040"
                                 />
                             </svg>
-                            <h1 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white/90 to-neutral-500">
+                            <h1 className="text-lg md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white/90 to-neutral-500">
                                 OpenSea
                             </h1>
                         </div>
