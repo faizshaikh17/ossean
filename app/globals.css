@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #0a0a0a;
   --font-sans: var(--font-poppins);
   /* --font-mono: var(--font-geist-mono); */
 }

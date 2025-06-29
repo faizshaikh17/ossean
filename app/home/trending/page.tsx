@@ -1,15 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getGithubTokens } from "@/lib/githubTokens";
 
 interface Repo {
-    name?: string;
-    language?: string;
-    stargazers_count?: number;
-    forks_count?: number;
-    popularity?: "High" | "Mid" | "Low";
+    name: string;
+    language: string;
     topics?: string[];
+    stargazers_count: number;
+    forks_count: number;
     imgUrl?: string;
+    popularity?: "High" | "Mid" | "Low";
     githubUrl?: string;
+    owner?: {
+        avatar_url: string;
+    };
+    html_url: string;
 }
 
 type ColumnKey = keyof Pick<
@@ -28,42 +33,6 @@ const columns: { key: ColumnKey; label: string }[] = [
 
 const formatNumber = (n: number) =>
     n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `${(n / 1e3).toFixed(1)}k` : n.toString();
-
-const fetchTrendingRepos = async (  ): Promise<Repo[]> => {
-    const sinceDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
-        .toISOString()
-        .split("T")[0];
-
-    const res = await fetch(
-        `https://api.github.com/search/repositories?q=created:>${sinceDate}&sort=stars&order=desc&per_page=50`,
-        {
-            headers: {
-                Accept: "application/vnd.github+json",
-                Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-            },
-            cache: "no-store",
-        }
-    );
-
-    const json = await res.json();
-
-    return (json.items || []).map((repo: any) => {
-        const stars = repo.stargazers_count || 0;
-        const popularity: Repo["popularity"] =
-            stars >= 10000 ? "High" : stars >= 1000 ? "Mid" : "Low";
-
-        return {
-            name: repo.name,
-            language: repo.language,
-            topics: repo.topics,
-            stargazers_count: stars,
-            forks_count: repo.forks_count,
-            imgUrl: repo.owner.avatar_url,
-            popularity,
-            githubUrl: repo.html_url,
-        };
-    });
-};
 
 const renderCell = (
     record: Repo,
@@ -85,8 +54,8 @@ const renderCell = (
                     <Image
                         src={record.imgUrl}
                         alt={`${record.name} avatar`}
-                        width={21}
-                        height={21}
+                        width={24}
+                        height={24}
                         className="rounded-full"
                     />
                 )}
@@ -128,10 +97,42 @@ const renderCell = (
 };
 
 export default async function Page() {
-    const trendingRepos = await fetchTrendingRepos();
+    const sinceDate = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+        .toISOString()
+        .split("T")[0];
+
+    const res = await fetch(
+        `https://api.github.com/search/repositories?q=created:>${sinceDate}&sort=stars&order=desc&per_page=50`,
+        {
+            headers: {
+                Accept: "application/vnd.github+json",
+                Authorization: `Bearer ${getGithubTokens()}`,
+            },
+            next: { revalidate: 60 * 60 * 24 * 2 }, // cache for 2 days
+        }
+    );
+
+    const json = await res.json();
+
+    const trendingRepos: Repo[] = (json.items || []).map((repo: Repo) => {
+        const stars = repo.stargazers_count || 0;
+        const popularity: Repo["popularity"] =
+            stars >= 10000 ? "High" : stars >= 1000 ? "Mid" : "Low";
+
+        return {
+            name: repo.name,
+            language: repo.language,
+            topics: repo.topics,
+            stargazers_count: stars,
+            forks_count: repo.forks_count,
+            imgUrl: repo.owner?.avatar_url,
+            popularity,
+            githubUrl: repo?.html_url,
+        };
+    });
 
     return (
-        <main className="min-h-screen px-8 py-5 text-sm text-white bg-black">
+        <main className="min-h-screen px-8 py-9 text-sm text-white bg-black">
             <h1 className="text-xl font-bold mb-6">Top 50 Trending Projects</h1>
 
             <div className="hidden md:block overflow-x-auto">

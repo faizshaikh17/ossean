@@ -1,5 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import YC from "@/lib/yc.json";
+import { getGithubTokens } from "@/lib/githubTokens";
+
 interface Repo {
   repo_id?: number;
   repo_name?: string;
@@ -9,7 +12,7 @@ interface Repo {
   forks_count?: number;
   popularity?: "High" | "Mid" | "Low";
   topics?: string[];
-  imgUrl?: string
+  imgUrl?: string;
 }
 
 type ColumnKey = keyof Pick<
@@ -29,69 +32,11 @@ const columns: { key: ColumnKey; label: string }[] = [
 const formatNumber = (n: number) =>
   n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `${(n / 1e3).toFixed(1)}k` : n.toString();
 
-const getBaseRepoData = async (url: string): Promise<Repo[]> => {
-  try {
-    const res = await fetch(url, {
-      headers: { Accept: "application/json" },
-      cache: "force-cache",
-    });
-    const json = await res.json();
-    return Array.isArray(json?.data?.rows) ? json.data.rows : [];
-  } catch {
-    return [];
-  }
-};
-
-const fetchGitHubRepos = async (
-  repoNames: string[],
-  githubUrl: string,
-  token: string
-): Promise<Repo[]> => {
-  const results = await Promise.allSettled(
-    repoNames.map((name) =>
-      fetch(`${githubUrl}${name}`, {
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        cache: "no-store",
-      }).then(async (res) => {
-        if (res.status === 403 || res.status === 404) {
-          const err = await res.json();
-          console.warn(`GitHub error for ${name}:`, err.message);
-          return null;
-        }
-        return res.json();
-      })
-    )
-  );
-
-  return results.map((res) => {
-    if (res.status !== "fulfilled" || !res.value) return {};
-
-    const raw = res.value;
-
-    const stars = raw.stargazers_count || 0;
-    const popularity: Repo["popularity"] =
-      stars >= 10000 ? "High" : stars >= 1000 ? "Mid" : "Low";
-
-    return {
-      name: raw.name,
-      language: raw.language,
-      topics: raw.topics,
-      stargazers_count: raw.stargazers_count,
-      forks_count: raw.forks_count,
-      imgUrl: raw.owner.avatar_url,
-      popularity,
-    };
-  });
-};
-
 const renderCell = (
   record: Repo,
   key: ColumnKey,
   idx: number,
-  repoLink: string | undefined
+  repoLink?: string
 ) => {
   const value = record[key];
 
@@ -107,8 +52,8 @@ const renderCell = (
           <Image
             src={record.imgUrl}
             alt={`${record.name} avatar`}
-            width={21}
-            height={21}
+            width={24}
+            height={24}
             className="rounded-full"
           />
         )}
@@ -118,7 +63,6 @@ const renderCell = (
       "-"
     );
   }
-
 
   if (key === "language" || key === "popularity") {
     return <span className="text-gray-300">{value || "-"}</span>;
@@ -151,21 +95,45 @@ const renderCell = (
 };
 
 export default async function Page() {
-  const apiUrl = process.env.API_URL!;
   const githubApiUrl = process.env.GITHUB_API_URL!;
-  const githubToken = process.env.GITHUB_TOKEN!;
+  const repoNames = YC.map((r) => r.repo).filter(Boolean) as string[];
 
-  const baseRepos = await getBaseRepoData(apiUrl);
-  const repoNames = baseRepos.map((r) => r.repo_name).filter(Boolean) as string[];
-  const enrichedRepos = await fetchGitHubRepos(repoNames, githubApiUrl, githubToken);
+  const results = await Promise.all(
+    repoNames.map(async (name) => {
+      const res = await fetch(`${githubApiUrl}${name}`, {
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${getGithubTokens()}`,
+        },
+        next: { revalidate: 60 * 60 * 24 * 2 }, // Cache for 2 days
+      });
+
+      if (!res.ok) return null;
+
+      const raw = await res.json();
+      const stars = raw.stargazers_count || 0;
+
+      return {
+        name: raw.name,
+        language: raw.language,
+        topics: raw.topics,
+        stargazers_count: raw.stargazers_count,
+        forks_count: raw.forks_count,
+        imgUrl: raw.owner.avatar_url,
+        popularity:
+          stars >= 10000 ? "High" : stars >= 1000 ? "Mid" : "Low",
+      };
+    })
+  );
+
+  const enrichedRepos = results.map((r) => r || {});
 
   return (
     <main className="min-h-screen px-8 py-9 text-sm text-white bg-black">
-      <h1 className="text-xl font-bold mb-6">Latest Trending Projects</h1>
+      <h1 className="text-xl font-bold mb-6">Top YC OSS Projects</h1>
 
-      {baseRepos.length > 0 ? (
+      {YC.length > 0 ? (
         <>
-          {/* Desktop Table View */}
           <div className="hidden md:block overflow-x-auto">
             <table className="min-w-full table-auto border-collapse">
               <thead>
@@ -173,8 +141,7 @@ export default async function Page() {
                   {columns.map(({ key, label }) => (
                     <th
                       key={key}
-                      className={`${key === "topics" ? "text-center" : ""
-                        } text-left py-2 px-4 border-b border-gray-700`}
+                      className={`${key === "topics" ? "text-center" : ""} text-left py-2 px-4 border-b border-gray-700`}
                     >
                       {label}
                     </th>
@@ -186,7 +153,7 @@ export default async function Page() {
                   <tr key={idx} className="border-b border-gray-800">
                     {columns.map(({ key }) => (
                       <td key={key} className="py-2 px-4">
-                        {renderCell(record, key, idx, baseRepos[idx]?.repo_name)}
+                        {renderCell(record, key, idx, YC[idx]?.repo)}
                       </td>
                     ))}
                   </tr>
@@ -195,7 +162,6 @@ export default async function Page() {
             </table>
           </div>
 
-          {/* Mobile Card View */}
           <div className="md:hidden space-y-4">
             {enrichedRepos.map((record, idx) => (
               <div
@@ -206,7 +172,7 @@ export default async function Page() {
                   <div key={key} className="flex justify-between text-sm">
                     <span className="text-gray-400">{label}</span>
                     <div className="text-right max-w-[60%]">
-                      {renderCell(record, key, idx, baseRepos[idx]?.repo_name)}
+                      {renderCell(record, key, idx, YC[idx]?.repo)}
                     </div>
                   </div>
                 ))}

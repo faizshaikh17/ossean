@@ -1,0 +1,472 @@
+[
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/c1121bda8391be946b0390232fa3c953a095536e.png",
+    "company": "Ollama",
+    "repo": "ollama/ollama"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/9e8c106f46123a6f28b7a7da41f0ee695da48786.png",
+    "company": "Supabase",
+    "repo": "supabase/supabase"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/fa479320e3d153a191f13fca9e3c89b631a02350.png",
+    "company": "Font Awesome",
+    "repo": "FortAwesome/Font-Awesome"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/430a7c6b91b2b976c63ca3ebab6cfe4e2a6371d4.png",
+    "company": "FlowiseAI",
+    "repo": "FlowiseAI/Flowise"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/0f0a550c10525505849576c534b00a71c9d71c7e.png",
+    "company": "Payload",
+    "repo": "payloadcms/payload"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/b0530c04819d4d4e9f06ad3bb6fed6b85f152baf.png",
+    "company": "Reworkd",
+    "repo": "reworkd/AgentGPT"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/1828c07e7e0127350a2a1ce95943239d48691aaa.png",
+    "company": "Mattermost",
+    "repo": "mattermost/mattermost"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/2d1835a1b83e15542370853a52f30681b79212aa.png",
+    "company": "MindsDB",
+    "repo": "mindsdb/mindsdb"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/aeaa683b72502977824eb71f47dba97607b154c0.png",
+    "company": "refine",
+    "repo": "refinedev/refine"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/34c0b5b2907cbf1aeb1fbc4283f0011a8b58c86b.png",
+    "company": "Khoj",
+    "repo": "khoj-ai/khoj"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/2befcd73780fb4c29e4bd8bbf8222b0adb1020b3.png",
+    "company": "Twenty",
+    "repo": "twentyhq/twenty"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/52f8bfabfa73534a4e180ab67b04914310f2a95e.png",
+    "company": "InfluxData",
+    "repo": "influxdata/influxdb"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/f92b8cf84cd6433b340d273c712721a3084e1697.png",
+    "company": "PostHog",
+    "repo": "PostHog/posthog"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/ea071d17d03a0effc12bac914da21cd9bee66060.png",
+    "company": "Continue",
+    "repo": "continuedev/continue"
+  },
+  {
+    "logo": "/company/thumb/missing.png",
+    "company": "RethinkDB",
+    "repo": "rethinkdb/rethinkdb"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/0af43b9e898cb4ccdf73f216e7d4ade296ca114e.png",
+    "company": "Chatwoot",
+    "repo": "chatwoot/chatwoot"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/af0d32f65e9007b7edbde422787633e338fa9bff.png",
+    "company": "GitLab",
+    "repo": "gitlabhq/gitlabhq"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/4acd09521cfd92dc5dc54349811e3659f95a8c17.png",
+    "company": "SST",
+    "repo": "sst/sst"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/677513c7f80f22199de3136c5024581799a126f2.png",
+    "company": "Reflex",
+    "repo": "reflex-dev/reflex"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/065c8c25c94a5b7288159539b52e8719bf30381d.png",
+    "company": "Sails Co.",
+    "repo": "balderdashy/sails"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/bf9bf94469ea296eac6cbf6d10f7674c4a8a91ef.png",
+    "company": "SigNoz",
+    "repo": "SigNoz/signoz"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/97ea02f8fa3d6250285b27eb9529ebfee68db334.png",
+    "company": "Wasmer",
+    "repo": "wasmerio/wasmer"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/3d684926422fe826a03f5d68cd83bdb413d1c454.png",
+    "company": "Apollo",
+    "repo": "apollographql/apollo-client"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/fc4c9a8bb7a853c14be4dac967fb9717f36fca1c.png",
+    "company": "Airbyte",
+    "repo": "airbytehq/airbyte"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/621cb43ec50d1aae545391abcc114014c84d295f.png",
+    "company": "Infisical",
+    "repo": "Infisical/infisical"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/0e3da00ac0f6b66a7e896be53679d01b6fe5fd45.png",
+    "company": "Activepieces",
+    "repo": "activepieces/activepieces"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/3aef5c655cdc851ccad387554c204466a87669e7.png",
+    "company": "QuestDB",
+    "repo": "questdb/questdb"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/4353b29adbf3c289fd3165964d86888720519f1b.png",
+    "company": "SuperTokens",
+    "repo": "supertokens/supertokens-core"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/65ba001ab4d9a51e57b2d599e1b3c910c0a39b01.png",
+    "company": "Windmill",
+    "repo": "windmill-labs/windmill"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/87d977bf0d4b7032c71830901e118beb0ca9946c.png",
+    "company": "Skyvern",
+    "repo": "Skyvern-AI/skyvern"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/8bc9addf3646af503fbc3ded74504fb4df3399eb.png",
+    "company": "Langfuse",
+    "repo": "langfuse/langfuse"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/b0ddabf66cf6f4f3a36b5e768350a5f89ef3693a.png",
+    "company": "KeyDB",
+    "repo": "Snapchat/KeyDB"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/737382941e8e44eb83d28fa6b26854131dcdfcf9.png",
+    "company": "Trigger.dev",
+    "repo": "triggerdotdev/trigger.dev"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/202e7e02db190c7ab3eef78d63f9fe5d31e43275.png",
+    "company": "Citus Data",
+    "repo": "citusdata/citus"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/247a74da94904c06b274f1d233ed28b07bb00ee7.png",
+    "company": "Pyroscope",
+    "repo": "grafana/pyroscope"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/ca57c15ee63fa6b716d10d0f8f29a5e1732f44e4.png",
+    "company": "Keep",
+    "repo": "keephq/keep"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/115e9bc9f54e89ef6b7151c81d7b8dbca815879f.png",
+    "company": "OpenReplay",
+    "repo": "openreplay/openreplay"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/51f96276163c8da1e965a42a8d981ff344509c39.png",
+    "company": "Ragas",
+    "repo": "explodinggradients/ragas"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/c516ed5054847ecb1afb63f795f712b8d5c7f23d.png",
+    "company": "Activeloop",
+    "repo": "activeloopai/deeplake"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/d08fa4a9e984544038c06b9790dd7d376a594c35.png",
+    "company": "HyperDX",
+    "repo": "hyperdxio/hyperdx"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/0d4301601e4f70936655aa2574a0bf0a798fe1bd.png",
+    "company": "highlight.io",
+    "repo": "highlight/highlight"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/29939f1cfbd3fe315d3ded8f43c33775de6b9c89.png",
+    "company": "Lago",
+    "repo": "getlago/lago"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/adfd1c33ceed7c9e58e31857fc68ab3c74ad1ad4.png",
+    "company": "Webiny",
+    "repo": "webiny/webiny-js"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/d77ec2f6117521699894a917f49c85927da9cf8f.png",
+    "company": "Firezone",
+    "repo": "firezone/firezone"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/6668d68dbb65664dcc7f40eff60e4ee586f09132.png",
+    "company": "ParadeDB",
+    "repo": "paradedb/paradedb"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/4c060531ea33b3550b25532f59de594cc620f374.png",
+    "company": "GrowthBook",
+    "repo": "growthbook/growthbook"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/0c189cabb560e9c254a44aff2d8e3ff94ea9d36e.png",
+    "company": "Shuttle",
+    "repo": "shuttle-hq/shuttle"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/ff0b16931b863f29fd0bd341fe033523a5e16dd6.png",
+    "company": "Evidently AI",
+    "repo": "evidentlyai/evidently"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/284ee8dcb70cf1539c35db6e20ec3370746244d6.png",
+    "company": "Traceloop",
+    "repo": "traceloop/openllmetry"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/3e5b6595eedce0fbf3857cfdf876dbd2f0d66a78.png",
+    "company": "Superagent",
+    "repo": "superagent-ai/superagent"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/ee578b781cb190a51362b9fda6dc57b36d74972d.png",
+    "company": "authzed",
+    "repo": "authzed/spicedb"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/7fbef5bdf63091b02b57c823ab78af3d7abdc56c.png",
+    "company": "Hatchet",
+    "repo": "hatchet-dev/hatchet"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/a2c91c467d6826fc9888627093516dbe795e1a6f.png",
+    "company": "Nango",
+    "repo": "NangoHQ/nango"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/8f74c3796e1b7675bab6c99118bcf9dd7b94ceec.png",
+    "company": "Docker",
+    "repo": "docker/cli"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/a88272bf08bd6e30982b7eb442db6a1219b3b388.png",
+    "company": "Lightdash",
+    "repo": "lightdash/lightdash"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/1a7f1c3e5b076e80781490318e3dfe43f0db3a2b.png",
+    "company": "Arroyo",
+    "repo": "ArroyoSystems/arroyo"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/78acdf0f2271926c4c6856385a0b7846a8135bd7.png",
+    "company": "Rivet",
+    "repo": "rivet-gg/rivet"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/0fd0f837e64cef0930fd804e4345c0342b9a2827.png",
+    "company": "Helicone",
+    "repo": "Helicone/helicone"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/cec525dadbe8e5b36cf08f0d30035025bee9f88b.png",
+    "company": "Defog.ai",
+    "repo": "defog-ai/sqlcoder"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/397665634f98c5b29320b633cf76ae515930481f.png",
+    "company": "Requestly",
+    "repo": "requestly/requestly"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/65528c51b9eccc4012b7ad09d502f4452f49c03f.png",
+    "company": "Okteto",
+    "repo": "okteto/okteto"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/aad057fc105425dc8b99aca0064ab8e6964e0c28.png",
+    "company": "Vocode",
+    "repo": "vocodedev/vocode-core"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/9cb70cba7444eeea174f9161b4ba2165b9a69ffa.png",
+    "company": "Revideo",
+    "repo": "redotvideo/revideo"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/3de25b12e8aab670255b22d53c12d30ccd142ae5.png",
+    "company": "moonrepo",
+    "repo": "moonrepo/moon"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/4f48c426b67826bae7fd3fded6bfc3e891fd72d2.png",
+    "company": "Fern",
+    "repo": "fern-api/fern"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/e7fe48d854a5e26f76b915462fef2c4d177bfa49.png",
+    "company": "Svix",
+    "repo": "svix/svix-webhooks"
+  },
+  {
+    "logo": "/company/thumb/missing.png",
+    "company": "PipelineDB",
+    "repo": "pipelinedb/pipelinedb"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/2ef5e56e5aadbe1bd56567cef7d719b7f1e4c6b7.png",
+    "company": "Convoy",
+    "repo": "frain-dev/convoy"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/78827e9e8ab6d62b5e66b11dffea9ae771b7d97a.png",
+    "company": "OpenPipe",
+    "repo": "OpenPipe/OpenPipe"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/4a83477f0ae90481f26400baea36bd4c2fed890a.png",
+    "company": "PeerDB",
+    "repo": "PeerDB-io/peerdb"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/a3b42d39456545bb9b0fc5c6bcccfb598bd73cfb.png",
+    "company": "Laudspeaker",
+    "repo": "laudspeaker/laudspeaker"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/b22d1c28c768e382c5e7543fe2dbe66969ea4adf.png",
+    "company": "Dittofeed",
+    "repo": "dittofeed/dittofeed"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/e020de4d43f09ae8fc176bd79fd704be218893b7.png",
+    "company": "Trieve",
+    "repo": "devflowinc/trieve"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/40c2e4d4f16e7f43d9fe9f060296b72b7d16de22.png",
+    "company": "Ballerine",
+    "repo": "ballerine-io/ballerine"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/94a18b5c0cc3a340150d731fa97acee3a6a56ebd.png",
+    "company": "DAGWorks Inc.",
+    "repo": "DAGWorks-Inc/hamilton"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/1cf7e56ca345b🚀b5a9b329ec635ac2f39ef918b613.png",
+    "company": "Pretzel AI",
+    "repo": "pretzelai/pretzelai"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/45aadc83c7554b356da35bb6d48a350f575804b2.png",
+    "company": "Elementary",
+    "repo": "elementary-data/elementary"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/2939eceea0905b3a2c3c34f9f16476bbc6c94309.png",
+    "company": "Lotus",
+    "repo": "uselotus/lotus"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/fad6d127e5843dda3d9f06585de22ad73a6df795.png",
+    "company": "TableFlow",
+    "repo": "tableflowhq/csv-import"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/998e52194345363028a6f8e4a6c3f15baa415adf.png",
+    "company": "Medplum",
+    "repo": "medplum/medplum"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/a222c90e6dc5a485e0f58e7075243197316b5126.png",
+    "company": "Matano",
+    "repo": "matanolabs/matano"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/7580790de28f6334e2dd731c6927dfdedd2ba02a.png",
+    "company": "RecipeUI",
+    "repo": "RecipeUI/RecipeUI"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/0463ea40224ab10e82c931c492806150172da7a0.png",
+    "company": "Warrant",
+    "repo": "warrant-dev/warrant"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/173b47e676be258f330e690587eca7beae572634.png",
+    "company": "Lantern",
+    "repo": "lanterndata/lantern"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/973d2f0c6c4d07505113e974a08d18864eb95d54.png",
+    "company": "Artie",
+    "repo": "artie-labs/transfer"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/3aefe6d1c4f47d9ef26a3296e1724c3efe9bd5ac.png",
+    "company": "Tensil",
+    "repo": "tensil-ai/tensil"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/a79a7e737458c49c901b1062ceb420254ed8ac77.png",
+    "company": "Monosi",
+    "repo": "monosidev/monosi"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/7ce4129c96ae12a1f36222fb4e03f8ee4c1b0306.png",
+    "company": "OpenFoundry",
+    "repo": "openfoundry-ai/model_manager"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/217dbf57c9649c7822bbee101a62b2d34a750a85.png",
+    "company": "Grai",
+    "repo": "grai-io/grai-core"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/6c5df7e755694ec01e6b16cfc307e0ddf5712e43.png",
+    "company": "Embrace",
+    "repo": "embrace-io/embrace-android-sdk"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/ec22cfec2eb1602e4ae48a85862a05e4be149771.png",
+    "company": "nCompass Technologies",
+    "repo": "nCompass-tech/nCompass"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/fe6b97eef16a2d22e437f6cf663c11b64b223fc8.png",
+    "company": "Infracost",
+    "repo": "infracost/infracost-azure-devops"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/1a5fd0218aaaf79164dd214261cfc4cec6d668f8.png",
+    "company": "Common Paper",
+    "repo": "CommonPaper/Mutual-NDA"
+  },
+  {
+    "logo": "https://bookface-images.s3.amazonaws.com/small_logos/b6759a6164c3fd0594119ff78b7d4a6206f80f1b.png",
+    "company": "Enso",
+    "repo": "enso-org/hiring"
+  }
+]
