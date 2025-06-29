@@ -108,7 +108,7 @@ export default async function Page() {
                 Accept: "application/vnd.github+json",
                 Authorization: `Bearer ${getGithubTokens()}`,
             },
-            next: { revalidate: 60 * 60 * 24 * 2 }, // cache for 2 days
+            next: { revalidate: 60 * 60 * 24 * 0.5 },
         }
     );
 

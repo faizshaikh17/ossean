@@ -105,7 +105,7 @@ export default async function Page() {
           Accept: "application/json",
           Authorization: `Bearer ${getGithubTokens()}`,
         },
-        next: { revalidate: 60 * 60 * 24 * 2 }, // Cache for 2 days
+        next: { revalidate: 60 * 60 * 24 * 0.5 },
       });
 
       if (!res.ok) return null;
