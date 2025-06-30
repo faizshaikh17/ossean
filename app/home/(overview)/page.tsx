@@ -10,7 +10,7 @@ interface Repo {
   language?: string;
   stargazers_count?: number;
   forks_count?: number;
-  popularity?: "High" | "Mid" | "Low";
+  popularity?: "legendary" | "famous" | "popular" | "rising";
   topics?: string[];
   imgUrl?: string;
 }
@@ -65,7 +65,7 @@ const renderCell = (
   }
 
   if (key === "language" || key === "popularity") {
-    return <span className="text-gray-300">{value || "-"}</span>;
+    return <span className="text-gray-300 capitalize">{value || "-"}</span>;
   }
 
   if (key === "topics" && Array.isArray(value)) {
@@ -121,7 +121,10 @@ export default async function Page() {
         forks_count: raw.forks_count,
         imgUrl: raw.owner.avatar_url,
         popularity:
-          stars >= 10000 ? "High" : stars >= 1000 ? "Mid" : "Low",
+          stars >= 50000 ? "legendary" :
+            stars >= 10000 ? "famous" :
+              stars >= 1000 ? "popular" :
+                "rising",
       };
     })
   );

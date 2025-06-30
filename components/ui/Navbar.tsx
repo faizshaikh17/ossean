@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 export default function Navbar() {
     return (
-        <div className="border-b-2   sticky top-0 z-10 flex justify-center w-full bg-black border-neutral-700/60">
+        <div className="border-b   sticky top-0 z-10 flex justify-center w-full bg-black border-neutral-700/60">
             <div className="w-full max-w-full">
                 <div className="flex px-10 py-3 flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <Link href="/">

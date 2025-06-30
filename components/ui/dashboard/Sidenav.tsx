@@ -1,7 +1,7 @@
 import NavLinks from "./NavLinks";
 export default function Sidenav() {
   return (
-    <aside className="w-full md:w-64 flex-shrink-0 border-r-2 border-neutral-700/60 px-6">
+    <aside className="w-full md:w-64 flex-shrink-0 border-r border-neutral-700/60 px-6">
       <div className="flex h-full flex-row justify-between md:flex-col md:space-y-2">
         <div className="hidden h-auto w-full grow rounded-md md:block">
           <NavLinks />

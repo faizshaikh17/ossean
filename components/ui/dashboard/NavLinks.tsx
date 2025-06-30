@@ -18,8 +18,7 @@ const navLinks = [
   {
     title: 'Categories',
     items: [
-      { name: 'Language', link: '/home/language' },
-      { name: 'Popularity', link: '/home/popularity' },
+      { name: 'Discover', link: '/home/discover' },
     ],
   },
 ];

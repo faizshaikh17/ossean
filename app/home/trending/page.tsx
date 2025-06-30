@@ -9,7 +9,7 @@ interface Repo {
     stargazers_count: number;
     forks_count: number;
     imgUrl?: string;
-    popularity?: "High" | "Mid" | "Low";
+    popularity?: "legendary" | "famous" | "popular" | "rising";
     githubUrl?: string;
     owner?: {
         avatar_url: string;
@@ -67,7 +67,7 @@ const renderCell = (
     }
 
     if (key === "language" || key === "popularity") {
-        return <span className="text-gray-300">{value || "-"}</span>;
+        return <span className="text-gray-300 capitalize">{value || "-"}</span>;
     }
 
     if (key === "topics" && Array.isArray(value)) {
@@ -116,8 +116,12 @@ export default async function Page() {
 
     const trendingRepos: Repo[] = (json.items || []).map((repo: Repo) => {
         const stars = repo.stargazers_count || 0;
-        const popularity: Repo["popularity"] =
-            stars >= 10000 ? "High" : stars >= 1000 ? "Mid" : "Low";
+
+        let popularity: Repo["popularity"];
+        if (stars >= 50000) popularity = "legendary";
+        else if (stars >= 10000) popularity = "famous";
+        else if (stars >= 1000) popularity = "popular";
+        else popularity = "rising";
 
         return {
             name: repo.name,
