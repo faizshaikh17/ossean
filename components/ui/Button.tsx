@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Button as ButtonType } from '../../types/buttonType';
+import { SquareArrowOutUpRight } from 'lucide-react';
 
 export default function Button({
     label,
@@ -14,9 +15,9 @@ export default function Button({
             prefetch={true}
             target={target}
             rel={rel}
-            className={`px-4 py-2 text-sm border border-gray-300 rounded-md bg-white text-black hover:bg-gray-100 focus:outline-none transition-colors duration-200 ${className}`}
+            className={`px-4 py-2 text-sm rounded-md font-semibold flex items-center justify-between gap-2 text-black bg-white focus:outline-none transition-colors duration-300 ${className}`}
         >
-            {label}
+            <SquareArrowOutUpRight size={17} /> {label}
         </Link>
     );
 }

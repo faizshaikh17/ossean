@@ -13,12 +13,14 @@ const navLinks = [
     items: [
       { name: 'Home', link: '/home' },
       { name: 'Trending', link: '/home/trending' },
+      { name: 'Discover', link: '/home/discover' },
+
     ],
   },
   {
     title: 'Categories',
     items: [
-      { name: 'Discover', link: '/home/discover' },
+      { name: 'Soon', link: '/' },
     ],
   },
 ];

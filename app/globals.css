@@ -1,10 +1,10 @@
-@import "tailwindcss";
+@import "tailwindcss"; /* optional — remove if not using Tailwind */
 
 :root {
   --background: #0a0a0a;
   --foreground: #0a0a0a;
-  --font-sans: var(--font-poppins);
-  /* --font-mono: var(--font-geist-mono); */
+  --font-sans: var(--font-geist-sans); /* matches Geist variable */
+  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,6 +17,5 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans)
+  font-family: var(--font-sans), sans-serif;
 }
-
