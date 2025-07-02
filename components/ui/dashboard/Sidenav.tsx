@@ -2,7 +2,7 @@
 
 import NavLinks from './NavLinks';
 import Link from 'next/link';
-import { LogOutIcon } from 'lucide-react';
+// import { LogOutIcon } from 'lucide-react';
 
 export default function Sidenav() {
   return (
