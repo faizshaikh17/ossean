@@ -4,15 +4,13 @@ import YC from "@/lib/yc.json";
 import { getGithubTokens } from "@/lib/githubTokens";
 
 interface Repo {
-  repo_id?: number;
-  repo_name?: string;
   name?: string;
   language?: string;
+  topics?: string[];
   stargazers_count?: number;
   forks_count?: number;
-  popularity?: "legendary" | "famous" | "popular" | "rising";
-  topics?: string[];
   imgUrl?: string;
+  popularity?: "legendary" | "famous" | "popular" | "rising";
 }
 
 type ColumnKey = keyof Pick<
@@ -32,66 +30,86 @@ const columns: { key: ColumnKey; label: string }[] = [
 const formatNumber = (n: number) =>
   n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `${(n / 1e3).toFixed(1)}k` : n.toString();
 
-const renderCell = (
-  record: Repo,
-  key: ColumnKey,
-  idx: number,
-  repoLink?: string
-) => {
+const renderCell = (record: Repo, key: ColumnKey, idx: number, repoLink?: string) => {
   const value = record[key];
 
-  if (key === "name") {
-    return repoLink ? (
-      <Link
-        href={`https://github.com/${repoLink}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-2 text-blue-400 hover:underline"
-      >
-        {record.imgUrl && (
-          <Image
-            src={record.imgUrl}
-            alt={`${record.name} avatar`}
-            width={24}
-            height={24}
-            className="rounded-full"
-          />
-        )}
-        {value || repoLink.split("/")[1]}
-      </Link>
-    ) : (
-      "-"
+  switch (key) {
+    case "name":
+      return repoLink ? (
+        <Link
+          href={`https://github.com/${repoLink}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-center gap-2 hover:text-yellow-300 transition"
+        >
+          {record.imgUrl && (
+            <Image
+              src={record.imgUrl}
+              alt={`${record.name ?? "Repo"} avatar`}
+              width={24}
+              height={24}
+              className="rounded-full group-hover:opacity-80 transition"
+            />
+          )}
+          <span className="font-medium">{value || repoLink.split("/")[1]}</span>
+        </Link>
+      ) : (
+        <span className="text-neutral-400">-</span>
+      );
+
+    case "language": return (
+      <span className="text-neutral-400 capitalize font-medium">{value ?? "-"}</span>
     );
-  }
+    case "popularity":
+      return (
+        <span
+          className={`capitalize font-semibold text-xs px-2 py-1 rounded-md ${
+            value === "legendary"
+              ? "bg-yellow-500/10 text-yellow-400 border border-yellow-400/20"
+              : value === "famous"
+              ? "bg-purple-500/10 text-purple-400 border border-purple-400/20"
+              : value === "popular"
+              ? "bg-sky-500/10 text-sky-400 border border-sky-400/20"
+              : "bg-green-500/10 text-green-400 border border-green-400/20"
+          }`}
+        >
+          {value ?? "-"}
+        </span>
+      );
 
-  if (key === "language" || key === "popularity") {
-    return <span className="text-gray-300 capitalize">{value || "-"}</span>;
-  }
-
-  if (key === "topics" && Array.isArray(value)) {
-    return value.length > 0 ? (
-      <div className="flex flex-wrap gap-1">
-        {value.slice(0, 3).map((tag, i) => (
-          <span
-            key={`${tag}-${i}`}
-            className="inline-block bg-gray-700/40 text-xs text-gray-200 px-2 py-0.5 rounded"
-          >
-            {tag}
+    case "topics":
+      if (Array.isArray(value) && value.length > 0) {
+        return (
+          <div className="flex flex-wrap gap-1">
+            {value.slice(0, 3).map((tag, i) => (
+              <span
+                key={`${tag}-${i}`}
+                className="bg-neutral-800/50 text-xs text-neutral-300 px-2 py-1 rounded-sm border border-neutral-700/30 font-medium"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        );
+      } else {
+        return (
+          <span className="bg-neutral-800/50 text-xs text-neutral-300 px-2 py-1 rounded-sm border border-neutral-700/30 font-medium">
+            {record.language || "-"}
           </span>
-        ))}
-      </div>
-    ) : (
-      <span className="inline-block bg-gray-700/40 text-xs text-gray-200 px-2 py-0.5 rounded">
-        {record.language || "-"}
-      </span>
-    );
-  }
+        );
+      }
 
-  if (key === "stargazers_count" || key === "forks_count") {
-    return <span>{typeof value === "number" ? formatNumber(value) : "0"}</span>;
-  }
+    case "stargazers_count":
+    case "forks_count":
+      return (
+        <span className="font-mono font-medium tabular-nums tracking-wider">
+          {typeof value === "number" ? formatNumber(value) : "0"}
+        </span>
+      );
 
-  return <span>{value || "-"}</span>;
+    default:
+      return <span className="text-neutral-400">{value ?? "-"}</span>;
+  }
 };
 
 export default async function Page() {
@@ -100,51 +118,77 @@ export default async function Page() {
 
   const results = await Promise.all(
     repoNames.map(async (name) => {
-      const res = await fetch(`${githubApiUrl}${name}`, {
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${getGithubTokens()}`,
-        },
-        next: { revalidate: 60 * 60 * 24 * 0.5 },
-      });
+      try {
+        const res = await fetch(`${githubApiUrl}${name}`, {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${getGithubTokens()}`,
+          },
+          next: { revalidate: 60 * 60 * 12 }, // 12 hours
+        });
 
-      if (!res.ok) return null;
+        if (!res.ok) return null;
+        const raw = await res.json();
 
-      const raw = await res.json();
-      const stars = raw.stargazers_count || 0;
+        const stars = raw.stargazers_count || 0;
 
-      return {
-        name: raw.name,
-        language: raw.language,
-        topics: raw.topics,
-        stargazers_count: raw.stargazers_count,
-        forks_count: raw.forks_count,
-        imgUrl: raw.owner.avatar_url,
-        popularity:
-          stars >= 50000 ? "legendary" :
-            stars >= 10000 ? "famous" :
-              stars >= 1000 ? "popular" :
-                "rising",
-      };
+        return {
+          name: raw.name,
+          language: raw.language,
+          topics: raw.topics,
+          stargazers_count: stars,
+          forks_count: raw.forks_count,
+          imgUrl: raw.owner?.avatar_url,
+          popularity:
+            stars >= 50000
+              ? "legendary"
+              : stars >= 10000
+                ? "famous"
+                : stars >= 1000
+                  ? "popular"
+                  : "rising",
+        };
+      } catch {
+        return null;
+      }
     })
   );
 
   const enrichedRepos = results.map((r) => r || {});
 
   return (
-    <main className="min-h-screen px-8 py-9 text-sm text-white bg-black">
-      <h1 className="text-xl font-bold mb-6">Top YC OSS Projects</h1>
+    <div className="relative w-full min-h-full p-8 z-10">
+      <div className="flex flex-col gap-5 w-full z-10 mb-8">
+        <div className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-medium leading-[100%]">
+          <span className="bg-gradient-to-r space-x-2 text-white/90">
+            <span>Top</span>
+            <span className="text-white bg-orange-500 text-3xl px-3 rounded">Y</span>
+            <span>OSS</span>
+          </span>
+          <div
+            className="mt-3 px-2 py-1 w-fit text-sm text-neutral-500 tracking-tight border-[2px] transition"
+            style={{
+              borderImage:
+                "conic-gradient(#d4d4d4 0deg, #171717 90deg, #d4d4d4 180deg, #171717 270deg, #d4d4d4 360deg) 1",
+            }}
+          >
+            Curated open source projects from Y Combinator
+          </div>
+        </div>
+      </div>
 
       {YC.length > 0 ? (
         <>
+          {/* Desktop Table */}
           <div className="hidden md:block overflow-x-auto">
-            <table className="min-w-full table-auto border-collapse">
+            <table className="min-w-full table-auto border-collapse bg-black/40 backdrop-blur-sm border border-neutral-800/50 overflow-hidden">
               <thead>
-                <tr>
+                <tr className="border-b border-neutral-800/50">
                   {columns.map(({ key, label }) => (
                     <th
                       key={key}
-                      className={`${key === "topics" ? "text-center" : ""} text-left py-2 px-4 border-b border-gray-700`}
+                      className={`${key === "topics" ? "text-center" : "text-left"
+                        } py-4 px-6 text-sm font-medium text-neutral-400 bg-neutral-900/30`}
                     >
                       {label}
                     </th>
@@ -153,9 +197,12 @@ export default async function Page() {
               </thead>
               <tbody>
                 {enrichedRepos.map((record, idx) => (
-                  <tr key={idx} className="border-b border-gray-800">
+                  <tr
+                    key={idx}
+                    className="border-b border-neutral-800/30 group hover:bg-neutral-900/20 transition"
+                  >
                     {columns.map(({ key }) => (
-                      <td key={key} className="py-2 px-4">
+                      <td key={key} className="py-4 px-6 text-sm">
                         {renderCell(record, key, idx, YC[idx]?.repo)}
                       </td>
                     ))}
@@ -165,15 +212,19 @@ export default async function Page() {
             </table>
           </div>
 
+          {/* Mobile Cards */}
           <div className="md:hidden space-y-4">
             {enrichedRepos.map((record, idx) => (
               <div
                 key={idx}
-                className="border border-gray-800 p-4 rounded-lg bg-gray-900 space-y-2"
+                className="border border-neutral-800/50 p-4 rounded-lg bg-black/40 backdrop-blur-sm space-y-3 hover:border-neutral-700 transition"
               >
                 {columns.map(({ key, label }) => (
-                  <div key={key} className="flex justify-between text-sm">
-                    <span className="text-gray-400">{label}</span>
+                  <div
+                    key={key}
+                    className="flex justify-between items-start text-sm gap-4"
+                  >
+                    <span className="text-neutral-400 font-medium">{label}</span>
                     <div className="text-right max-w-[60%]">
                       {renderCell(record, key, idx, YC[idx]?.repo)}
                     </div>
@@ -184,8 +235,12 @@ export default async function Page() {
           </div>
         </>
       ) : (
-        <div className="text-gray-400">No repositories found.</div>
+        <div className="text-center py-16">
+          <div className="text-neutral-400 font-medium text-base">
+            No repositories found.
+          </div>
+        </div>
       )}
-    </main>
+    </div>
   );
 }

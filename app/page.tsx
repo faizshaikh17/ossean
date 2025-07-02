@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className="relative w-full min-h-screen bg-black text-white overflow-hidden flex flex-col items-center justify-center">
       <section className="relative w-full min-h-screen px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44 flex flex-col items-center justify-center">
-        
+
         <div className="absolute inset-0 z-0 bg-[url('/grill.png')] bg-cover bg-center opacity-30 pointer-events-none" />
         <div className="absolute inset-0 z-0 bg-[url('/bg-light.png')] bg-cover bg-top-right pointer-events-none" />
 
@@ -89,7 +89,7 @@ export default function Home() {
                     'conic-gradient(#d4d4d4 0deg, #171717 90deg, #d4d4d4 180deg, #171717 270deg, #d4d4d4 360deg) 1',
                 }}
               >
-                Discover OSS Projects.
+                Discover OSS Projects in Seconds.
               </div>
             </div>
 

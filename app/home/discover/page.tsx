@@ -26,25 +26,49 @@ const getPopularity = (stars: number) => {
   return 'rising';
 };
 
-const formatNumber = (num: number) =>
-  num >= 1_000_000 ? (num / 1_000_000).toFixed(1) + 'M' :
-    num >= 1000 ? (num / 1000).toFixed(1) + 'k' :
-      num.toString();
+const formatNumber = (n: number) =>
+  n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `${(n / 1e3).toFixed(1)}k` : n.toString();
 
 const RepoLink = ({ repo }: { repo: Repo & { popularity: string } }) => (
-  <Link href={repo.html_url} target="_blank" className="flex items-center gap-2 text-blue-400 hover:underline">
-    <Image src={repo.owner.avatar_url} alt={repo.name} width={24} height={24} className="rounded-full" />
-    {repo.name}
+  <Link
+    href={repo.html_url}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group flex items-center gap-2 hover:text-yellow-300 transition"
+  >
+    <Image
+      src={repo.owner.avatar_url}
+      alt={`${repo.name} avatar`}
+      width={24}
+      height={24}
+      className="rounded-full group-hover:opacity-80 transition"
+    />
+    <span className="font-medium">{repo.name}</span>
   </Link>
 );
 
-const TopicTags = ({ topics, language }: { topics: string[]; language: string | null }) => (
-  <div className="flex flex-wrap gap-1">
-    {(topics.length ? topics.slice(0, 3) : [language || '-']).map((t, i) => (
-      <span key={i} className="bg-gray-700/40 text-xs text-gray-200 px-2 py-0.5 rounded">{t}</span>
-    ))}
-  </div>
-);
+const TopicTags = ({ topics, language }: { topics: string[]; language: string | null }) => {
+  if (Array.isArray(topics) && topics.length > 0) {
+    return (
+      <div className="flex flex-wrap gap-1">
+        {topics.slice(0, 3).map((tag, i) => (
+          <span
+            key={`${tag}-${i}`}
+            className="bg-neutral-800/50 text-xs text-neutral-300 px-2 py-1 rounded-sm border border-neutral-700/30 font-medium"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+    );
+  } else {
+    return (
+      <span className="bg-neutral-800/50 text-xs text-neutral-300 px-2 py-1 rounded-sm border border-neutral-700/30 font-medium">
+        {language || '-'}
+      </span>
+    );
+  }
+};
 
 export default function TrendingRepos() {
   const [repos, setRepos] = useState<(Repo & { popularity: string })[]>([]);
@@ -60,12 +84,14 @@ export default function TrendingRepos() {
         const res = await fetch(`/api/githubFilter?language=${language}&page=${page}`);
         const { items = [] } = await res.json();
 
-        setRepos(items.map((repo: Repo) => ({
-          ...repo,
-          language: repo.language || null,
-          topics: repo.topics || [],
-          popularity: getPopularity(repo.stargazers_count || 0)
-        })));
+        setRepos(
+          items.map((repo: Repo) => ({
+            ...repo,
+            language: repo.language || null,
+            topics: repo.topics || [],
+            popularity: getPopularity(repo.stargazers_count || 0),
+          }))
+        );
       } catch (err) {
         console.error('Fetch failed:', err);
       } finally {
@@ -78,55 +104,154 @@ export default function TrendingRepos() {
 
   const filtered = popularity ? repos.filter(r => r.popularity === popularity) : repos;
 
+  const columns = [
+    { key: 'repository', label: 'Repository' },
+    { key: 'language', label: 'Language' },
+    { key: 'topics', label: 'Tags' },
+    { key: 'stargazers_count', label: 'Stars' },
+    { key: 'forks_count', label: 'Forks' },
+    { key: 'popularity', label: 'Popularity' },
+  ];
+
+  const renderCell = (repo: Repo & { popularity: string }, key: string) => {
+    switch (key) {
+      case 'repository':
+        return <RepoLink repo={repo} />;
+      case 'language':
+        return (
+          <span className="text-neutral-400 capitalize font-medium">
+            {repo.language || '-'}
+          </span>
+        );
+      case 'topics':
+        return <TopicTags topics={repo.topics} language={repo.language} />;
+      case 'stargazers_count':
+      case 'forks_count':
+        return (
+          <span className="font-mono font-medium tabular-nums tracking-wider">
+            {formatNumber(repo[key as keyof Repo] as number)}
+          </span>
+        );
+      case "language": return (
+        <span className="text-neutral-400 capitalize font-medium">{repo.language ?? "-"}</span>
+      );
+      case "popularity":
+        return (
+          <span
+            className={`capitalize font-semibold text-xs px-2 py-1 rounded-md ${repo.popularity === "legendary"
+              ? "bg-yellow-500/10 text-yellow-400 border border-yellow-400/20"
+              : repo.popularity === "famous"
+                ? "bg-purple-500/10 text-purple-400 border border-purple-400/20"
+                : repo.popularity === "popular"
+                  ? "bg-sky-500/10 text-sky-400 border border-sky-400/20"
+                  : "bg-green-500/10 text-green-400 border border-green-400/20"
+              }`}
+          >
+            {repo.popularity ?? "-"}
+          </span>
+        );
+      default:
+        return <span className="text-neutral-400">-</span>;
+    }
+  };
+
   return (
-    <main className="min-h-screen px-4 py-6 text-sm text-white bg-black">
-      <div className="max-w-7xl mx-auto mb-6 flex flex-col sm:flex-row justify-between gap-4">
-        <h1 className="text-xl font-bold">Trending Repos</h1>
-        <div className="flex flex-col sm:flex-row gap-3">
-          <select value={language} onChange={e => setLanguage(e.target.value)} disabled={isLoading}
-            className="bg-black border border-gray-700 rounded-md px-3 py-1.5 w-40">
-            <option value="">All Languages</option>
-            {LANGUAGES.map(lang => (
-              <option key={lang} value={lang.toLowerCase()}>{lang}</option>
-            ))}
-          </select>
-          <select value={popularity} onChange={e => setPopularity(e.target.value)} disabled={isLoading}
-            className="bg-black border border-gray-700 rounded-md px-3 py-1.5 w-40">
-            <option value="">All Popularity</option>
-            <option value="legendary">Legendary (50k+)</option>
-            <option value="famous">Famous (10k–50k)</option>
-            <option value="popular">Popular (1k–10k)</option>
-            <option value="rising">Rising (&lt;1k)</option>
-          </select>
+    <div className="relative w-full min-h-full p-8 z-10">
+      <div className="flex flex-col gap-5 w-full z-10 mb-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
+          <div>
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-medium leading-[100%]">
+              <span className="bg-gradient-to-r space-x-2 text-white/90">
+                <span>Discover</span>
+                <span></span>
+              </span>
+            </div>
+            <div
+              className="mt-3 px-2 py-1 w-fit text-sm text-neutral-500 tracking-tight border-[2px] transition"
+              style={{
+                borderImage:
+                  "conic-gradient(#d4d4d4 0deg, #171717 90deg, #d4d4d4 180deg, #171717 270deg, #d4d4d4 360deg) 1",
+              }}
+            >
+              Filter by language and popularity
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3">
+            <select
+              aria-label="Filter by language"
+              value={language}
+              onChange={e => setLanguage(e.target.value)}
+              disabled={isLoading}
+              className="bg-black/40 backdrop-blur-sm border border-neutral-800/50 px-3 py-2 text-white text-sm font-medium hover:border-neutral-700/60 transition-all duration-300 focus:outline-none focus:border-neutral-700/60 disabled:opacity-50 w-full sm:w-40"
+            >
+              <option className="bg-black text-white" value="">All Languages</option>
+              {LANGUAGES.map(lang => (
+                <option
+                  key={lang}
+                  value={lang.toLowerCase()}
+                  className="bg-black text-white"
+                >
+                  {lang}
+                </option>
+              ))}
+            </select>
+
+            <select
+              aria-label="Filter by popularity"
+              value={popularity}
+              onChange={e => setPopularity(e.target.value)}
+              disabled={isLoading}
+              className="bg-black/40 backdrop-blur-sm border border-neutral-800/50 px-3 py-2 text-white text-sm font-medium hover:border-neutral-700/60 transition-all duration-300 focus:outline-none focus:border-neutral-700/60 disabled:opacity-50 w-full sm:w-40"
+            >
+              <option className="bg-black text-white" value="">All Popularity</option>
+              <option className="bg-black text-white" value="legendary">Legendary (50k+)</option>
+              <option className="bg-black text-white" value="famous">Famous (10k–50k)</option>
+              <option className="bg-black text-white" value="popular">Popular (1k–10k)</option>
+              <option className="bg-black text-white" value="rising">Rising (&lt;1k)</option>
+            </select>
+
+          </div>
+
         </div>
       </div>
 
       {isLoading ? (
-        <div className="text-center text-gray-400 flex items-center justify-center gap-2">
-          <div className="size-5 border-2 border-white/50 border-t-transparent rounded-full animate-spin" />
-          Loading repositories...
-        </div>
+        <main className="min-h-screen flex flex-col gap-5 items-center justify-center bg-black/60 backdrop-blur-md text-white relative z-10">
+          <div className="w-10 h-10 border-4 border-transparent border-t-yellow-300 rounded-full animate-spin" />
+          <h1 className="text-base sm:text-lg font-medium text-neutral-300 tracking-tight">
+            Loading repositories...
+          </h1>
+        </main>
       ) : filtered.length > 0 ? (
         <>
           {/* Desktop Table */}
           <div className="hidden md:block overflow-x-auto">
-            <table className="min-w-full border-collapse">
+            <table className="min-w-full table-auto border-collapse bg-black/40 backdrop-blur-sm border border-neutral-800/50 overflow-hidden">
               <thead>
-                <tr className="border-b border-gray-700">
-                  {['Repository', 'Language', 'Tags', 'Stars', 'Forks', 'Popularity'].map(h => (
-                    <th key={h} className="text-left py-2 px-4">{h}</th>
+                <tr className="border-b border-neutral-800/50">
+                  {columns.map(({ key, label }) => (
+                    <th
+                      key={key}
+                      className={`${key === 'topics' ? 'text-center' : 'text-left'
+                        } py-4 px-6 text-sm font-medium text-neutral-400 bg-neutral-900/30`}
+                    >
+                      {label}
+                    </th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((repo, i) => (
-                  <tr key={i} className="border-b border-gray-800">
-                    <td className="py-2 px-4"><RepoLink repo={repo} /></td>
-                    <td className="py-2 px-4 text-gray-300">{repo.language || '-'}</td>
-                    <td className="py-2 px-4"><TopicTags topics={repo.topics} language={repo.language} /></td>
-                    <td className="py-2 px-4">{formatNumber(repo.stargazers_count)}</td>
-                    <td className="py-2 px-4">{formatNumber(repo.forks_count)}</td>
-                    <td className="py-2 px-4 text-gray-300 capitalize">{repo.popularity}</td>
+                {filtered.map((repo, idx) => (
+                  <tr
+                    key={idx}
+                    className="border-b border-neutral-800/30 group hover:bg-neutral-900/20 transition"
+                  >
+                    {columns.map(({ key }) => (
+                      <td key={key} className="py-4 px-6 text-sm">
+                        {renderCell(repo, key)}
+                      </td>
+                    ))}
                   </tr>
                 ))}
               </tbody>
@@ -135,35 +260,54 @@ export default function TrendingRepos() {
 
           {/* Mobile Cards */}
           <div className="md:hidden space-y-4">
-            {filtered.map((repo, i) => (
-              <div key={i} className="border border-gray-800 p-4 rounded-lg bg-gray-900 space-y-2">
-                {[
-                  { label: 'Repository', value: <RepoLink repo={repo} /> },
-                  { label: 'Language', value: repo.language || '-' },
-                  { label: 'Tags', value: <TopicTags topics={repo.topics} language={repo.language} /> },
-                  { label: 'Stars', value: formatNumber(repo.stargazers_count) },
-                  { label: 'Forks', value: formatNumber(repo.forks_count) },
-                  { label: 'Popularity', value: <span className="capitalize">{repo.popularity}</span> },
-                ].map(({ label, value }) => (
-                  <div key={label} className="flex justify-between text-sm">
-                    <span className="text-gray-400">{label}</span>
-                    <div className="text-right text-gray-300 max-w-[60%]">{value}</div>
+            {filtered.map((repo, idx) => (
+              <div
+                key={idx}
+                className="border border-neutral-800/50 p-4 rounded-lg bg-black/40 backdrop-blur-sm space-y-3 hover:border-neutral-700 transition"
+              >
+                {columns.map(({ key, label }) => (
+                  <div
+                    key={key}
+                    className="flex justify-between items-start text-sm gap-4"
+                  >
+                    <span className="text-neutral-400 font-medium">{label}</span>
+                    <div className="text-right max-w-[60%]">
+                      {renderCell(repo, key)}
+                    </div>
                   </div>
                 ))}
               </div>
             ))}
           </div>
 
-          <div className="flex gap-3 mt-6 justify-center">
-            <button onClick={() => setPage(p => Math.max(p - 1, 1))} disabled={page === 1 || isLoading}
-              className="px-4 py-1.5 border border-gray-700 rounded-md hover:bg-gray-800 disabled:opacity-50">Previous</button>
-            <button onClick={() => setPage(p => p + 1)} disabled={isLoading}
-              className="px-4 py-1.5 border border-gray-700 rounded-md hover:bg-gray-800 disabled:opacity-50">Next</button>
+          <div className="flex gap-3 mt-8 justify-center">
+            <button
+              onClick={() => setPage(p => Math.max(p - 1, 1))}
+              disabled={page === 1 || isLoading}
+              className="hover:bg-neutral-900/20 disabled:cursor-not-allowed bg-black/40 backdrop-blur-sm border border-neutral-800/50 px-4 py-2 text-white text-sm font-medium hover:border-neutral-700/60 transition-all duration-300 focus:outline-none focus:border-neutral-700/60 disabled:opacity-50 w-fit"
+            >
+              Previous
+            </button>
+            <span className="hover:bg-neutral-900/20 disabled:cursor-not-allowed bg-black/40 backdrop-blur-sm border border-neutral-800/50 px-4 py-2 text-white text-sm font-medium hover:border-neutral-700/60 transition-all duration-300 focus:outline-none focus:border-neutral-700/60 disabled:opacity-50 w-fit">
+              Page {page}
+            </span>
+            <button
+              onClick={() => setPage(p => p + 1)}
+              disabled={isLoading}
+              className="hover:bg-neutral-900/20 disabled:cursor-not-allowed bg-black/40 backdrop-blur-sm border border-neutral-800/50 px-4 py-2 text-white text-sm font-medium hover:border-neutral-700/60 transition-all duration-300 focus:outline-none focus:border-neutral-700/60 disabled:opacity-50 w-fit"
+            >
+              Next
+            </button>
           </div>
         </>
       ) : (
-        <p className="text-center text-gray-400">No repositories found.</p>
+        <main className="min-h-screen flex flex-col gap-5 items-center justify-center bg-black/60 backdrop-blur-md text-white relative z-10">
+          <div className="w-10 h-10 border-4 border-transparent border-t-yellow-300 rounded-full animate-spin" />
+          <h1 className="text-base sm:text-lg font-medium text-neutral-300 tracking-tight">
+            No repositories found...
+          </h1>
+        </main>
       )}
-    </main>
+    </div>
   );
 }
