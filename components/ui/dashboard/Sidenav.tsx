@@ -1,7 +1,6 @@
 'use client';
 
 import NavLinks from './NavLinks';
-import Link from 'next/link';
 // import { LogOutIcon } from 'lucide-react';
 
 export default function Sidenav() {
@@ -10,11 +9,6 @@ export default function Sidenav() {
       <div className="absolute top-0 right-0 w-[0.05rem] h-full bg-neutral-900/50" />
 
       <div className="flex h-full flex-row justify-between md:flex-col md:space-y-2 overflow-y-auto scrollbar-thin scrollbar-thumb-neutral-800/70 scrollbar-track-transparent">
-        <div className="flex md:hidden items-center py-4 px-4 sm:px-6 md:px-8">
-          <Link href="/">
-            <span className="text-xl font-medium font-mono">OSSean</span>
-          </Link>
-        </div>
 
         <nav
           className="hidden md:block w-full grow"
@@ -35,9 +29,10 @@ export default function Sidenav() {
 
               <div className="absolute inset-0 z-0 pointer-events-none group-hover:bg-neutral-800/20 transition-all duration-300" />
             </button> */}
-            <span className='text-sm text-neutral-500/50 px-9 py-6 font-mono'>ossean v0.0.1</span>
           </div>
         </nav>
+        <span className='text-sm text-neutral-500/50 py-2 mx-12 font-mono'>ossean v0.0.1</span>
+
       </div>
     </aside>
   );

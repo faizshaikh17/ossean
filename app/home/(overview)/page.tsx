@@ -90,7 +90,7 @@ const renderCell = (record: Repo, key: ColumnKey, idx: number, repoLink?: string
       return (
         <span className={`
           capitalize font-semibold text-xs px-2.5 py-1 rounded-md border
-          transition-all duration-200 hover:scale-105 hover:shadow-sm
+          transition-all duration-200 w-fit hover:scale-105 hover:shadow-sm
           ${colorClass}
         `}>
           {value}
@@ -100,13 +100,13 @@ const renderCell = (record: Repo, key: ColumnKey, idx: number, repoLink?: string
     case "popularity":
       return (
         <span
-          className={`capitalize font-semibold text-xs px-2 py-1 rounded-md ${value === "legendary"
-              ? "bg-yellow-500/10 text-yellow-400 border border-yellow-400/20"
-              : value === "famous"
-                ? "bg-purple-500/10 text-purple-400 border border-purple-400/20"
-                : value === "popular"
-                  ? "bg-sky-500/10 text-sky-400 border border-sky-400/20"
-                  : "bg-green-500/10 text-green-400 border border-green-400/20"
+          className={`capitalize font-semibold text-xs w-fit px-2 py-1 rounded-md ${value === "legendary"
+            ? "bg-yellow-500/10 text-yellow-400 border border-yellow-400/20"
+            : value === "famous"
+              ? "bg-purple-500/10 text-purple-400 border border-purple-400/20"
+              : value === "popular"
+                ? "bg-sky-500/10 text-sky-400 border border-sky-400/20"
+                : "bg-green-500/10 text-green-400 border border-green-400/20"
             }`}
         >
           {value ?? "-"}
@@ -129,7 +129,7 @@ const renderCell = (record: Repo, key: ColumnKey, idx: number, repoLink?: string
         );
       } else {
         return (
-          <span className="bg-neutral-800/50 text-xs text-neutral-300 px-2 py-1 rounded-sm border border-neutral-700/30 font-medium">
+          <span className="bg-neutral-800/50 text-xs w-fit text-neutral-300 px-2 py-1 rounded-sm border border-neutral-700/30 font-medium">
             {record.language || "-"}
           </span>
         );
@@ -253,19 +253,32 @@ export default async function Page() {
             {enrichedRepos.map((record, idx) => (
               <div
                 key={idx}
-                className="border border-neutral-800/50 p-4 rounded-lg bg-black/40 backdrop-blur-sm space-y-3 hover:border-neutral-700 transition"
+                className="border border-neutral-800/50 p-4 bg-black/40 backdrop-blur-sm space-y-5 hover:border-neutral-700 transition"
               >
-                {columns.map(({ key, label }) => (
-                  <div
-                    key={key}
-                    className="flex justify-between items-start text-sm gap-4"
-                  >
-                    <span className="text-neutral-400 font-medium">{label}</span>
-                    <div className="text-right max-w-[60%]">
-                      {renderCell(record, key, idx, YC[idx]?.repo)}
-                    </div>
-                  </div>
-                ))}
+                <div className="flex flex-col gap-2 text-sm text-white font-medium">
+                  {renderCell(record, 'name', idx, YC[idx]?.repo)}
+
+                  {renderCell(record, 'popularity', idx, YC[idx]?.repo)}
+
+                  {renderCell(record, 'topics', idx, YC[idx]?.repo)}
+
+                  {renderCell(record, 'language', idx, YC[idx]?.repo)}
+                </div>
+
+                <div className="border-t border-neutral-800/50" />
+
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  {columns
+                    .filter(({ key }) => ['stargazers_count', 'forks_count'].includes(key))
+                    .map(({ key, label }) => (
+                      <div key={key} className="flex flex-col gap-0.5">
+                        <span className="text-neutral-400 font-medium">{label}</span>
+                        <div className="text-white font-semibold">
+                          {renderCell(record, key, idx, YC[idx]?.repo)}
+                        </div>
+                      </div>
+                    ))}
+                </div>
               </div>
             ))}
           </div>

@@ -63,7 +63,7 @@ const TopicTags = ({ topics, language }: { topics: string[]; language: string | 
     );
   } else {
     return (
-      <span className="bg-neutral-800/50 text-xs text-neutral-300 px-2 py-1 rounded-sm border border-neutral-700/30 font-medium">
+      <span className="bg-neutral-800/50 w-fit text-xs text-neutral-300 px-2 py-1 rounded-sm border border-neutral-700/30 font-medium">
         {language || '-'}
       </span>
     );
@@ -159,7 +159,7 @@ export default function TrendingRepos() {
         return (
           <span
             className={`
-        capitalize font-semibold text-xs px-2.5 py-1 rounded-md border
+        capitalize font-semibold text-xs w-fit px-2.5 py-1 rounded-md border
         transition-all duration-200 hover:scale-105 hover:shadow-sm
         ${colorClass}
       `}
@@ -171,7 +171,7 @@ export default function TrendingRepos() {
       case "popularity":
         return (
           <span
-            className={`capitalize font-semibold text-xs px-2 py-1 rounded-md ${repo.popularity === "legendary"
+            className={`capitalize font-semibold w-fit text-xs px-2 py-1 rounded-md ${repo.popularity === "legendary"
               ? "bg-yellow-500/10 text-yellow-400 border border-yellow-400/20"
               : repo.popularity === "famous"
                 ? "bg-purple-500/10 text-purple-400 border border-purple-400/20"
@@ -296,19 +296,34 @@ export default function TrendingRepos() {
             {filtered.map((repo, idx) => (
               <div
                 key={idx}
-                className="border border-neutral-800/50 p-4 rounded-lg bg-black/40 backdrop-blur-sm space-y-3 hover:border-neutral-700 transition"
+                className="border border-neutral-800/50 p-4 bg-black/40 backdrop-blur-sm space-y-5 hover:border-neutral-700 transition"
               >
-                {columns.map(({ key, label }) => (
-                  <div
-                    key={key}
-                    className="flex justify-between items-start text-sm gap-4"
-                  >
-                    <span className="text-neutral-400 font-medium">{label}</span>
-                    <div className="text-right max-w-[60%]">
-                      {renderCell(repo, key)}
-                    </div>
-                  </div>
-                ))}
+                {/* Metadata values only (no labels) */}
+                <div className="flex flex-col gap-2 text-sm text-white font-medium">
+                  {renderCell(repo, "repository")}
+                  {renderCell(repo, "popularity")}
+                  {renderCell(repo, "topics")}
+                  {renderCell(repo, "language")}
+                </div>
+
+                {/* Divider */}
+                <div className="border-t border-neutral-800/50" />
+
+                {/* Metrics with labels (stars & forks) */}
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  {columns
+                    .filter(({ key }) =>
+                      ["stargazers_count", "forks_count"].includes(key)
+                    )
+                    .map(({ key, label }) => (
+                      <div key={key} className="flex flex-col gap-0.5">
+                        <span className="text-neutral-400 font-medium">{label}</span>
+                        <div className="text-white font-semibold">
+                          {renderCell(repo, key)}
+                        </div>
+                      </div>
+                    ))}
+                </div>
               </div>
             ))}
           </div>
@@ -332,6 +347,7 @@ export default function TrendingRepos() {
               Next
             </button>
           </div>
+
         </>
       ) : (
         <main className="min-h-screen flex flex-col gap-5 items-center justify-center bg-black/60 backdrop-blur-md text-white relative z-10">

@@ -99,7 +99,7 @@ const renderCell = (
             return (
                 <span
                     className={`
-        capitalize font-semibold text-xs px-2.5 py-1 rounded-md border
+        capitalize font-semibold text-xs w-fit px-2.5 py-1 rounded-md border
         transition-all duration-200 hover:scale-105 hover:shadow-sm
         ${colorClass}
       `}
@@ -111,7 +111,7 @@ const renderCell = (
         case "popularity":
             return (
                 <span
-                    className={`capitalize font-semibold text-xs px-2 py-1 rounded-md ${value === "legendary"
+                    className={`capitalize font-semibold w-fit text-xs px-2 py-1 rounded-md ${value === "legendary"
                         ? "bg-yellow-500/10 text-yellow-400 border border-yellow-400/20"
                         : value === "famous"
                             ? "bg-purple-500/10 text-purple-400 border border-purple-400/20"
@@ -140,7 +140,7 @@ const renderCell = (
                 );
             } else {
                 return (
-                    <span className="bg-neutral-800/50 text-xs text-neutral-300 px-2 py-1 rounded-sm border border-neutral-700/30 font-medium">
+                    <span className="bg-neutral-800/50 w-fit text-xs text-neutral-300 px-2 py-1 rounded-sm border border-neutral-700/30 font-medium">
                         {record.language || "-"}
                     </span>
                 );
@@ -255,22 +255,36 @@ export default async function Page() {
                 {trendingRepos.map((record, idx) => (
                     <div
                         key={idx}
-                        className="border border-neutral-800/50 p-4 rounded-lg bg-black/40 backdrop-blur-sm space-y-3 hover:border-neutral-700 transition"
+                        className="border border-neutral-800/50 p-4 bg-black/40 backdrop-blur-sm space-y-5 hover:border-neutral-700 transition"
                     >
-                        {columns.map(({ key, label }) => (
-                            <div
-                                key={key}
-                                className="flex justify-between items-start text-sm gap-4"
-                            >
-                                <span className="text-neutral-400 font-medium">{label}</span>
-                                <div className="text-right max-w-[60%]">
-                                    {renderCell(record, key, idx, record.githubUrl)}
-                                </div>
-                            </div>
-                        ))}
+                        {/* Values Only Section */}
+                        <div className="flex flex-col gap-2 text-sm text-white font-medium">
+                            {renderCell(record, 'name', idx, record.githubUrl)}
+                            {renderCell(record, 'popularity', idx)}
+                            {renderCell(record, 'topics', idx)}
+                            {renderCell(record, 'language', idx)}
+                        </div>
+
+                        {/* Divider */}
+                        <div className="border-t border-neutral-800/50" />
+
+                        {/* Metrics Section (with labels) */}
+                        <div className="grid grid-cols-2 gap-4 text-sm">
+                            {columns
+                                .filter(({ key }) => ['stargazers_count', 'forks_count'].includes(key))
+                                .map(({ key, label }) => (
+                                    <div key={key} className="flex flex-col gap-0.5">
+                                        <span className="text-neutral-400 font-medium">{label}</span>
+                                        <div className="text-white font-semibold">
+                                            {renderCell(record, key, idx)}
+                                        </div>
+                                    </div>
+                                ))}
+                        </div>
                     </div>
                 ))}
             </div>
+
         </main>
     );
 }

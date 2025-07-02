@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Navbar() {
     return (
-        <nav className="w-full h-16 px-10 bg-black/40 backdrop-blur-sm border-b border-neutral-800/50 flex justify-between items-center z-50">
+        <nav className="w-full h-16 sm:px-10 px-5 bg-black/40 backdrop-blur-sm border-b border-neutral-800/50 flex justify-between items-center z-50">
 
             <Link href="/">
                 <span className="text-2xl sm:text-3xl font-medium font-mono">ossean</span>
@@ -15,7 +15,7 @@ export default function Navbar() {
                         href="https://github.com/faizshaikh17/opensea"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group relative z-50 flex items-center justify-between gap-2 sm:gap-4 w-full sm:w-auto max-w-full sm:max-w-[15rem] whitespace-pre border border-neutral-700 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-black dark:text-white hover:bg-accent hover:text-accent-foreground transition-all duration-300 ease-out overflow-hidden hover:ring-black"
+                        className="group relative z-50 sm:flex hidden items-center justify-between gap-2 sm:gap-4 w-fit sm:w-auto max-w-full sm:max-w-[15rem] whitespace-pre border border-neutral-700 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-black dark:text-white hover:bg-accent hover:text-accent-foreground transition-all duration-300 ease-out overflow-hidden hover:ring-black"
                     >
                         <div className="flex items-center gap-2 sm:gap-3">
 
