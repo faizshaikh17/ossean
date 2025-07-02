@@ -113,16 +113,34 @@ export default function TrendingRepos() {
     { key: 'popularity', label: 'Popularity' },
   ];
 
+  const LANGUAGE_COLORS = {
+    'TypeScript': 'bg-blue-500/10 text-blue-400 border-blue-400/20',
+    'JavaScript': 'bg-yellow-500/10 text-yellow-400 border-yellow-400/20',
+    'Python': 'bg-emerald-500/10 text-emerald-400 border-emerald-400/20',
+    'Go': 'bg-cyan-500/10 text-cyan-400 border-cyan-400/20',
+    'Rust': 'bg-orange-500/10 text-orange-400 border-orange-400/20',
+    'Java': 'bg-red-500/10 text-red-400 border-red-400/20',
+    'C++': 'bg-purple-500/10 text-purple-400 border-purple-400/20',
+    'C#': 'bg-indigo-500/10 text-indigo-400 border-indigo-400/20',
+    'PHP': 'bg-violet-500/10 text-violet-400 border-violet-400/20',
+    'Ruby': 'bg-pink-500/10 text-pink-400 border-pink-400/20',
+    'Swift': 'bg-rose-500/10 text-rose-400 border-rose-400/20',
+    'Kotlin': 'bg-purple-600/10 text-purple-300 border-purple-300/20',
+    'Dart': 'bg-teal-500/10 text-teal-400 border-teal-400/20',
+    'Shell': 'bg-gray-500/10 text-gray-400 border-gray-400/20',
+    'Scala': 'bg-red-600/10 text-red-300 border-red-300/20',
+    'HTML': 'bg-orange-600/10 text-orange-300 border-orange-300/20',
+    'CSS': 'bg-blue-600/10 text-blue-300 border-blue-300/20',
+    'C': 'bg-gray-600/10 text-gray-300 border-gray-300/20',
+    'Objective-C': 'bg-sky-600/10 text-sky-300 border-sky-300/20',
+    'R': 'bg-blue-700/10 text-blue-300 border-blue-300/20',
+    'default': 'bg-neutral-500/10 text-neutral-400 border-neutral-400/20'
+  };
+
   const renderCell = (repo: Repo & { popularity: string }, key: string) => {
     switch (key) {
       case 'repository':
         return <RepoLink repo={repo} />;
-      case 'language':
-        return (
-          <span className="text-neutral-400 capitalize font-medium">
-            {repo.language || '-'}
-          </span>
-        );
       case 'topics':
         return <TopicTags topics={repo.topics} language={repo.language} />;
       case 'stargazers_count':
@@ -132,9 +150,24 @@ export default function TrendingRepos() {
             {formatNumber(repo[key as keyof Repo] as number)}
           </span>
         );
-      case "language": return (
-        <span className="text-neutral-400 capitalize font-medium">{repo.language ?? "-"}</span>
-      );
+      case 'language':
+        if (!repo.language) return <span className="text-neutral-400">-</span>;
+
+        const colorClass =
+          LANGUAGE_COLORS[repo.language as keyof typeof LANGUAGE_COLORS] || LANGUAGE_COLORS.default;
+
+        return (
+          <span
+            className={`
+        capitalize font-semibold text-xs px-2.5 py-1 rounded-md border
+        transition-all duration-200 hover:scale-105 hover:shadow-sm
+        ${colorClass}
+      `}
+          >
+            {repo.language}
+          </span>
+        );
+
       case "popularity":
         return (
           <span

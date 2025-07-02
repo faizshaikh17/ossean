@@ -7,15 +7,19 @@ export default function Home() {
       <section className="relative w-full min-h-screen px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44 flex flex-col items-center justify-center">
 
         <div className="absolute inset-0 z-0 bg-[url('/grill.png')] bg-cover bg-center opacity-30 pointer-events-none" />
-        <div className="absolute inset-0 z-0 bg-[url('/bg-light.png')] bg-cover bg-top-right pointer-events-none" />
+        <div className="absolute inset-0 z-0 bg-[url('/bluePurpleYellowGradient2.png')] opacity-40 bg-cover pointer-events-none" />
 
-        <div className="absolute top-6 sm:top-12 md:top-16 lg:top-20 xl:top-24 left-4 sm:left-8 md:left-16 lg:left-20 xl:left-24 w-[0.05rem] h-full sm:h-4/5 md:h-full bg-neutral-900" />
-        <div className="absolute bottom-4 sm:bottom-8 md:bottom-12 lg:bottom-16 xl:bottom-18 left-0 w-full h-[0.05rem] bg-neutral-900" />
-        <div className="absolute right-4 sm:right-8 md:right-16 lg:right-20 xl:right-24 top-0 h-full w-[0.05rem] bg-neutral-900" />
 
-        <div className="absolute top-4 sm:top-6 md:top-8 left-0 w-full px-8 sm:px-8 md:px-16 lg:px-32 xl:px-44 flex justify-between  items-center sm:items-end gap-19 sm:gap-0 z-10">
+
+        <div className="absolute top-6 sm:top-12 md:top-16 lg:top-20 xl:top-0 left-4 sm:left-8 md:left-16 lg:left-20 xl:left-24 w-[0.05rem] h-full sm:h-4/5 md:h-full bg-gradient-to-b from-transparent via-neutral-900 to-neutral-900" />
+
+        <div className="absolute bottom-4 sm:bottom-8 md:bottom-12 lg:bottom-16 xl:bottom-18 left-0 w-full h-[0.05rem] bg-neutral-800/50" />
+        <div className="absolute right-4 sm:right-8 md:right-16 lg:right-20 xl:right-24 top-0 h-full w-[0.05rem] bg-neutral-800/50" />
+
+
+        <div className="absolute top-4 sm:top-6 md:top-8 left-0 w-full px-8 sm:px-8 md:px-16 lg:px-32 xl:px-44 flex justify-between  items-center gap-19 sm:gap-0 z-10">
           <Link href="/">
-            <span className="text-2xl sm:text-3xl font-medium font-mono">OSSean</span>
+            <span className="text-2xl sm:text-4xl font-medium font-mono">ossean</span>
           </Link>
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 items-start sm:items-center z-10 w-full sm:w-auto">
             <div className='z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4 w-full sm:w-auto'>
@@ -23,28 +27,19 @@ export default function Home() {
                 href="https://github.com/faizshaikh17/opensea"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative z-50 flex sm:w-auto sm:max-w-[15.3rem] items-center justify-center gap-2 whitespace-pre rounded-none border border-input border-neutral-700 bg-transparent px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-black shadow-sm transition-all duration-300 ease-out hover:bg-accent hover:text-accent-foreground overflow-hidden hover:ring-black dark:text-white"
+                className="group relative z-50 flex items-center justify-between gap-2 sm:gap-4 w-full sm:w-auto max-w-full sm:max-w-[15rem] whitespace-pre border border-neutral-700 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-black dark:text-white hover:bg-accent hover:text-accent-foreground transition-all duration-300 ease-out overflow-hidden hover:ring-black"
               >
-                <span className="absolute right-0 h-10 w-8 translate-x-12 overflow-hidden rotate-12 bg-yellow-300 opacity-20 transition-all duration-1000 ease-out group-hover:-translate-x-40 dark:bg-white/60" />
+                <div className="flex items-center gap-2 sm:gap-3">
 
-                <div className="flex items-center">
-                  <svg
-                    className="w-3 h-3 sm:w-4 sm:h-4 fill-current"
-                    viewBox="0 0 438.549 438.549"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.859 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z" />
-                  </svg>
-                  <span className="ml-1 sm:ml-2 text-black dark:text-white">Star on GitHub</span>
+                  <span className="text-black dark:text-white">Star on GitHub</span>
                 </div>
 
-                <div className="ml-1 sm:ml-2 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
+                <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
                   <svg
                     className="h-3 w-3 sm:h-4 sm:w-4 text-gray-500 transition-all duration-300 group-hover:text-yellow-300"
                     aria-hidden="true"
                     fill="currentColor"
                     viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
                       fillRule="evenodd"
@@ -52,11 +47,12 @@ export default function Home() {
                       d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                     />
                   </svg>
-                  <span className="sm:inline-block hidden font-mono pr-1 sm:pr-2 font-medium tabular-nums tracking-wider text-black dark:text-white">
+                  <span className="hidden sm:inline-block font-mono pr-1 sm:pr-2 font-medium tabular-nums tracking-wider text-black dark:text-white">
                     0.001k+
                   </span>
                 </div>
               </Link>
+
 
               <Button
                 label="Get started"
@@ -101,14 +97,19 @@ export default function Home() {
               </p>
             </div>
 
-            <Button
-              label="Get started"
-              href="/home"
-              className="z-10 transition duration-300 shadow-lg hover:shadow-xl sm:w-auto lg:w-auto"
-            />
+            <div className='flex justify-between items-center gap-4'>
+              <Button
+                label="Get started"
+                href="/home"
+                className="z-10 transition duration-300 shadow-lg hover:shadow-xl sm:w-auto lg:w-auto"
+              />
+              <button className='px-4 py-2 text-sm font-semibold flex items-center border border-neutral-700/30 justify-between gap-1.5 text-white bg-neutral-800  focus:outline-none transition-colors duration-300 z-10 shadow-lg hover:shadow-xl sm:w-auto lg:w-auto'>Not backed by{' '}<span className="text-white bg-orange-500 px-1.5">Y</span>
+              </button>
+            </div>
+
           </div>
 
-          <div className="w-full lg:w-full h-48 sm:h-64 md:h-80 lg:h-[22.5rem] bg-[url('/worldMap.svg')] bg-contain lg:bg-cover bg-center lg:bg-top bg-no-repeat opacity-70 pointer-events-none z-10" />
+          <div className="w-full lg:w-full h-48 sm:h-64 md:h-80 lg:h-[22.5rem] bg-[url('/worldMap.svg')] bg-contain lg:bg-cover bg-center lg:bg-top bg-no-repeat pointer-events-none z-10" />
         </div>
       </section>
     </main>

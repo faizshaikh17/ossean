@@ -27,6 +27,31 @@ const columns: { key: ColumnKey; label: string }[] = [
   { key: "popularity", label: "Popularity" },
 ];
 
+// Minimal premium language colors - clean and sophisticated
+const LANGUAGE_COLORS = {
+  'TypeScript': 'bg-blue-500/10 text-blue-400 border-blue-400/20',
+  'JavaScript': 'bg-yellow-500/10 text-yellow-400 border-yellow-400/20',
+  'Python': 'bg-emerald-500/10 text-emerald-400 border-emerald-400/20',
+  'Go': 'bg-cyan-500/10 text-cyan-400 border-cyan-400/20',
+  'Rust': 'bg-orange-500/10 text-orange-400 border-orange-400/20',
+  'Java': 'bg-red-500/10 text-red-400 border-red-400/20',
+  'C++': 'bg-purple-500/10 text-purple-400 border-purple-400/20',
+  'C#': 'bg-indigo-500/10 text-indigo-400 border-indigo-400/20',
+  'PHP': 'bg-violet-500/10 text-violet-400 border-violet-400/20',
+  'Ruby': 'bg-pink-500/10 text-pink-400 border-pink-400/20',
+  'Swift': 'bg-rose-500/10 text-rose-400 border-rose-400/20',
+  'Kotlin': 'bg-purple-600/10 text-purple-300 border-purple-300/20',
+  'Dart': 'bg-teal-500/10 text-teal-400 border-teal-400/20',
+  'Shell': 'bg-gray-500/10 text-gray-400 border-gray-400/20',
+  'Scala': 'bg-red-600/10 text-red-300 border-red-300/20',
+  'HTML': 'bg-orange-600/10 text-orange-300 border-orange-300/20',
+  'CSS': 'bg-blue-600/10 text-blue-300 border-blue-300/20',
+  'C': 'bg-gray-600/10 text-gray-300 border-gray-300/20',
+  'Objective-C': 'bg-sky-600/10 text-sky-300 border-sky-300/20',
+  'R': 'bg-blue-700/10 text-blue-300 border-blue-300/20',
+  'default': 'bg-neutral-500/10 text-neutral-400 border-neutral-400/20'
+};
+
 const formatNumber = (n: number) =>
   n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `${(n / 1e3).toFixed(1)}k` : n.toString();
 
@@ -57,9 +82,21 @@ const renderCell = (record: Repo, key: ColumnKey, idx: number, repoLink?: string
         <span className="text-neutral-400">-</span>
       );
 
-    case "language": return (
-      <span className="text-neutral-400 capitalize font-medium">{value ?? "-"}</span>
-    );
+    case "language": 
+      if (!value) return <span className="text-neutral-400">-</span>;
+      
+      const colorClass = LANGUAGE_COLORS[value as keyof typeof LANGUAGE_COLORS] || LANGUAGE_COLORS.default;
+      
+      return (
+        <span className={`
+          capitalize font-semibold text-xs px-2.5 py-1 rounded-md border
+          transition-all duration-200 hover:scale-105 hover:shadow-sm
+          ${colorClass}
+        `}>
+          {value}
+        </span>
+      );
+
     case "popularity":
       return (
         <span
@@ -84,7 +121,7 @@ const renderCell = (record: Repo, key: ColumnKey, idx: number, repoLink?: string
             {value.slice(0, 3).map((tag, i) => (
               <span
                 key={`${tag}-${i}`}
-                className="bg-neutral-800/50 text-xs text-neutral-300 px-2 py-1 rounded-sm border border-neutral-700/30 font-medium"
+                className="bg-neutral-800/50 text-xs text-neutral-300 px-2 py-1 rounded-sm border border-neutral-700/30 font-medium hover:bg-neutral-700/50 transition-colors"
               >
                 {tag}
               </span>
@@ -162,7 +199,7 @@ export default async function Page() {
         <div className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-medium leading-[100%]">
           <span className="bg-gradient-to-r space-x-2 text-white/90">
             <span>Top</span>
-            <span className="text-white bg-orange-500 text-3xl px-3 rounded">Y</span>
+            <span className="text-white bg-orange-500 text-3xl px-3">Y</span>
             <span>OSS</span>
           </span>
           <div
