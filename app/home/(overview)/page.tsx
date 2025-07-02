@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import YC from "@/lib/yc.json";
+import YC from "@/lib/YC.json";
 import { getGithubTokens } from "@/lib/githubTokens";
 
 interface Repo {
@@ -82,11 +82,11 @@ const renderCell = (record: Repo, key: ColumnKey, idx: number, repoLink?: string
         <span className="text-neutral-400">-</span>
       );
 
-    case "language": 
+    case "language":
       if (!value) return <span className="text-neutral-400">-</span>;
-      
+
       const colorClass = LANGUAGE_COLORS[value as keyof typeof LANGUAGE_COLORS] || LANGUAGE_COLORS.default;
-      
+
       return (
         <span className={`
           capitalize font-semibold text-xs px-2.5 py-1 rounded-md border
@@ -100,15 +100,14 @@ const renderCell = (record: Repo, key: ColumnKey, idx: number, repoLink?: string
     case "popularity":
       return (
         <span
-          className={`capitalize font-semibold text-xs px-2 py-1 rounded-md ${
-            value === "legendary"
+          className={`capitalize font-semibold text-xs px-2 py-1 rounded-md ${value === "legendary"
               ? "bg-yellow-500/10 text-yellow-400 border border-yellow-400/20"
               : value === "famous"
-              ? "bg-purple-500/10 text-purple-400 border border-purple-400/20"
-              : value === "popular"
-              ? "bg-sky-500/10 text-sky-400 border border-sky-400/20"
-              : "bg-green-500/10 text-green-400 border border-green-400/20"
-          }`}
+                ? "bg-purple-500/10 text-purple-400 border border-purple-400/20"
+                : value === "popular"
+                  ? "bg-sky-500/10 text-sky-400 border border-sky-400/20"
+                  : "bg-green-500/10 text-green-400 border border-green-400/20"
+            }`}
         >
           {value ?? "-"}
         </span>
