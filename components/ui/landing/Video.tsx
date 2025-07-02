@@ -35,7 +35,7 @@ export default function Video() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Star the project on GitHub"
-                        className="group relative z-50 flex items-center mt-4 justify-between gap-2 sm:gap-4 w-full sm:w-auto max-w-full sm:max-w-[15rem] whitespace-pre border border-neutral-700 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-black dark:text-white hover:bg-accent hover:text-accent-foreground transition-all duration-300 ease-out overflow-hidden hover:ring-black"
+                        className="group relative z-50 flex items-center w-fit mt-4 justify-between gap-2 sm:gap-4 sm:w-auto max-w-full sm:max-w-[15rem] whitespace-pre border border-neutral-700 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-black dark:text-white hover:bg-accent hover:text-accent-foreground transition-all duration-300 ease-out overflow-hidden hover:ring-black"
                     >
                         <div className="flex items-center gap-2 sm:gap-3">
                             <span className="text-black dark:text-white">Star on GitHub</span>
