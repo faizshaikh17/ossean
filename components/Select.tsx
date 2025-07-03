@@ -26,7 +26,7 @@ export default function Select({
     <select
       value={value}
       onChange={onChange}
-      className={`appearance-none bg-black text-white border border-neutral-800/50 px-3 py-2 text-sm focus:outline-none focus:ring-[0.8px] focus:ring-yellow-300/40 transition ${className}`}
+      className={`appearance-none bg-black text-white border border-neutral-800/50 px-3 py-2 text-sm focus:outline-none focus:ring-[0.5px] focus:ring-yellow-300/30 transition ${className}`}
     >
       <option value="">{placeholder}</option>
       {options.map((opt) => (

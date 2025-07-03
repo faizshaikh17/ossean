@@ -4,8 +4,8 @@ export default function Video() {
     return (
         <>
             <main className="relative w-full bg-black/40 text-white flex flex-col items-center justify-center">
-                <section className="relative w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44 py-24 flex flex-col items-center justify-center">
-                    <div className="absolute inset-0 z-0 bg-[url('/statue.png')] bg-cover bg-center opacity-50 pointer-events-none" />
+                <section className="relative w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44 py-20 flex flex-col gap-8 items-center justify-center">
+                    <div className="absolute inset-0 z-0 bg-[url('/statue.png')] bg-cover bg-center opacity-60 pointer-events-none" />
 
                     <div className="flex flex-col items-center justify-center gap-4">
                         <header className="text-2xl flex flex-col items-center justify-center gap-2 sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[100%] animate-fade-in w-fit text-center">
@@ -22,12 +22,12 @@ export default function Video() {
                     </div>
 
                     <video
-                        src="/display.mp4"
+                        src="/video.mp4"
                         autoPlay
                         loop
                         muted
                         playsInline
-                        className="w-full mt-8 max-w-[60rem] h-auto z-10 aspect-video rounded-md shadow-lg"
+                        className="w-full border border-white/10 mt-8 max-w-[60rem] h-auto z-10  rounded shadow-lg"
                     />
 
                     <Link
@@ -35,7 +35,7 @@ export default function Video() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Star the project on GitHub"
-                        className="group relative z-50 flex items-center w-fit mt-4 justify-between gap-2 sm:gap-4 sm:w-auto max-w-full sm:max-w-[15rem] whitespace-pre border border-neutral-700 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-black dark:text-white hover:bg-accent hover:text-accent-foreground transition-all duration-300 ease-out overflow-hidden hover:ring-black"
+                        className="group relative z-50 flex items-center w-fit mt-6 justify-between gap-2 sm:gap-4 sm:w-auto max-w-full sm:max-w-[15rem] whitespace-pre border border-neutral-700 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-black dark:text-white hover:bg-accent hover:text-accent-foreground transition-all duration-300 ease-out overflow-hidden hover:ring-black"
                     >
                         <div className="flex items-center gap-2 sm:gap-3">
                             <span className="text-black dark:text-white">Star on GitHub</span>

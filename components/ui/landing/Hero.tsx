@@ -15,7 +15,7 @@ export default function Hero() {
 
                     <div className="absolute top-4 sm:top-6 md:top-8 left-0 w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 z-10">
                         <Link href="/">
-                            <span className="text-2xl sm:text-4xl font-medium font-mono">ossean</span>
+                            <span className="text-2xl sm:text-[2.3rem] text-neutral-400 font-medium font-mono"><span className='text-white'>oss</span>ean</span>
                         </Link>
 
                         <div className="hidden sm:flex flex-row gap-2 sm:gap-4 w-full sm:w-auto items-start sm:items-center">
