@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useDebouncedCallback } from 'use-debounce';
+import { ChevronsLeft, ChevronsRight } from 'lucide-react';
 
 interface Repo {
   name: string;
@@ -277,7 +278,7 @@ export default function TrendingRepos() {
       </div>
 
       {isLoading ? (
-        <main className="min-h-screen flex flex-col gap-5 py-[10rem] items-center justify-start bg-transparent backdrop-blur-md text-white relative z-10" aria-busy="true">
+        <main className="min-h-screen flex flex-col gap-5 py-[10rem] items-center justify-start bg-transparent backdrop-blur-md text-white z-10" aria-busy="true">
           <div className="w-10 h-10 border-4 border-transparent border-t-yellow-300 rounded-full animate-spin" />
           <h1 className="text-base sm:text-lg font-medium text-neutral-300 tracking-tight">
             Banging Hard
@@ -344,17 +345,17 @@ export default function TrendingRepos() {
               disabled={page === 1 || isLoading}
               className="hover:bg-neutral-900/20 cursor-pointer disabled:cursor-not-allowed bg-black/40 backdrop-blur-sm border border-neutral-800/50 px-4 py-2 text-white text-sm font-medium hover:border-neutral-700/60 transition-all duration-300 focus:outline-none focus:border-neutral-700/60 disabled:opacity-50 w-fit"
             >
-              Previous
+              <ChevronsLeft />
             </button>
             <span className="hover:bg-neutral-900/20 disabled:cursor-not-allowed bg-black/40 backdrop-blur-sm border border-neutral-800/50 px-4 py-2 text-white text-sm font-medium hover:border-neutral-700/60 transition-all duration-300 focus:outline-none focus:border-neutral-700/60 cursor-pointer disabled:opacity-50 w-fit">
-              Page {page}
+              {page}
             </span>
             <button
               onClick={() => setPage(p => p + 1)}
               disabled={isLoading}
               className="hover:bg-neutral-900/20 cursor-pointer disabled:cursor-not-allowed bg-black/40 backdrop-blur-sm border border-neutral-800/50 px-4 py-2 text-white text-sm font-medium hover:border-neutral-700/60 transition-all duration-300 focus:outline-none focus:border-neutral-700/60 disabled:opacity-50 w-fit"
             >
-              Next
+              <ChevronsRight />
             </button>
           </div>
         </>
