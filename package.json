@@ -16,7 +16,8 @@
     "next": "15.3.4",
     "p-limit": "^6.2.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "use-debounce": "^10.0.5"
   },
   "devDependencies": {
     "typescript": "^5",

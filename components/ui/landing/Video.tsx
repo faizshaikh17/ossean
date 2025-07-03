@@ -3,8 +3,8 @@ import Link from "next/link"
 export default function Video() {
     return (
         <>
-            <main className="relative w-full min-h-screen bg-black/40 text-white flex flex-col items-center justify-center">
-                <section className="relative w-full min-h-screen px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44 py-24 flex flex-col items-center justify-center">
+            <main className="relative w-full bg-black/40 text-white flex flex-col items-center justify-center">
+                <section className="relative w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44 py-24 flex flex-col items-center justify-center">
                     <div className="absolute inset-0 z-0 bg-[url('/statue.png')] bg-cover bg-center opacity-50 pointer-events-none" />
 
                     <div className="flex flex-col items-center justify-center gap-4">
@@ -27,7 +27,7 @@ export default function Video() {
                         loop
                         muted
                         playsInline
-                        className="w-full mt-8 max-w-[50rem] h-auto z-10 aspect-video rounded-md shadow-lg"
+                        className="w-full mt-8 max-w-[60rem] h-auto z-10 aspect-video rounded-md shadow-lg"
                     />
 
                     <Link

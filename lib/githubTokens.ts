@@ -1,4 +1,4 @@
-const tokens = process.env.GITHUB_TOKEN!.split(',');
+const tokens = (process.env.GITHUB_TOKEN || '').split(',');
 let currentIndex = 0;
 
 export function getGithubTokens() {
