@@ -4,7 +4,7 @@ export default function Video() {
     return (
         <>
             <main className="relative w-full bg-black/40 text-white flex flex-col items-center justify-center">
-                <section className="relative w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44 py-20 flex flex-col gap-8 items-center justify-center">
+                <section className="relative w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44 py-20 flex flex-col sm:gap-8 gap-6 items-center justify-center">
                     <div className="absolute inset-0 z-0 bg-[url('/statue.png')] bg-cover bg-center opacity-60 pointer-events-none" />
 
                     <div className="flex flex-col items-center justify-center gap-4">

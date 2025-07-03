@@ -333,9 +333,10 @@ export default function Page() {
                 <div key={idx} className="border border-neutral-800/50 p-4 bg-black/40 backdrop-blur-sm space-y-5 hover:border-neutral-700 transition">
                   <div className="flex flex-col gap-2 text-sm text-white font-medium">
                     {renderCell(record, "name", idx, YC[idx]?.repo ?? "")}
-                    {renderCell(record, "popularity", idx)}
-                    {renderCell(record, "topics", idx)}
                     {renderCell(record, "language", idx)}
+                    {renderCell(record, "topics", idx)}
+                    {renderCell(record, "popularity", idx)}
+
                   </div>
                   <div className="border-t border-neutral-800/50" />
                   <div className="grid grid-cols-2 gap-4 text-sm">
