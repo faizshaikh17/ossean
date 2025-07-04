@@ -105,7 +105,7 @@ export default function Hero() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row justify-center sm:justify-start items-center gap-4 sm:gap-6 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row justify-center sm:justify-start items-center gap-4 w-full sm:w-auto">
                 <Button
                   label="Get started"
                   href="/home"
