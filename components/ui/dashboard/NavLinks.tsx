@@ -103,7 +103,7 @@ export default function NavLinks() {
                     )}
                   >
                     <div className="flex items-center gap-2 relative z-10">
-                      {Icon && <Icon className="w-4 h-4 shrink-0 opacity-80" />}
+                      {Icon && <Icon size={16} className="shrink-0 opacity-60" />}
                       <span>{item.name}</span>
                     </div>
                     {isActive && chevron && (

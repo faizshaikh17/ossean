@@ -15,7 +15,7 @@ export default function Button({
             prefetch={true}
             target={target}
             rel={rel}
-            className={`px-4 py-2 font-semibold text-[0.95rem] flex items-center justify-between gap-1.5 bg-gradient-to-r rounded-md from-white/70 to-white text-black focus:outline-none transition-colors duration-300 ${className}`}
+            className={`px-4 py-2 font-semibold text-[0.95rem] flex items-center justify-between gap-1.5 bg-gradient-to-r rounded-md from-white/60 to-white text-black focus:outline-none transition-colors duration-300 ${className}`}
         >
             <SquareArrowOutUpRight size={17} /> {label}
         </Link>

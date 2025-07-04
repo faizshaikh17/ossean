@@ -221,11 +221,11 @@ export default function TrendingRepos() {
     <div className="relative w-full min-h-full p-8 z-10">
       <div className="flex flex-col gap-5 w-full z-10 mb-8">
         <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col w-full gap-5">
             <div className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-medium leading-[100%]">
               <span className="bg-gradient-to-r text-white/90">Discover</span>
             </div>
-            <div className="relative w-full max-w-[22rem]">
+            <div className="relative w-full max-w-[19rem] ">
               <svg className="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4 font-medium text-neutral-500 pointer-events-none" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
               </svg>
@@ -233,7 +233,7 @@ export default function TrendingRepos() {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Filter trending repositories..."
+                placeholder="Filter projects according to your niche"
                 aria-label="Search repositories"
                 className="pl-8 pr-2 py-1 w-full text-sm text-neutral-500 tracking-tight border-[2px] bg-transparent focus:outline-none focus:ring-1 focus:ring-yellow-300 transition"
                 style={{

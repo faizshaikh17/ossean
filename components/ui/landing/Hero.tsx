@@ -40,7 +40,7 @@ export default function Hero() {
                 href="https://github.com/faizshaikh17/opensea"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative z-50 flex items-center justify-between gap-2 sm:gap-4 w-full sm:w-auto max-w-full sm:max-w-[15rem] whitespace-pre border border-neutral-700 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-black dark:text-white hover:bg-accent hover:text-accent-foreground transition-all duration-300 ease-out overflow-hidden hover:ring-black"
+                className="group relative z-50 flex items-center justify-between gap-2 sm:gap-4 w-full sm:w-auto max-w-full sm:max-w-[15rem] whitespace-pre border border-neutral-700 px-3 sm:px-2 py-2 text-xs sm:text-sm font-medium text-black dark:text-white hover:bg-accent hover:text-accent-foreground transition-all duration-300 ease-out overflow-hidden hover:ring-black"
               >
                 <div className="flex items-center gap-2 sm:gap-3">
                   <span className="text-black dark:text-white">Star on GitHub</span>
@@ -62,11 +62,11 @@ export default function Hero() {
                   </span>
                 </div>
               </Link>
-              <Button
+              {/* <Button
                 label="Get started"
                 href="/home"
                 className="z-10 transition duration-300 shadow-lg flex hover:shadow-xl sm:w-auto"
-              />
+              /> */}
             </div>
           </div>
 
