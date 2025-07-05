@@ -310,7 +310,7 @@ export default function Page() {
             Banging Hard
           </h1>
         </section>
-      ) : (
+      ) : filteredData.length > 0 ? (
         <>
           {/* Desktop Table */}
           <div className="hidden md:block overflow-x-auto">
@@ -376,7 +376,10 @@ export default function Page() {
             ))}
           </div>
         </>
-      )}
-    </main>
+      ) : (
+        <div className="text-center text-neutral-300 mt-20">No repositories found...</div>
+      )
+    }
+    </main >
   );
 }

@@ -1,10 +1,11 @@
 import Link from "next/link"
-
+import GithubButton from "@/components/GithubButton"
+import { Mail, Twitter, Github } from "lucide-react";
 export default function Video() {
     return (
         <>
             <main className="relative w-full bg-black/40 text-white flex flex-col items-center justify-center">
-                <section className="relative w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44 py-20 flex flex-col sm:gap-8 gap-6 items-center justify-center">
+                <section className="relative w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44 py-20 flex flex-col sm:gap-10 gap-6 items-center justify-center">
                     <div className="absolute inset-0 z-0 bg-[url('/statue.png')] bg-cover bg-center opacity-60 pointer-events-none" />
 
                     <div className="flex flex-col items-center justify-center gap-4">
@@ -27,37 +28,9 @@ export default function Video() {
                         loop
                         muted
                         playsInline
-                        className="w-full border border-white/10 mt-8 max-w-[60rem] h-auto z-10  rounded shadow-lg"
+                        className="w-full border border-white/10 mt-6 max-w-[60rem] h-auto z-10  rounded shadow-lg"
                     />
-
-                    <Link
-                        href="https://github.com/faizshaikh17/opensea"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Star the project on GitHub"
-                        className="group relative z-50 flex items-center w-fit mt-6 justify-between gap-2 sm:gap-4 sm:w-auto max-w-full sm:max-w-[15rem] whitespace-pre border border-neutral-700 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-black dark:text-white hover:bg-accent hover:text-accent-foreground transition-all duration-300 ease-out overflow-hidden hover:ring-black"
-                    >
-                        <div className="flex items-center gap-2 sm:gap-3">
-                            <span className="text-black dark:text-white">Star on GitHub</span>
-                        </div>
-                        <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
-                            <svg
-                                className="h-3 w-3 sm:h-4 sm:w-4 text-gray-500 transition-all duration-300 group-hover:text-yellow-300"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                                aria-hidden="true"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                />
-                            </svg>
-                            <span className="hidden sm:inline-block font-mono pr-1 sm:pr-2 font-medium tabular-nums tracking-wider text-white">
-                                0.001k+
-                            </span>
-                        </div>
-                    </Link>
+                    <GithubButton />
                     {/* <div>
 
                         <div className="flex flex-col mt-32 items-center justify-center gap-4">
@@ -79,6 +52,45 @@ export default function Video() {
                     </div> */}
                 </section>
             </main>
+            <footer className="w-full text-center text-xs text-neutral-500 font-mono py-6 px-4 flex flex-wrap justify-center items-center gap-3 border-t border-white/10 mt-10 z-10">
+                <Link
+                    href="https://twitter.com/iamfaizz17"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 hover:text-white transition"
+                >
+                    <Twitter className="w-3 h-3" />
+                    twitter
+                </Link>
+
+                <span className="opacity-30">/</span>
+
+                <Link
+                    href="https://github.com/faizshaikh17"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 hover:text-white transition"
+                >
+                    <Github className="w-3 h-3" />
+                    github
+                </Link>
+
+                <span className="opacity-30">/</span>
+
+                <a
+                    href="mailto:info.ossean@gmail.com"
+                    className="flex items-center gap-1 hover:text-white transition"
+                >
+                    <Mail className="w-3 h-3" />
+                    mail
+                </a>
+
+                <span className="opacity-30">/</span>
+
+                <span className="text-neutral-600 dark:text-neutral-500">
+                    © 2025 all rights reserved
+                </span>
+            </footer>
         </>
     )
 }

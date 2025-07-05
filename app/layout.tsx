@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 
-
 export const metadata: Metadata = {
   title: "Ossean - Ocean of Open Source",
   description:
@@ -67,8 +66,6 @@ export const metadata: Metadata = {
   },
 };
 
-
-
 const geistSans = Geist({
   subsets: ["latin"],
   display: "swap",
@@ -87,9 +84,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
-      <body className="antialiased">{children}</body>
-      <Analytics />
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className="antialiased" suppressHydrationWarning>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
