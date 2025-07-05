@@ -12,7 +12,7 @@ export default function Navbar() {
                 <span className="text-neutral-500">ean</span>
             </Link>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 items-start sm:items-center z-10 w-full sm:w-auto">
-                <div className='z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4 w-full sm:w-auto'>
+                <div className='z-10 sm:flex hidden flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4 w-full sm:w-auto'>
                     <GithubButton />    
                 </div>
             </div>
