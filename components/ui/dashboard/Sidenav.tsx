@@ -1,41 +1,76 @@
+// Sidenav.tsx
 'use client';
 
 import { useState } from 'react';
 import NavLinks from './NavLinks';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Menu, X } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Sidenav() {
   const [collapsed, setCollapsed] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <aside
-      className={`flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out border-r border-neutral-800/50 bg-black/40 backdrop-blur-sm relative z-10
-      ${collapsed ? 'w-16' : 'w-full md:w-64'}`}
-    >
-      <div className="absolute top-0 right-0 w-[0.05rem] h-full bg-neutral-900/50" />
 
-      <button
-        onClick={() => setCollapsed((prev) => !prev)}
-        className="absolute top-4 cursor-pointer right-4 z-20 p-1.5 border border-neutral-700/30 bg-black/50 hover:bg-neutral-800/50 transition"
+    <>
+      <aside
+        className={`flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out border-r border-neutral-800/50 bg-black/40 backdrop-blur-sm absolute sm:relative z-10
+      ${collapsed ? 'w-16' : 'w-full sm:w-64'}`}
       >
-        {collapsed ? (
-          <ChevronRight className="w-4 h-4 text-neutral-400" />
-        ) : (
-          <ChevronLeft className="w-4 h-4 text-neutral-400" />
-        )}
-      </button>
+        <div className="absolute top-0 right-0 w-[0.05rem] h-full bg-neutral-900/50" />
 
-      <div className="flex h-full flex-row justify-between md:flex-col md:space-y-2 overflow-y-auto scrollbar-thin scrollbar-thumb-neutral-800/70 scrollbar-track-transparent">
-        <nav className={`hidden md:block ${collapsed ? 'mt-6' : ''} w-full grow`} role="navigation" aria-label="Sidebar">
-          <div className={`${collapsed ? 'px-4' : 'px-4 sm:px-6 md:px-8'}`}>
-            <NavLinks collapsed={collapsed} />
-          </div>
-        </nav>
+        <button onClick={() => setIsOpen(prev => !prev)} className='absolute cursor-pointer top-5 right-5 sm:hidden inline-block '>
+          {isOpen ? <X size={25} /> : <Menu size={25} />}
+        </button>
 
-        {!collapsed && (
-          <span className="text-sm text-neutral-500/50 py-2 mx-12 font-mono">ossean v0.0.1</span>
-        )}
-      </div>
-    </aside>
+        {isOpen && <button
+          onClick={() => setCollapsed((prev) => !prev)}
+          className="absolute sm:top-4 sm:right-4 top-12 right-4 z-20 p-1.5 border border-neutral-700/30 bg-black/50 hover:bg-neutral-800/50 transition"
+        >
+          {collapsed ? (
+            <ChevronRight className="w-4 h-4 text-neutral-400" />
+          ) : (
+            <ChevronLeft className="w-4 h-4 text-neutral-400" />
+          )}
+        </button>}
+
+        <button
+          onClick={() => setCollapsed((prev) => !prev)}
+          className="absolute sm:block hidden sm:top-4 sm:right-4 top-12 right-4 z-20 p-1.5 border border-neutral-700/30 bg-black/50 hover:bg-neutral-800/50 transition"
+        >
+          {collapsed ? (
+            <ChevronRight className="w-4 h-4 text-neutral-400" />
+          ) : (
+            <ChevronLeft className="w-4 h-4 text-neutral-400" />
+          )}
+        </button>
+
+        <div className="flex h-full flex-col justify-between overflow-y-auto scrollbar-thin scrollbar-thumb-neutral-800/70 scrollbar-track-transparent">
+          <nav
+            className={`w-full grow ${collapsed ? 'mt-6' : ''}`}
+            role="navigation"
+            aria-label="Sidebar"
+          >
+            <div className={`${collapsed ? 'px-4' : 'px-4 sm:px-6 md:px-8'}`}>
+              <NavLinks isOpen={isOpen} collapsed={collapsed} />
+            </div>
+          </nav>
+
+          {!collapsed && (
+            <>
+              <span className="text-sm text-neutral-500/50 py-2 px-4 sm:px-12 font-mono">
+                {isOpen ? "ossean v0.0.1" : <Link href="/" className="inline-flex sm:hidden items-center my-2 font-mono text-white text-[1.9rem] sm:text-[2.3rem] font-medium leading-none tracking-tight">
+                  <span className="text-white">oss</span>
+                  <span className="text-neutral-500">ean</span>
+                </Link>}
+              </span>
+              <span className="text-sm sm:inline hidden text-neutral-500/50 py-2 px-4 sm:px-12 font-mono">
+                ossean v0.0.1
+              </span>
+            </>
+          )}
+        </div>
+      </aside>
+    </>
   );
 }

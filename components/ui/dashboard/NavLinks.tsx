@@ -1,4 +1,4 @@
-
+// NavLinks.tsx
 'use client';
 
 import Link from 'next/link';
@@ -49,7 +49,7 @@ const navLinks = [
   },
 ];
 
-export default function NavLinks({ collapsed }: { collapsed?: boolean }) {
+export default function NavLinks({ collapsed, isOpen }: { collapsed?: boolean; isOpen?: boolean }) {
   const pathname = usePathname();
   const [chevron, setChevron] = useState(false);
 
@@ -60,7 +60,7 @@ export default function NavLinks({ collapsed }: { collapsed?: boolean }) {
   }, [pathname]);
 
   return (
-    <div className="flex flex-col mt-6 sm:mt-8 gap-5 px-1 py-1">
+    <div className={`sm:flex flex-col mt-14 sm:mt-10 gap-5 px-1 py-1 ${isOpen ? '':'hidden'}`}>
       {navLinks.map((group) => (
         <div key={group.title} className="space-y-2">
           {!collapsed && (
@@ -68,13 +68,13 @@ export default function NavLinks({ collapsed }: { collapsed?: boolean }) {
               {group.title}
             </div>
           )}
-          <div className="space-y-[2px]">
+          <div className="space-y-[2px] w-full">
             {group.items.map((item) => {
               const isActive = pathname === item.link;
               const Icon = item.icon;
 
               return (
-                <div key={item.name} className="relative group">
+                <div key={item.name} className="relative sm:w-full w-fit group">
                   {isActive && !collapsed && (
                     <motion.div
                       layoutId="activeNavItem"
@@ -84,7 +84,7 @@ export default function NavLinks({ collapsed }: { collapsed?: boolean }) {
                         damping: 20,
                         mass: 0.8,
                       }}
-                      className="absolute inset-0 z-0 rounded border border-neutral-700/40 bg-black/60 backdrop-blur-sm shadow-[0_0_0.5rem_#00000040]"
+                      className="absolute inset-0 z-0 rounded w-full border border-neutral-700/40 bg-black/60 backdrop-blur-sm shadow-[0_0_0.5rem_#00000040]"
                       style={{
                         borderImage:
                           'conic-gradient(#404040 0deg, #262626 90deg, #404040 180deg, #262626 270deg, #404040 360deg) 1',
@@ -102,7 +102,10 @@ export default function NavLinks({ collapsed }: { collapsed?: boolean }) {
                       collapsed ? 'justify-center' : 'justify-between w-full'
                     )}
                   >
-                    <div title={item.name} className={clsx('flex items-center gap-2', collapsed && 'justify-center')}>
+                    <div
+                      title={item.name}
+                      className={clsx('flex items-center gap-2', collapsed && 'justify-center')}
+                    >
                       <Icon size={16} className="opacity-60 shrink-0" />
                       {!collapsed && <span>{item.name}</span>}
                     </div>
