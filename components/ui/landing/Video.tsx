@@ -52,45 +52,50 @@ export default function Video() {
                     </div> */}
                 </section>
             </main>
-            <footer className="w-full text-center text-xs text-neutral-500 font-mono py-6 px-4 flex flex-wrap justify-center items-center gap-3 border-t border-white/10 mt-10 z-10">
-                <Link
-                    href="https://twitter.com/iamfaizz17"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 hover:text-white transition"
-                >
-                    <Twitter className="w-3 h-3" />
-                    twitter
-                </Link>
+            <footer className="w-full text-xs font-mono text-neutral-400 py-10 px-4 border-t border-white/[0.08] backdrop-blur-md bg-gradient-to-b from-black/30 to-black/60 z-10">
+                <div className="flex flex-wrap justify-center text-neutral-500 items-center gap-4 sm:gap-6 max-w-3xl mx-auto text-center">
 
-                <span className="opacity-30">/</span>
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 opacity-70">
+                        © 2025 all rights reserved
+                    </span>
 
-                <Link
-                    href="https://github.com/faizshaikh17"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 hover:text-white transition"
-                >
-                    <Github className="w-3 h-3" />
-                    github
-                </Link>
+                    <span className="hidden sm:inline-block text-neutral-600 opacity-30">/</span>
 
-                <span className="opacity-30">/</span>
+                    <Link
+                        href="https://twitter.com/iamfaizz17"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 group hover:text-blue-400 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(29,161,242,0.25)]"
+                    >
+                        <Twitter className="w-4 h-4 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
+                        <span className="hidden sm:inline tracking-wide text-xs">twitter</span>
+                    </Link>
 
-                <a
-                    href="mailto:info.ossean@gmail.com"
-                    className="flex items-center gap-1 hover:text-white transition"
-                >
-                    <Mail className="w-3 h-3" />
-                    mail
-                </a>
+                    <span className="hidden sm:inline-block text-neutral-600 opacity-30">/</span>
 
-                <span className="opacity-30">/</span>
+                    <Link
+                        href="https://github.com/faizshaikh17"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 group hover:text-green-400 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(34,197,94,0.25)]"
 
-                <span className="text-neutral-600 dark:text-neutral-500">
-                    © 2025 all rights reserved
-                </span>
+                    >
+                        <Github className="w-4 h-4 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
+                        <span className="hidden sm:inline tracking-wide text-xs">github</span>
+                    </Link>
+
+                    <span className="hidden sm:inline-block text-neutral-600 opacity-30">/</span>
+
+                    <a
+                        href="mailto:info.ossean@gmail.com"
+                        className="flex items-center gap-1.5 group hover:text-purple-400 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(138,43,226,0.25)]"
+                    >
+                        <Mail className="w-4 h-4 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
+                        <span className="hidden sm:inline tracking-wide text-xs">email</span>
+                    </a>
+                </div>
             </footer>
+
         </>
     )
 }
