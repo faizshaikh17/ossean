@@ -14,18 +14,18 @@ export default function Sidenav() {
 
     <>
       <aside
-        className={`flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out border-r border-neutral-800/50 bg-black/40 backdrop-blur-sm absolute sm:relative z-10
+        className={`flex flex-col justify-center  flex-shrink-0 transition-all duration-300 ease-in-out border-r border-neutral-800/50 bg-black/40 backdrop-blur-sm absolute sm:relative z-10
       ${collapsed ? 'w-16' : 'w-full sm:w-64'}`}
       >
         <div className="absolute top-0 right-0 w-[0.05rem] h-full bg-neutral-900/50" />
 
-        <button onClick={() => setIsOpen(prev => !prev)} className='absolute cursor-pointer top-5 right-5 sm:hidden inline-block '>
+        <button onClick={() => setIsOpen(prev => !prev)} className='absolute cursor-pointer top-4.5 right-4.5 sm:hidden inline-block '>
           {isOpen ? <X size={25} /> : <Menu size={25} />}
         </button>
 
         {isOpen && <button
           onClick={() => setCollapsed((prev) => !prev)}
-          className="absolute sm:top-4 sm:right-4 top-12 right-4 z-20 p-1.5 border border-neutral-700/30 bg-black/50 hover:bg-neutral-800/50 transition"
+          className="absolute sm:top-4 sm:right-4 top-14 right-3.5 z-20 p-1.5 cursor-pointer border border-neutral-700/30 bg-black/50 hover:bg-neutral-800/50 transition"
         >
           {collapsed ? (
             <ChevronRight className="w-4 h-4 text-neutral-400" />
@@ -36,7 +36,7 @@ export default function Sidenav() {
 
         <button
           onClick={() => setCollapsed((prev) => !prev)}
-          className="absolute sm:block hidden sm:top-4 sm:right-4 top-12 right-4 z-20 p-1.5 border border-neutral-700/30 bg-black/50 hover:bg-neutral-800/50 transition"
+          className="absolute sm:block hidden sm:top-4 cursor-pointer sm:right-4 top-12 right-4 z-20 p-1.5 border border-neutral-700/30 bg-black/50 hover:bg-neutral-800/50 transition"
         >
           {collapsed ? (
             <ChevronRight className="w-4 h-4 text-neutral-400" />

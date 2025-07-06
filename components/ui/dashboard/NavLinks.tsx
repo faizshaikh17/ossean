@@ -60,7 +60,7 @@ export default function NavLinks({ collapsed, isOpen }: { collapsed?: boolean; i
   }, [pathname]);
 
   return (
-    <div className={`sm:flex flex-col mt-14 sm:mt-10 gap-5 px-1 py-1 ${isOpen ? '':'hidden'}`}>
+    <div className={`sm:flex flex-col mt-16 sm:mt-10 gap-5 sm:px-1 py-1 ${isOpen ? '':'hidden'}`}>
       {navLinks.map((group) => (
         <div key={group.title} className="space-y-2">
           {!collapsed && (
