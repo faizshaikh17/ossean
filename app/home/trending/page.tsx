@@ -98,7 +98,7 @@ const renderCell = (
       if (!value) return <span className="text-neutral-400">-</span>;
       const colorClass = LANGUAGE_COLORS[value as keyof typeof LANGUAGE_COLORS] || LANGUAGE_COLORS.default;
       return (
-        <span className={`capitalize font-semibold text-xs w-fit px-2.5 py-1 rounded-md border transition-all duration-200 hover:scale-105 hover:shadow-sm ${colorClass}`}>
+        <span className={`capitalize whitespace-nowrap font-semibold text-xs w-fit px-2.5 py-1 rounded-md border transition-all duration-200 hover:scale-105 hover:shadow-sm ${colorClass}`}>
           {value}
         </span>
       );

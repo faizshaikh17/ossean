@@ -99,7 +99,7 @@ const renderCell = (repo: Repo, key: ColumnKey) => {
       if (!value) return <span className="text-neutral-400 text-sm">-</span>;
       const colorClass = LANGUAGE_COLORS[value as keyof typeof LANGUAGE_COLORS] ?? LANGUAGE_COLORS.default;
       return (
-        <span className={`capitalize font-semibold text-xs px-2.5 py-1 rounded-md border transition-all duration-200 w-fit hover:scale-105 hover:shadow-sm ${colorClass}`}>
+        <span className={`capitalize whitespace-nowrap font-semibold text-xs px-2.5 py-1 rounded-md border transition-all duration-200 w-fit hover:scale-105 hover:shadow-sm ${colorClass}`}>
           {value}
         </span>
       );
