@@ -1,11 +1,29 @@
 import Sidenav from "@/components/ui/dashboard/Sidenav";
 import Navbar from "@/components/ui/dashboard/Navbar";
 import Image from "next/image";
+import Head from "next/head";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative h-screen bg-black text-white flex flex-col overflow-hidden">
-      {/* Preload images using Next.js Image component with hidden visibility */}
+
+      <Head>
+        <link
+          rel="preload"
+          href="/grill.png"
+          as="image"
+          type="image/png"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          href="/bluePurpleYellowGradient.png"
+          as="image"
+          type="image/png"
+          fetchPriority="high"
+        />
+      </Head>
+
       <div className="hidden">
         <Image
           src="/grill.png"
@@ -25,9 +43,26 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         />
       </div>
 
-      {/* Background images with fade-in animation */}
-      <div className="absolute inset-0 z-0 bg-[url('/grill.png')] bg-cover bg-center opacity-40 pointer-events-none animate-fadeIn" />
-      <div className="absolute inset-0 z-0 bg-[url('/bluePurpleYellowGradient.png')] bg-top-left opacity-35 bg-cover pointer-events-none animate-fadeIn" />
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-40 animate-fadeIn">
+        <Image
+          src="/grill.png"
+          alt=""
+          fill
+          priority
+          quality={85}
+          className="object-cover"
+        />
+      </div>
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-35 animate-fadeIn">
+        <Image
+          src="/bluePurpleYellowGradient.png"
+          alt=""
+          fill
+          priority
+          quality={85}
+          className="object-cover object-[top_left]"
+        />
+      </div>
 
       <div className="absolute top-6 sm:top-12 md:top-16 lg:top-20 xl:top-24 left-4 sm:left-8 md:left-16 lg:left-20 xl:left-24 w-[0.05rem] h-full sm:h-4/5 md:h-full bg-neutral-900 z-0" />
       <div className="absolute bottom-4 sm:bottom-8 md:bottom-12 lg:bottom-16 xl:bottom-18 left-0 w-full h-[0.05rem] bg-neutral-900 z-0" />

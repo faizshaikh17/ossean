@@ -4,6 +4,7 @@ import Button from "../../Button";
 import Link from "next/link";
 import GithubButton from "@/components/GithubButton";
 import Image from "next/image";
+import Head from "next/head";
 
 export default function Hero() {
   const pings = [
@@ -19,6 +20,30 @@ export default function Hero() {
 
   return (
     <>
+      <Head>
+        <link
+          rel="preload"
+          href="/grill.png"
+          as="image"
+          type="image/png"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          href="/bluePurpleYellowGradient2.png"
+          as="image"
+          type="image/png"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          href="/worldMap.png"
+          as="image"
+          type="image/png"
+          fetchPriority="high"
+        />
+      </Head>
+
       <main className="relative w-full min-h-screen bg-black text-white flex flex-col items-center justify-center">
         <section className="relative w-full min-h-screen px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44 flex flex-col items-center justify-center">
 
@@ -49,13 +74,31 @@ export default function Hero() {
             />
           </div>
 
-          <div className="absolute inset-0 z-0 bg-[url('/grill.png')] bg-cover bg-center opacity-30 pointer-events-none animate-fadeIn" />
-          <div className="absolute inset-0 z-0 bg-[url('/bluePurpleYellowGradient2.png')] opacity-45 bg-cover pointer-events-none animate-fadeIn" />
+          <div className="absolute inset-0 z-0 pointer-events-none opacity-30 animate-fadeIn">
+            <Image
+              src="/grill.png"
+              alt=""
+              fill
+              priority
+              quality={85}
+              className="object-cover"
+            />
+          </div>
+          <div className="absolute inset-0 z-0 pointer-events-none opacity-30 animate-fadeIn">
+            <Image
+              src="/bluePurpleYellowGradient2.png"
+              alt=""
+              fill
+              priority
+              quality={85}
+              className="object-cover"
+            />
+          </div>
+
           <div className="absolute top-6 sm:top-12 md:top-16 lg:top-20 xl:top-0 left-4 sm:left-8 md:left-16 lg:left-20 xl:left-24 w-[0.05rem] h-full sm:h-4/5 md:h-full bg-gradient-to-b from-transparent via-neutral-900 to-neutral-900" />
           <div className="absolute bottom-4 sm:bottom-8 md:bottom-12 lg:bottom-16 xl:bottom-18 left-0 w-full h-[0.05rem] bg-neutral-800/50" />
           <div className="absolute right-4 sm:right-8 md:right-16 lg:right-20 xl:right-24 top-0 h-full w-[0.05rem] bg-neutral-800/50" />
 
-          {/* Header */}
           <div className="absolute top-4 sm:top-6 md:top-8 left-0 w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 z-10">
             <Link href="/" className="inline-flex items-center font-mono text-white text-[1.9rem] sm:text-[2.3rem] font-medium leading-none tracking-tight">
               <span className="text-white">oss</span>
@@ -72,7 +115,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Hero Content */}
           <div className="flex flex-col lg:flex-row w-full justify-between items-center gap-14 lg:gap-4 z-10 mt-24 sm:mt-32 md:mt-20 lg:mt-0 px-4 sm:px-0">
             <div className="flex flex-col gap-6 w-full items-center lg:items-start text-center lg:text-left">
               <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[100%] animate-fade-in w-fit">
@@ -119,7 +161,15 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-[22.5rem] bg-[url('/worldMap.png')] bg-contain lg:bg-cover bg-center bg-no-repeat pointer-events-none scale-[1.05] animate-fadeIn">
+            <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-[22.5rem] pointer-events-none scale-[1.05] animate-fadeIn">
+              <Image
+                src="/worldMap.png"
+                alt=""
+                fill
+                priority
+                quality={85}
+                className="object-contain lg:object-cover"
+              />
               {pings.map((pos, i) => (
                 <span
                   key={i}
@@ -136,7 +186,6 @@ export default function Hero() {
                   </span>
                 </span>
               ))}
-
             </div>
           </div>
         </section>
