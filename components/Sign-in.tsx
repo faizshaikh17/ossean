@@ -4,112 +4,79 @@ import { signIn, useSession } from "@/lib/auth-client";
 
 export default function Signin() {
   const [loading, setLoading] = useState(false);
-  const { data: session, isPending } = useSession();
-
-  // Remove the problematic useEffect that causes infinite loop
-  // The middleware should handle redirecting logged-in users
+  const { data: isPending } = useSession();
 
   const handleSignIn = async () => {
-    console.log('Environment:', process.env.NODE_ENV);
-    console.log('Current URL:', window.location.href);
-    console.log('All cookies before sign-in:', document.cookie);
-
     try {
       setLoading(true);
-      const result = await signIn.social(
+      await signIn.social(
         {
           provider: "google",
           callbackURL: "/home",
-          errorCallbackURL: '/auth',
+          errorCallbackURL: '/',
         },
         {
-          onRequest: () => {
-            console.log('Sign-in request started');
-          },
-          onResponse: (response) => {
-            console.log('Sign-in response received:', response);
-            console.log('Response type:', typeof response);
-            console.log('Response keys:', Object.keys(response || {}));
-            console.log('All cookies after response:', document.cookie);
-            
-            // Force a page reload to trigger middleware
+          onRequest: () => {},
+          onResponse: () => {
             setTimeout(() => {
-              console.log('Forcing page reload...');
               window.location.reload();
             }, 1000);
           },
-          onError: (error) => {
-            console.error('Sign-in error:', error);
+          onError: () => {
             setLoading(false);
+            window.location.href = '/';
           },
-          onSuccess: (data) => {
-            console.log('Sign-in successful:', data);
-            console.log('All cookies after success:', document.cookie);
+          onSuccess: () => {
             setLoading(false);
-            
-            // Force redirect with page reload
             setTimeout(() => {
-              console.log('Forcing redirect to /home...');
               window.location.href = '/home';
             }, 500);
           }
         }
       );
-      console.log('SignIn result:', result);
-    } catch (error) {
-      console.error('Sign-in failed:', error);
+    } catch {
       setLoading(false);
+      window.location.href = '/';
     }
-  };
-
-  // Debug function to check current state
-  const debugState = () => {
-    console.log('=== DEBUG STATE ===');
-    console.log('Session:', session);
-    console.log('Is pending:', isPending);
-    console.log('Loading:', loading);
-    console.log('All cookies:', document.cookie);
-    console.log('Current URL:', window.location.href);
   };
 
   if (isPending) {
     return (
-      <div className="flex w-full bg-black/40 min-h-screen items-center justify-center">
-        <div className="absolute inset-0 z-5 bg-[url('/statue.png')] opacity-70 bg-cover bg-center pointer-events-none" />
-        <div className="text-center z-10">
-          <div className="animate-spin h-8 w-8 border-2 border-white border-t-transparent rounded-full mx-auto" />
-          <p className="text-white mt-2">Loading...</p>
+      <div className="flex w-full bg-black min-h-screen items-center justify-center">
+        <div className="absolute inset-0 bg-[url('/statue.png')] opacity-[0.08] bg-cover bg-center pointer-events-none" />
+        <div className="relative z-10">
+          <div className="animate-spin h-4 w-4 border border-white/10 border-t-white/60 rounded-full mx-auto" />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex w-full bg-black/40 min-h-screen items-center justify-center">
-      <div className="absolute inset-0 z-5 bg-[url('/statue.png')] opacity-70 bg-cover bg-center pointer-events-none" />
-
-      <div className="text-center z-10">
-        {/* Debug button - remove in production */}
-        <button
-          onClick={debugState}
-          className="mb-4 px-2 py-1 text-xs bg-gray-500 text-white rounded"
-        >
-          Debug State
-        </button>
-
+    <div className="flex w-full bg-black min-h-screen items-center justify-center">
+      <div className="absolute inset-0 bg-[url('/statue.png')] opacity-70 bg-cover bg-center pointer-events-none" />
+      
+      <div className="relative z-10 w-full max-w-[280px] mx-auto px-8">
+        <div className="text-center mb-20">
+          <h1 className="text-lg font-thin text-white/90 tracking-[0.4em] uppercase">Welcome</h1>
+          <div className="w-8 h-px bg-white/20 mx-auto mt-6" />
+        </div>
+        
         <button
           disabled={loading}
           onClick={handleSignIn}
-          className="px-4 py-2.5 font-semibold text-sm cursor-pointer flex items-center justify-center gap-2 bg-white text-black hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 rounded-md shadow-sm"
+          className="w-full h-10 cursor-pointer bg-white/85 hover:bg-white/95 text-black font-light text-xs tracking-[0.15em] disabled:opacity-40 disabled:cursor-not-allowed focus:outline-none transition-all duration-700 ease-out border-0 shadow-none hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] flex items-center justify-center gap-2.5 group relative overflow-hidden"
         >
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+          
           {loading ? (
-            <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full" />
+            <div className="animate-spin h-3 w-3 border border-gray-600 border-t-black rounded-full" />
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="12"
+              height="12"
               viewBox="0 0 256 262"
+              className="group-hover:scale-110 transition-transform duration-700 ease-out"
             >
               <path
                 fill="#4285F4"
@@ -129,15 +96,22 @@ export default function Signin() {
               />
             </svg>
           )}
-          {loading ? 'Signing in...' : 'Sign in with Google'}
+          
+          <span className="relative z-10">
+            {loading ? 'Signing in' : 'Continue with Google'}
+          </span>
         </button>
-
-        {/* Show session info for debugging */}
-        {session && (
-          <div className="mt-4 p-2 bg-green-100 text-green-800 rounded text-xs">
-            Logged in as: {session.user?.email}
+        
+        <div className="text-center mt-16">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-6 h-px bg-white/10" />
+            <div className="w-1 h-1 bg-white/20 rounded-full" />
+            <div className="w-6 h-px bg-white/10" />
           </div>
-        )}
+          <p className="text-white/25 text-[10px] font-extralight tracking-[0.35em] uppercase">
+            Secure Access
+          </p>
+        </div>
       </div>
     </div>
   );
