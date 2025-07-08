@@ -1,29 +1,47 @@
 'use client';
-import React, { useState } from 'react';
-import { signIn } from "@/lib/auth-client";
+import React, { useState, useEffect } from 'react';
+import { signIn, useSession } from "@/lib/auth-client";
 
 export default function Signin() {
   const [loading, setLoading] = useState(false);
+  const { data: session, isPending } = useSession();
+
+  // Check for existing session on mount
+  useEffect(() => {
+    if (session && !isPending) {
+      console.log('Session found, redirecting...');
+      window.location.href = '/home';
+    }
+  }, [session, isPending]);
 
   const handleSignIn = async () => {
     console.log('Environment:', process.env.NODE_ENV);
     console.log('Current URL:', window.location.href);
+    console.log('All cookies before sign-in:', document.cookie);
 
     try {
+      setLoading(true);
       const result = await signIn.social(
         {
           provider: "google",
           callbackURL: "/home",
-          errorCallbackURL: '/',
+          errorCallbackURL: '/auth',
         },
         {
           onRequest: () => {
             console.log('Sign-in request started');
-            setLoading(true);
           },
           onResponse: (response) => {
             console.log('Sign-in response received:', response);
-            setLoading(false);
+            console.log('Response type:', typeof response);
+            console.log('Response keys:', Object.keys(response || {}));
+            console.log('All cookies after response:', document.cookie);
+            
+            // Force a page reload to trigger middleware
+            setTimeout(() => {
+              console.log('Forcing page reload...');
+              window.location.reload();
+            }, 1000);
           },
           onError: (error) => {
             console.error('Sign-in error:', error);
@@ -31,9 +49,14 @@ export default function Signin() {
           },
           onSuccess: (data) => {
             console.log('Sign-in successful:', data);
+            console.log('All cookies after success:', document.cookie);
             setLoading(false);
-            console.log('Attempting to navigate to /home');
-            window.location.href = '/home';
+            
+            // Force redirect with page reload
+            setTimeout(() => {
+              console.log('Forcing redirect to /home...');
+              window.location.href = '/home';
+            }, 500);
           }
         }
       );
@@ -44,12 +67,41 @@ export default function Signin() {
     }
   };
 
+  // Debug function to check current state
+  const debugState = () => {
+    console.log('=== DEBUG STATE ===');
+    console.log('Session:', session);
+    console.log('Is pending:', isPending);
+    console.log('Loading:', loading);
+    console.log('All cookies:', document.cookie);
+    console.log('Current URL:', window.location.href);
+  };
+
+  if (isPending) {
+    return (
+      <div className="flex w-full bg-black/40 min-h-screen items-center justify-center">
+        <div className="absolute inset-0 z-5 bg-[url('/statue.png')] opacity-70 bg-cover bg-center pointer-events-none" />
+        <div className="text-center z-10">
+          <div className="animate-spin h-8 w-8 border-2 border-white border-t-transparent rounded-full mx-auto" />
+          <p className="text-white mt-2">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex w-full bg-black/40 min-h-screen items-center justify-center">
       <div className="absolute inset-0 z-5 bg-[url('/statue.png')] opacity-70 bg-cover bg-center pointer-events-none" />
 
       <div className="text-center z-10">
+        {/* Debug button - remove in production */}
+        <button
+          onClick={debugState}
+          className="mb-4 px-2 py-1 text-xs bg-gray-500 text-white rounded"
+        >
+          Debug State
+        </button>
+
         <button
           disabled={loading}
           onClick={handleSignIn}
@@ -84,6 +136,13 @@ export default function Signin() {
           )}
           {loading ? 'Signing in...' : 'Sign in with Google'}
         </button>
+
+        {/* Show session info for debugging */}
+        {session && (
+          <div className="mt-4 p-2 bg-green-100 text-green-800 rounded text-xs">
+            Logged in as: {session.user?.email}
+          </div>
+        )}
       </div>
     </div>
   );
