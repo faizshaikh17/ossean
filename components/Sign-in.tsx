@@ -7,6 +7,7 @@ import { signIn } from "@/lib/auth-client";
 export default function Signin() {
 
   const [loading, setLoading] = useState(false);
+  console.log("🔍 PUBLIC APP URL:", process.env.NEXT_PUBLIC_APP_URL);
 
   const handleSignIn = async () => {
     console.log('Starting sign-in process...');
