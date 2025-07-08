@@ -8,43 +8,43 @@ export default function Signin() {
   const router = useRouter();
 
   const handleSignIn = async () => {
-  console.log('Environment:', process.env.NODE_ENV);
-  console.log('Current URL:', window.location.href);
-  
-  try {
-    const result = await signIn.social(
-      {
-        provider: "google",
-        callbackURL: "/home",
-        errorCallbackURL: '/',
-      },
-      {
-        onRequest: () => {
-          console.log('Sign-in request started');
-          setLoading(true);
+    console.log('Environment:', process.env.NODE_ENV);
+    console.log('Current URL:', window.location.href);
+
+    try {
+      const result = await signIn.social(
+        {
+          provider: "google",
+          callbackURL: "/home",
+          errorCallbackURL: '/',
         },
-        onResponse: (response) => {
-          console.log('Sign-in response received:', response);
-          setLoading(false);
-        },
-        onError: (error) => {
-          console.error('Sign-in error:', error);
-          setLoading(false);
-        },
-        onSuccess: (data) => {
-          console.log('Sign-in successful:', data);
-          setLoading(false);
-          console.log('Attempting to navigate to /home');
-          router.push('/home');
+        {
+          onRequest: () => {
+            console.log('Sign-in request started');
+            setLoading(true);
+          },
+          onResponse: (response) => {
+            console.log('Sign-in response received:', response);
+            setLoading(false);
+          },
+          onError: (error) => {
+            console.error('Sign-in error:', error);
+            setLoading(false);
+          },
+          onSuccess: (data) => {
+            console.log('Sign-in successful:', data);
+            setLoading(false);
+            console.log('Attempting to navigate to /home');
+            window.location.href = '/home';
+          }
         }
-      }
-    );
-    console.log('SignIn result:', result);
-  } catch (error) {
-    console.error('Sign-in failed:', error);
-    setLoading(false);
-  }
-};
+      );
+      console.log('SignIn result:', result);
+    } catch (error) {
+      console.error('Sign-in failed:', error);
+      setLoading(false);
+    }
+  };
 
 
   return (
