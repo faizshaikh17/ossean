@@ -7,9 +7,6 @@ import { signIn } from "@/lib/auth-client";
 export default function Signin() {
 
   const [loading, setLoading] = useState(false);
-  if (typeof window === "undefined") {
-    console.log("✅ DATABASE_URL used:", process.env.DATABASE_URL);
-  }
 
   const handleSignIn = async () => {
     console.log('Starting sign-in process...');
