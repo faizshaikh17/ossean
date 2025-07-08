@@ -2,12 +2,35 @@
 
 import { useState } from 'react';
 import NavLinks from './NavLinks';
-import { ChevronLeft, ChevronRight, Menu, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Menu, X, LogOut } from 'lucide-react';
 import Link from 'next/link';
+import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
+import clsx from 'clsx';
+
 
 export default function Sidenav() {
   const [collapsed, setCollapsed] = useState(false);
   const [isOpen, setIsOpen] = useState(false)
+  const [signingOut, setSigningOut] = useState(false);
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    try {
+      setSigningOut(true);
+      await authClient.signOut({
+        fetchOptions: {
+          onSuccess: () => {
+            router.push('/'); // redirect after logout
+          },
+        },
+      });
+    } catch (error) {
+      console.error('Sign-out failed:', error);
+    } finally {
+      setSigningOut(false);
+    }
+  };
 
   return (
 
@@ -56,17 +79,57 @@ export default function Sidenav() {
           </nav>
 
           {!collapsed && (
-            <>
-              <span className="text-sm text-neutral-500/50 py-2 px-4 sm:px-12 font-mono">
-                {isOpen ? "ossean v0.0.1" : <Link href="/" className="inline-flex sm:hidden items-center my-2 font-mono text-white text-[1.9rem] sm:text-[2.3rem] font-medium leading-none tracking-tight">
+            <div className="w-full px-4 sm:px-6 md:px-8 pt-4 pb-4 mt-auto flex flex-col justify-center gap-1">
+
+              {isOpen ? (
+                <>
+                  <button
+                    onClick={handleSignOut}
+                    disabled={signingOut}
+                    className={clsx(
+                      'flex items-center gap-2 px-3 py-2 text-xs sm:text-sm font-medium rounded transition duration-300 overflow-hidden',
+                      'hover:bg-neutral-900/30 hover:text-white',
+                      'text-neutral-400 disabled:opacity-50'
+                    )}
+                  >
+                    {signingOut ? (
+                      <div className="animate-spin h-4 w-4 border-2 border-yellow-300 border-t-transparent rounded-full" />
+                    ) : (
+                      <LogOut size={16} className="opacity-60 shrink-0" />
+                    )}
+                    <span>{signingOut ? 'Signing out...' : 'Sign Out'}</span>
+                  </button>
+                  <span className="text-sm text-neutral-500/50 font-mono">ossean v0.0.1</span>
+                </>
+              ) : (
+                <Link
+                  href="/"
+                  className="inline-flex sm:hidden items-center font-mono text-white text-[1.9rem] sm:text-[2.3rem] font-medium leading-none tracking-tight"
+                >
                   <span className="text-white">oss</span>
                   <span className="text-neutral-500">ean</span>
-                </Link>}
-              </span>
-              <span className="text-sm sm:inline hidden text-neutral-500/50 py-2 px-4 sm:px-12 font-mono">
+                </Link>
+              )}
+              <button
+                onClick={handleSignOut}
+                disabled={signingOut}
+                className={clsx(
+                  'sm:flex hidden items-center gap-2 px-3 py-2 text-xs sm:text-sm font-medium rounded transition duration-300 overflow-hidden',
+                  'hover:bg-neutral-900/30 hover:text-white',
+                  'text-neutral-400 disabled:opacity-50'
+                )}
+              >
+                {signingOut ? (
+                  <div className="animate-spin h-4 w-4 border-2 border-yellow-300 border-t-transparent rounded-full" />
+                ) : (
+                  <LogOut size={16} className="opacity-60 shrink-0" />
+                )}
+                <span>{signingOut ? 'Signing out...' : 'Sign Out'}</span>
+              </button>
+              <span className="text-sm sm:inline hidden text-neutral-500/50 font-mono">
                 ossean v0.0.1
               </span>
-            </>
+            </div>
           )}
         </div>
       </aside>

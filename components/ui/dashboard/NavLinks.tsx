@@ -1,4 +1,3 @@
-// NavLinks.tsx
 'use client';
 
 import Link from 'next/link';
@@ -59,8 +58,9 @@ export default function NavLinks({ collapsed, isOpen }: { collapsed?: boolean; i
     return () => clearTimeout(timeout);
   }, [pathname]);
 
+  
   return (
-    <div className={`sm:flex flex-col mt-16 sm:mt-10 gap-5 sm:px-1 py-1 ${isOpen ? '':'hidden'}`}>
+    <div className={`sm:flex flex-col mt-16 sm:mt-10 gap-5 sm:px-1 py-1 ${isOpen ? '' : 'hidden'}`}>
       {navLinks.map((group) => (
         <div key={group.title} className="space-y-2">
           {!collapsed && (
@@ -119,6 +119,9 @@ export default function NavLinks({ collapsed, isOpen }: { collapsed?: boolean; i
           </div>
         </div>
       ))}
+
+      {/* Sign Out Button */}
+      
     </div>
   );
 }

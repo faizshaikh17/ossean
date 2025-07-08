@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest) {
-  const sessionToken = req.cookies.get('auth_session')?.value;
+  const sessionToken = req.cookies.get('better-auth.session_token')?.value;
 
   const isLoggedIn = !!sessionToken;
   const pathname = req.nextUrl.pathname;
