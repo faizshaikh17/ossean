@@ -24,7 +24,7 @@ export const auth = betterAuth({
     provider: "pg",
     schema,
   }),
-  
+
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -34,15 +34,20 @@ export const auth = betterAuth({
 
   secret: process.env.BETTER_AUTH_SECRET,
   baseURL: process.env.NEXT_PUBLIC_APP_URL,
-  trustedOrigins: [process.env.NEXT_PUBLIC_APP_URL],
-  
+
   logger: {
     level: "debug",
     disabled: false,
   },
-  
+
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
     updateAge: 60 * 60 * 24, // 24 hours
   },
+
+  trustedOrigins: (
+    `${process.env.NEXT_PUBLIC_APP_URL},https://ossean.vercel.app`
+  )
+    .split(/,\s*/)
+    .filter(Boolean),
 });
