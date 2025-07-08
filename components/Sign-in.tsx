@@ -1,15 +1,13 @@
 'use client';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { signIn } from "@/lib/auth-client";
 
-
-
 export default function Signin() {
-
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleSignIn = async () => {
-    console.log('Starting sign-in process...');
     try {
       await signIn.social(
         {
@@ -30,6 +28,11 @@ export default function Signin() {
             console.error('Sign-in error:', error);
             setLoading(false);
           },
+          onSuccess: () => {
+            console.log('Sign-in successful');
+            setLoading(false);
+            router.push('/home'); // Force navigation
+          }
         }
       );
     } catch (error) {
@@ -38,9 +41,10 @@ export default function Signin() {
     }
   };
 
+
   return (
     <div className="flex w-full bg-black/40 min-h-screen items-center justify-center">
-      <div className="absolute inset-0 z-5 bg-[url('/statue.png')] opacity-50 bg-cover bg-center pointer-events-none" />
+      <div className="absolute inset-0 z-5 bg-[url('/statue.png')] opacity-70 bg-cover bg-center pointer-events-none" />
 
       <div className="text-center z-10">
         <button
