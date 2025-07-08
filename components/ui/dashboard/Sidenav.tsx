@@ -83,7 +83,7 @@ export default function Sidenav() {
                     onClick={handleSignOut}
                     disabled={signingOut}
                     className={clsx(
-                      'sm:flex hidden items-center cursor-pointer gap-2 px-3 py-2 text-xs sm:text-sm font-medium rounded transition duration-300 overflow-hidden',
+                      'flex items-center cursor-pointer gap-2 px-3 py-2 text-xs sm:text-sm font-medium rounded transition duration-300 overflow-hidden',
                       'hover:bg-neutral-900/30 hover:text-white',
                       'text-neutral-400 disabled:opacity-50'
                     )}
