@@ -8,38 +8,43 @@ export default function Signin() {
   const router = useRouter();
 
   const handleSignIn = async () => {
-    try {
-      await signIn.social(
-        {
-          provider: "google",
-          callbackURL: "/home",
-          errorCallbackURL: '/',
+  console.log('Environment:', process.env.NODE_ENV);
+  console.log('Current URL:', window.location.href);
+  
+  try {
+    const result = await signIn.social(
+      {
+        provider: "google",
+        callbackURL: "/home",
+        errorCallbackURL: '/',
+      },
+      {
+        onRequest: () => {
+          console.log('Sign-in request started');
+          setLoading(true);
         },
-        {
-          onRequest: () => {
-            console.log('Sign-in request started');
-            setLoading(true);
-          },
-          onResponse: () => {
-            console.log('Sign-in response received');
-            setLoading(false);
-          },
-          onError: (error) => {
-            console.error('Sign-in error:', error);
-            setLoading(false);
-          },
-          onSuccess: () => {
-            console.log('Sign-in successful');
-            setLoading(false);
-            router.push('/home'); // Force navigation
-          }
+        onResponse: (response) => {
+          console.log('Sign-in response received:', response);
+          setLoading(false);
+        },
+        onError: (error) => {
+          console.error('Sign-in error:', error);
+          setLoading(false);
+        },
+        onSuccess: (data) => {
+          console.log('Sign-in successful:', data);
+          setLoading(false);
+          console.log('Attempting to navigate to /home');
+          router.push('/home');
         }
-      );
-    } catch (error) {
-      console.error('Sign-in failed:', error);
-      setLoading(false);
-    }
-  };
+      }
+    );
+    console.log('SignIn result:', result);
+  } catch (error) {
+    console.error('Sign-in failed:', error);
+    setLoading(false);
+  }
+};
 
 
   return (
