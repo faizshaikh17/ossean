@@ -19,6 +19,8 @@ if (!process.env.DATABASE_URL) {
   throw new Error("DATABASE_URL not set");
 }
 
+const isProd = process.env.NODE_ENV === "production";
+
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg",
@@ -49,14 +51,15 @@ export const auth = betterAuth({
     }
   },
 
+
   cookies: {
     sessionToken: {
       name: "better-auth.session_token",
       options: {
         httpOnly: true,
-        sameSite: "lax",
-        secure: process.env.NODE_ENV === "production",
-        path: "/",
+        sameSite: isProd ? 'none' : 'lax',
+        secure: isProd,
+        path: '/',
       },
     },
   },

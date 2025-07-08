@@ -18,19 +18,15 @@ export default function Sidenav() {
   const handleSignOut = async () => {
     try {
       setSigningOut(true);
-      await authClient.signOut({
-        fetchOptions: {
-          onSuccess: () => {
-            router.push('/'); // redirect after logout
-          },
-        },
-      });
+      await authClient.signOut(); 
+      router.push('/');
     } catch (error) {
       console.error('Sign-out failed:', error);
     } finally {
       setSigningOut(false);
     }
   };
+
 
   return (
 
@@ -87,7 +83,7 @@ export default function Sidenav() {
                     onClick={handleSignOut}
                     disabled={signingOut}
                     className={clsx(
-                      'flex items-center gap-2 cursor-pointer px-3 py-2 text-xs sm:text-sm font-medium rounded transition duration-300 overflow-hidden',
+                      'sm:flex hidden items-center cursor-pointer gap-2 px-3 py-2 text-xs sm:text-sm font-medium rounded transition duration-300 overflow-hidden',
                       'hover:bg-neutral-900/30 hover:text-white',
                       'text-neutral-400 disabled:opacity-50'
                     )}
@@ -99,6 +95,7 @@ export default function Sidenav() {
                     )}
                     <span>{signingOut ? 'Signing out...' : 'Sign Out'}</span>
                   </button>
+
                   <span className="text-sm text-neutral-500/50 font-mono">ossean v0.0.1</span>
                 </>
               ) : (
@@ -126,6 +123,7 @@ export default function Sidenav() {
                 )}
                 <span>{signingOut ? 'Signing out...' : 'Sign Out'}</span>
               </button>
+
               <span className="text-sm sm:inline hidden text-neutral-500/50 font-mono">
                 ossean v0.0.1
               </span>
