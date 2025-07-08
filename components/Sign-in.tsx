@@ -1,18 +1,13 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { signIn, useSession } from "@/lib/auth-client";
 
 export default function Signin() {
   const [loading, setLoading] = useState(false);
   const { data: session, isPending } = useSession();
 
-  // Check for existing session on mount
-  useEffect(() => {
-    if (session && !isPending) {
-      console.log('Session found, redirecting...');
-      window.location.href = '/home';
-    }
-  }, [session, isPending]);
+  // Remove the problematic useEffect that causes infinite loop
+  // The middleware should handle redirecting logged-in users
 
   const handleSignIn = async () => {
     console.log('Environment:', process.env.NODE_ENV);
