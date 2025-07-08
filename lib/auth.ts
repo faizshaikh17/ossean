@@ -45,9 +45,7 @@ export const auth = betterAuth({
     updateAge: 60 * 60 * 24, // 24 hours
   },
 
-  trustedOrigins: (
-    `${process.env.NEXT_PUBLIC_APP_URL},https://ossean.vercel.app`
-  )
-    .split(/,\s*/)
-    .filter(Boolean),
+trustedOrigins: [
+  process.env.NEXT_PUBLIC_APP_URL!,
+],
 });
