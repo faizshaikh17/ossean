@@ -1,11 +1,9 @@
 'use client';
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { signIn } from "@/lib/auth-client";
 
 export default function Signin() {
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const handleSignIn = async () => {
     console.log('Environment:', process.env.NODE_ENV);
