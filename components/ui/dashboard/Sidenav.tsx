@@ -5,7 +5,6 @@ import NavLinks from './NavLinks';
 import { ChevronLeft, ChevronRight, Menu, X, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { authClient } from '@/lib/auth-client';
-import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 
 
@@ -13,15 +12,14 @@ export default function Sidenav() {
   const [collapsed, setCollapsed] = useState(false);
   const [isOpen, setIsOpen] = useState(false)
   const [signingOut, setSigningOut] = useState(false);
-  const router = useRouter();
 
   const handleSignOut = async () => {
     try {
       setSigningOut(true);
-      await authClient.signOut(); 
-      router.push('/');
+      await authClient.signOut();
+      window.location.href = '/';
     } catch (error) {
-      console.error('Sign-out failed:', error);
+      if (error) window.location.href = '/';
     } finally {
       setSigningOut(false);
     }
