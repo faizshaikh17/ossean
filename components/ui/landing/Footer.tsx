@@ -27,24 +27,22 @@ export default function Footer() {
                             © 2025 all rights reserved
                         </span>
                     </div>
-                    <div className="flex items-center justify-center gap-8">
+                    <div className="flex items-center justify-center gap-10 sm:gap-12">
                         <Link
                             href="https://twitter.com/iamfaizz17"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group relative"
+                            className="group flex flex-col items-center relative"
                         >
-                            <div className="relative flex items-center justify-center">
-                                <div className="absolute inset-0 w-10 h-10 transform rotate-45 border border-white/[0.08] group-hover:border-white/[0.25] transition-all duration-500 group-hover:rotate-180" />
-                                <div className="absolute inset-0 w-8 h-8 transform -rotate-45 border border-white/[0.06] group-hover:border-white/[0.2] transition-all duration-300 group-hover:-rotate-90" />
-
-                                <div className="relative z-10 p-2 group-hover:scale-110 transition-all duration-300">
-                                    <Twitter className="w-4 h-4 text-neutral-400 group-hover:text-white transition-all duration-300" />
+                            <div className="relative flex items-center justify-center w-12 h-12">
+                                <div className="absolute inset-0 rotate-45 border border-white/[0.07] group-hover:border-white/[0.15] transition-all duration-500 group-hover:rotate-180" />
+                                <div className="absolute inset-1 rotate-[-45deg] border border-white/[0.05] group-hover:border-white/[0.1] transition-all duration-300 group-hover:rotate-[-90deg]" />
+                                <div className="relative z-10 p-2 group-hover:scale-110 transition-transform duration-300">
+                                    <Twitter className="w-4 h-4 text-neutral-400 group-hover:text-white transition-colors duration-300" />
                                 </div>
-
-                                <div className="absolute inset-0 w-10 h-10 bg-white/[0.01] group-hover:bg-white/[0.03] rounded-full blur-lg transition-all duration-500" />
+                                <div className="absolute inset-0 rounded-full bg-white/[0.015] group-hover:bg-white/[0.03] blur-md transition-all duration-500" />
                             </div>
-                            <span className="block text-center mt-2 text-[9px] uppercase tracking-[0.2em] text-neutral-500 group-hover:text-neutral-300 transition-all duration-300">
+                            <span className="mt-2 text-[10px] uppercase tracking-widest text-neutral-500 group-hover:text-neutral-300 transition-all duration-300">
                                 twitter
                             </span>
                         </Link>
@@ -53,43 +51,38 @@ export default function Footer() {
                             href="https://github.com/faizshaikh17"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group relative"
+                            className="group flex flex-col items-center relative"
                         >
-                            <div className="relative flex items-center justify-center">
-                                <div className="absolute inset-0 w-10 h-10 transform rotate-45 border border-white/[0.08] group-hover:border-white/[0.25] transition-all duration-500 group-hover:rotate-180" />
-                                <div className="absolute inset-0 w-8 h-8 transform -rotate-45 border border-white/[0.06] group-hover:border-white/[0.2] transition-all duration-300 group-hover:-rotate-90" />
-
-                                <div className="relative z-10 p-2 group-hover:scale-110 transition-all duration-300">
-                                    <Github className="w-4 h-4 text-neutral-400 group-hover:text-white transition-all duration-300" />
+                            <div className="relative flex items-center justify-center w-12 h-12">
+                                <div className="absolute inset-0 rotate-45 border border-white/[0.07] group-hover:border-white/[0.15] transition-all duration-500 group-hover:rotate-180" />
+                                <div className="absolute inset-1 rotate-[-45deg] border border-white/[0.05] group-hover:border-white/[0.1] transition-all duration-300 group-hover:rotate-[-90deg]" />
+                                <div className="relative z-10 p-2 group-hover:scale-110 transition-transform duration-300">
+                                    <Github className="w-4 h-4 text-neutral-400 group-hover:text-white transition-colors duration-300" />
                                 </div>
-
-                                <div className="absolute inset-0 w-10 h-10 bg-white/[0.01] group-hover:bg-white/[0.03] rounded-full blur-lg transition-all duration-500" />
+                                <div className="absolute inset-0 rounded-full bg-white/[0.015] group-hover:bg-white/[0.03] blur-md transition-all duration-500" />
                             </div>
-                            <span className="block text-center mt-2 text-[9px] uppercase tracking-[0.2em] text-neutral-500 group-hover:text-neutral-300 transition-all duration-300">
+                            <span className="mt-2 text-[10px] uppercase tracking-widest text-neutral-500 group-hover:text-neutral-300 transition-all duration-300">
                                 github
                             </span>
                         </Link>
 
                         <Link
                             href="mailto:info.ossean@gmail.com"
-                            className="group relative"
+                            className="group flex flex-col items-center relative"
                         >
-                            <div className="relative flex items-center justify-center">
-                                <div className="absolute inset-0 w-10 h-10 transform rotate-45 border border-white/[0.08] group-hover:border-white/[0.25] transition-all duration-500 group-hover:rotate-180" />
-                                <div className="absolute inset-0 w-8 h-8 transform -rotate-45 border border-white/[0.06] group-hover:border-white/[0.2] transition-all duration-300 group-hover:-rotate-90" />
-
-                                <div className="relative z-10 p-2 group-hover:scale-110 transition-all duration-300">
-                                    <Mail className="w-4 h-4 text-neutral-400 group-hover:text-white transition-all duration-300" />
+                            <div className="relative flex items-center justify-center w-12 h-12">
+                                <div className="absolute inset-0 rotate-45 border border-white/[0.07] group-hover:border-white/[0.15] transition-all duration-500 group-hover:rotate-180" />
+                                <div className="absolute inset-1 rotate-[-45deg] border border-white/[0.05] group-hover:border-white/[0.1] transition-all duration-300 group-hover:rotate-[-90deg]" />
+                                <div className="relative z-10 p-2 group-hover:scale-110 transition-transform duration-300">
+                                    <Mail className="w-4 h-4 text-neutral-400 group-hover:text-white transition-colors duration-300" />
                                 </div>
-
-                                <div className="absolute inset-0 w-10 h-10 bg-white/[0.01] group-hover:bg-white/[0.03] rounded-full blur-lg transition-all duration-500" />
+                                <div className="absolute inset-0 rounded-full bg-white/[0.015] group-hover:bg-white/[0.03] blur-md transition-all duration-500" />
                             </div>
-                            <span className="block text-center mt-2 text-[9px] uppercase tracking-[0.2em] text-neutral-500 group-hover:text-neutral-300 transition-all duration-300">
+                            <span className="mt-2 text-[10px] uppercase tracking-widest text-neutral-500 group-hover:text-neutral-300 transition-all duration-300">
                                 email
                             </span>
                         </Link>
                     </div>
-
                 </div>
             </div>
         </footer>

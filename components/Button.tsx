@@ -15,7 +15,7 @@ export default function Button({
             prefetch={true}
             target={target}
             rel={rel}
-            className={`group relative px-4.5 py-[0.5rem] font-semibold text-sm flex items-center justify-center gap-2 bg-white text-black rounded border border-white/80 focus:outline-none transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] hover:bg-gray-50 active:scale-[0.98] overflow-hidden ${className}`}
+            className={`group relative px-4.5 rounded-xs py-[0.45rem] font-semibold text-sm flex items-center justify-center gap-2 bg-white text-black  border border-white/80 focus:outline-none transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] hover:bg-gray-50 active:scale-[0.98] overflow-hidden ${className}`}
         >
             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-gray-200/60 to-transparent group-hover:translate-x-full transition-transform duration-700 ease-out" />
             
