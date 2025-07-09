@@ -7,36 +7,38 @@ export default function Signin() {
   const { data: isPending } = useSession();
 
   const handleSignIn = async () => {
+    console.log("[EDGE] Sign-in button clicked");
     try {
       setLoading(true);
+
       await signIn.social(
         {
           provider: "google",
           callbackURL: "/home",
-          errorCallbackURL: '/',
+          errorCallbackURL: "/",
         },
         {
-          onRequest: () => {},
+          onRequest: () => console.log("[EDGE] onRequest triggered"),
           onResponse: () => {
-            setTimeout(() => {
-              window.location.reload();
-            }, 1000);
-          },
-          onError: () => {
-            setLoading(false);
-            window.location.href = '/';
+            console.log("[EDGE] onResponse triggered");
+            setTimeout(() => window.location.reload(), 1000);
           },
           onSuccess: () => {
+            console.log("[EDGE] onSuccess triggered");
             setLoading(false);
-            setTimeout(() => {
-              window.location.href = '/home';
-            }, 500);
-          }
+            window.location.href = "/home";
+          },
+          onError: (e) => {
+            console.error("[EDGE] onError", e);
+            setLoading(false);
+            window.location.href = "/";
+          },
         }
       );
-    } catch {
+    } catch (err) {
+      console.error("[EDGE] catch error", err);
       setLoading(false);
-      window.location.href = '/';
+      window.location.href = "/";
     }
   };
 
@@ -54,20 +56,20 @@ export default function Signin() {
   return (
     <div className="flex w-full bg-black min-h-screen items-center justify-center">
       <div className="absolute inset-0 bg-[url('/statue.png')] opacity-70 bg-cover bg-center pointer-events-none" />
-      
+
       <div className="relative z-10 w-full max-w-[280px] mx-auto px-8">
         <div className="text-center mb-20">
           <h1 className="text-lg font-thin text-white/90 tracking-[0.4em] uppercase">Welcome</h1>
           <div className="w-8 h-px bg-white/20 mx-auto mt-6" />
         </div>
-        
+
         <button
           disabled={loading}
           onClick={handleSignIn}
           className="w-full h-10 cursor-pointer bg-white/85 hover:bg-white/95 text-black font-light text-xs tracking-[0.15em] disabled:opacity-40 disabled:cursor-not-allowed focus:outline-none transition-all duration-700 ease-out border-0 shadow-none hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] flex items-center justify-center gap-2.5 group relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-          
+
           {loading ? (
             <div className="animate-spin h-3 w-3 border border-gray-600 border-t-black rounded-full" />
           ) : (
@@ -96,12 +98,12 @@ export default function Signin() {
               />
             </svg>
           )}
-          
+
           <span className="relative z-10">
             {loading ? 'Signing in' : 'Continue with Google'}
           </span>
         </button>
-        
+
         <div className="text-center mt-16">
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="w-6 h-px bg-white/10" />
