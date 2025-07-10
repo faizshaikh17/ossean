@@ -52,7 +52,7 @@ export default function Sidenav() {
 
         <button
           onClick={() => setCollapsed((prev) => !prev)}
-          className="absolute sm:block hidden sm:top-4 cursor-pointer sm:right-4 top-12 right-4 z-20 p-1.5 border border-neutral-700/30 bg-black/50 hover:bg-neutral-800/50 transition"
+          className="absolute sm:block hidden sm:top-4 cursor-pointer sm:right-4 top-12 right-4 z-20 p-1.5 border border-dashed border-neutral-700/30 bg-black/50 hover:bg-neutral-800/50 transition"
         >
           {collapsed ? (
             <ChevronRight className="w-4 h-4 text-neutral-400" />

@@ -65,6 +65,6 @@ export const auth = betterAuth({
   },
 
   trustedOrigins: isProd
-    ? ["https://ossean.vercel.app"]
+    ? ["https://ossean.in"]
     : ["http://localhost:3000"]
 });

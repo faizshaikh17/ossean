@@ -176,7 +176,7 @@ export default function Hero() {
                     animationDelay: `${(i % 5) * 0.4}s`,
                   }}
                 >
-                  <span className="relative flex h-[0.3rem] w-[0.3rem] items-center justify-center">
+                  <span className="relative flex h-[0.6rem] w-[0.6rem] items-center justify-center">
                     <span className="absolute inline-flex h-full w-full rounded-full bg-yellow-300 opacity-70 blur-sm animate-pulse" />
                     <span className="relative inline-flex h-[0.15rem] w-[0.15rem] rounded-full bg-yellow-400" />
                   </span>
