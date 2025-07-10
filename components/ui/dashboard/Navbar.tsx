@@ -6,7 +6,7 @@ import GithubButton from '@/components/GithubButton';
 export default function Navbar() {
 
     return (
-        <nav className="w-full h-16 sm:px-10 px-5 bg-black/40 backdrop-blur-sm border-b border-neutral-800/50 sm:flex hidden justify-between items-center z-50">
+        <nav className="w-full fixed h-16 sm:px-10 px-5 bg-black/40 backdrop-blur-sm border-b border-neutral-800/50 sm:flex hidden justify-between items-center z-50">
 
             <Link href="/" className="inline-flex items-center font-mono text-white text-[1.9rem] sm:text-[2.3rem] font-medium leading-none tracking-tight">
                 <span className="text-white">oss</span>

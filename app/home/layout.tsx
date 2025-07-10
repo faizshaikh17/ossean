@@ -71,7 +71,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <Navbar />
       <div className="flex flex-1 flex-col md:flex-row overflow-hidden relative z-10">
         <Sidenav />
-        <main className="flex-grow sm:m-0 mt-10  overflow-y-auto bg-transparent backdrop-blur-sm">
+        <main className="flex-grow sm:m-0 mt-10 sm:pt-16  overflow-y-auto bg-transparent backdrop-blur-sm">
           {children}
         </main>
       </div>
