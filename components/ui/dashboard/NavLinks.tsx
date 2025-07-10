@@ -58,7 +58,7 @@ export default function NavLinks({ collapsed, isOpen }: { collapsed?: boolean; i
     return () => clearTimeout(timeout);
   }, [pathname]);
 
-  
+
   return (
     <div className={`sm:flex flex-col mt-16 sm:mt-10 gap-5 sm:px-1 py-1 ${isOpen ? '' : 'hidden'}`}>
       {navLinks.map((group) => (
@@ -106,7 +106,7 @@ export default function NavLinks({ collapsed, isOpen }: { collapsed?: boolean; i
                       title={item.name}
                       className={clsx('flex items-center gap-2', collapsed && 'justify-center')}
                     >
-                      <Icon size={16} className="opacity-60 shrink-0" />
+                      <Icon size={16} className={clsx('shrink-0', isOpen ? 'opacity-60' : 'opacity-100')} />
                       {!collapsed && <span>{item.name}</span>}
                     </div>
                     {!collapsed && isActive && chevron && (
@@ -121,7 +121,7 @@ export default function NavLinks({ collapsed, isOpen }: { collapsed?: boolean; i
       ))}
 
       {/* Sign Out Button */}
-      
+
     </div>
   );
 }
