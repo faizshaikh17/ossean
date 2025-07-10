@@ -29,7 +29,7 @@ export default function Footer() {
                     </div>
                     <div className="flex items-center justify-center gap-10 sm:gap-12">
                         <Link
-                            href="https://twitter.com/iamfaizz17"
+                            href="https://twitter.com/heisen17berg"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group flex flex-col items-center relative"
