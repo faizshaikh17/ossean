@@ -105,7 +105,7 @@ export default function Hero() {
               <GithubButton />
               <Button
                 label="Get started"
-                href="/home"
+                href="/auth"
                 className="z-10 transition duration-300 shadow-lg flex hover:shadow-xl sm:w-auto"
               />
             </div>
@@ -148,7 +148,7 @@ export default function Hero() {
               <div className="flex flex-col sm:flex-row justify-center sm:justify-start items-center gap-4 w-full sm:w-auto">
                 <Button
                   label="Get started"
-                  href="/home"
+                  href="/auth"
                   className="z-10 transition duration-300 shadow-lg hover:shadow-xl w-fit sm:w-auto"
                 />
                 <button className="px-4 py-2 text-sm font-semibold flex items-center border border-neutral-700/30 justify-center sm:justify-between gap-1.5 text-white bg-neutral-800 focus:outline-none transition-colors duration-300 z-10 shadow-lg hover:shadow-xl w-fit sm:w-auto">

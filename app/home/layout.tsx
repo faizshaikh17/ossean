@@ -2,8 +2,10 @@ import Sidenav from "@/components/ui/dashboard/Sidenav";
 import Navbar from "@/components/ui/dashboard/Navbar";
 import Image from "next/image";
 import Head from "next/head";
+import { requireAuth } from "@/lib/session";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({ children }: { children: React.ReactNode }) {
+  await requireAuth();
   return (
     <div className="relative h-screen bg-black text-white flex flex-col overflow-hidden">
 

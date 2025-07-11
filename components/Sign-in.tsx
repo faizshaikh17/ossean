@@ -1,13 +1,22 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { signIn, useSession } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 export default function Signin() {
   const [loading, setLoading] = useState(false);
-  const { data: isPending } = useSession();
+  const { data: session, isPending } = useSession();
+  const router = useRouter();
+
+  // Redirect silently if already logged in
+  useEffect(() => {
+    if (session && !isPending) {
+      router.push("/home");
+    }
+  }, [session, isPending, router]);
 
   const handleSignIn = async () => {
-    console.log("[EDGE] Sign-in button clicked");
+    console.log("[AUTH] Sign-in button clicked");
     try {
       setLoading(true);
 
@@ -18,25 +27,25 @@ export default function Signin() {
           errorCallbackURL: "/",
         },
         {
-          onRequest: () => console.log("[EDGE] onRequest triggered"),
+          onRequest: () => console.log("[AUTH] onRequest triggered"),
           onResponse: () => {
-            console.log("[EDGE] onResponse triggered");
+            console.log("[AUTH] onResponse triggered");
             setTimeout(() => window.location.reload(), 1000);
           },
           onSuccess: () => {
-            console.log("[EDGE] onSuccess triggered");
+            console.log("[AUTH] onSuccess triggered");
             setLoading(false);
             window.location.href = "/home";
           },
           onError: (e) => {
-            console.error("[EDGE] onError", e);
+            console.error("[AUTH] onError", e);
             setLoading(false);
             window.location.href = "/";
           },
         }
       );
     } catch (err) {
-      console.error("[EDGE] catch error", err);
+      console.error("[AUTH] catch error", err);
       setLoading(false);
       window.location.href = "/";
     }
