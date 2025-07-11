@@ -15,6 +15,7 @@ interface Repo {
   forks_count?: number;
   imgUrl?: string;
   popularity?: "legendary" | "famous" | "popular" | "rising";
+  repoLink?: string; // Add this field to store the repo link
 }
 
 type ColumnKey = keyof Pick<
@@ -60,14 +61,14 @@ const formatNumber = (n: number) =>
     n >= 1e3 ? `${+(n / 1e3).toFixed(1)}k` :
       n.toString();
 
-const renderCell = (record: Repo, key: ColumnKey, idx: number, repoLink = "") => {
+const renderCell = (record: Repo, key: ColumnKey) => {
   const value = record[key];
 
   switch (key) {
     case "name":
-      return repoLink ? (
+      return record.repoLink ? (
         <Link
-          href={`https://github.com/${repoLink}`}
+          href={`https://github.com/${record.repoLink}`}
           target="_blank"
           rel="noopener noreferrer"
           className="group flex items-center gap-2 hover:text-yellow-300 transition"
@@ -81,7 +82,7 @@ const renderCell = (record: Repo, key: ColumnKey, idx: number, repoLink = "") =>
               className="rounded-full group-hover:opacity-80 transition"
             />
           )}
-          <span className="font-medium">{value || repoLink.split("/")[1]}</span>
+          <span className="font-medium">{value || record.repoLink.split("/")[1]}</span>
         </Link>
       ) : (
         <span className="text-neutral-400 text-sm">-</span>
@@ -181,6 +182,7 @@ export default function Page() {
               stargazers_count: stars,
               forks_count: raw.forks_count,
               imgUrl: raw.owner?.avatar_url,
+              repoLink: repo, // Store the repo link here
               popularity:
                 stars >= 50000 ? "legendary" :
                   stars >= 10000 ? "famous" :
@@ -223,9 +225,9 @@ export default function Page() {
     setFiltered(filteredRepos);
   }, 500);
 
-
-
-
+  useEffect(() => {
+    debouncedFilter(query.toLowerCase().trim());
+  }, [language, popularity, debouncedFilter]);
 
   return (
     <div className="relative w-full min-h-full p-8 z-10">
@@ -263,10 +265,7 @@ export default function Page() {
           <div className="flex flex-col sm:flex-row gap-3">
             <Select
               value={language}
-              onChange={(e) => {
-                setLanguage(e.target.value);
-                debouncedFilter(query.toLowerCase().trim());
-              }}
+              onChange={(e) => setLanguage(e.target.value)}
               options={Array.from(
                 new Set(results.map(r => r.language).filter(Boolean))
               ).map(lang => ({ value: lang!.toLowerCase(), label: lang! }))}
@@ -275,10 +274,7 @@ export default function Page() {
 
             <Select
               value={popularity}
-              onChange={(e) => {
-                setPopularity(e.target.value);
-                debouncedFilter(query.toLowerCase().trim());
-              }}
+              onChange={(e) => setPopularity(e.target.value)}
               options={[
                 { value: "legendary", label: "Legendary" },
                 { value: "famous", label: "Famous" },
@@ -318,7 +314,7 @@ export default function Page() {
                     <tr key={idx} className="border-b border-neutral-800/30 group hover:bg-neutral-900/20 transition">
                       {columns.map(({ key }) => (
                         <td key={key} className="py-4 px-6 text-sm">
-                          {renderCell(record, key, idx, YC[idx]?.repo ?? "")}
+                          {renderCell(record, key)}
                         </td>
                       ))}
                     </tr>
@@ -332,10 +328,10 @@ export default function Page() {
               {filtered.map((record, idx) => (
                 <div key={idx} className="border border-neutral-800/50 p-4 bg-black/40 backdrop-blur-sm space-y-5 hover:border-neutral-700 transition">
                   <div className="flex flex-col gap-2 text-sm text-white font-medium">
-                    {renderCell(record, "name", idx, YC[idx]?.repo ?? "")}
-                    {renderCell(record, "language", idx)}
-                    {renderCell(record, "topics", idx)}
-                    {renderCell(record, "popularity", idx)}
+                    {renderCell(record, "name")}
+                    {renderCell(record, "language")}
+                    {renderCell(record, "topics")}
+                    {renderCell(record, "popularity")}
 
                   </div>
                   <div className="border-t border-neutral-800/50" />
@@ -346,7 +342,7 @@ export default function Page() {
                         <div key={key} className="flex flex-col gap-0.5">
                           <span className="text-neutral-400 font-medium">{label}</span>
                           <div className="text-white font-semibold">
-                            {renderCell(record, key, idx)}
+                            {renderCell(record, key)}
                           </div>
                         </div>
                       ))}
