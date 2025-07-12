@@ -16,25 +16,9 @@ export default function Sidenav() {
   const handleSignOut = async () => {
     try {
       setSigningOut(true)
-      // Call the original signOut
       await signOut();
-
       // Clear all auth-related cookies manually
-      const authCookies = [
-        'better-auth.session_token',
-        'better-auth.csrf_token',
-        'better-auth.callback_url',
-        'better-auth.state',
-        'better-auth.code_verifier'
-      ];
-
-      authCookies.forEach(cookieName => {
-        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname}`;
-        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax`;
-        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=None; Secure`;
-      });
-
+      document.cookie = "better-auth.session_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
       window.location.href = '/auth';
     } catch (error) {
       console.error('Sign out error:', error);
