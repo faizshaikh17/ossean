@@ -4,7 +4,7 @@ import { useState } from 'react';
 import NavLinks from './NavLinks';
 import { ChevronLeft, ChevronRight, Menu, X, LogOut } from 'lucide-react';
 import Link from 'next/link';
-import { authClient } from '@/lib/auth-client';
+import { signOut } from '@/lib/auth-client';
 import clsx from 'clsx';
 
 
@@ -15,13 +15,32 @@ export default function Sidenav() {
 
   const handleSignOut = async () => {
     try {
-      setSigningOut(true);
-      await authClient.signOut();
-      window.location.href = '/';
+      setSigningOut(true)
+      // Call the original signOut
+      await signOut();
+
+      // Clear all auth-related cookies manually
+      const authCookies = [
+        'better-auth.session_token',
+        'better-auth.csrf_token',
+        'better-auth.callback_url',
+        'better-auth.state',
+        'better-auth.code_verifier'
+      ];
+
+      authCookies.forEach(cookieName => {
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname}`;
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax`;
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=None; Secure`;
+      });
+
+      window.location.href = '/auth';
     } catch (error) {
-      if (error) window.location.href = '/';
+      console.error('Sign out error:', error);
+      window.location.href = '/auth';
     } finally {
-      setSigningOut(false);
+      setSigningOut(false)
     }
   };
 
