@@ -4,7 +4,7 @@ import { useState } from 'react';
 import NavLinks from './NavLinks';
 import { ChevronLeft, ChevronRight, Menu, X, LogOut } from 'lucide-react';
 import Link from 'next/link';
-import { signOut } from '@/lib/auth-client';
+import { authClient } from '@/lib/auth-client'; // Use authClient instead of signOut
 import clsx from 'clsx';
 
 
@@ -15,16 +15,19 @@ export default function Sidenav() {
 
   const handleSignOut = async () => {
     try {
-      setSigningOut(true)
-      await signOut();
-      // Clear all auth-related cookies manually
-      document.cookie = "better-auth.session_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-      window.location.href = '/auth';
+      setSigningOut(true);
+      await authClient.signOut({
+        fetchOptions: {
+          onSuccess: () => {
+            window.location.href = '/auth';
+          },
+        },
+      });
     } catch (error) {
       console.error('Sign out error:', error);
       window.location.href = '/auth';
     } finally {
-      setSigningOut(false)
+      setSigningOut(false);
     }
   };
 
