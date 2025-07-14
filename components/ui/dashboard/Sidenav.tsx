@@ -6,31 +6,28 @@ import { ChevronLeft, ChevronRight, Menu, X, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { authClient } from '@/lib/auth-client'; // Use authClient instead of signOut
 import clsx from 'clsx';
+import { useRouter } from "next/navigation";
 
 
 export default function Sidenav() {
   const [collapsed, setCollapsed] = useState(false);
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
+  const router = useRouter();
 
   const handleSignOut = async () => {
     try {
       setSigningOut(true);
-      await authClient.signOut({
-        fetchOptions: {
-          onSuccess: () => {
-            window.location.href = '/auth';
-          },
-        },
-      });
+      await authClient.signOut();
+      router.push('/auth');
     } catch (error) {
       console.error('Sign out error:', error);
+      // Fallback to manual redirect only on error
       window.location.href = '/auth';
     } finally {
       setSigningOut(false);
     }
   };
-
 
   return (
 
@@ -125,7 +122,7 @@ export default function Sidenav() {
                 ) : (
                   <LogOut size={16} className="opacity-60 shrink-0" />
                 )}
-                <span>{signingOut ? 'Signing out...' : 'Sign Out'}</span>
+                <span>{signingOut ? 'Signing Out' : 'Sign Out'}</span>
               </button>
 
               <span className="text-sm sm:inline hidden text-neutral-500/50 font-mono">

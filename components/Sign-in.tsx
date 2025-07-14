@@ -20,34 +20,17 @@ export default function Signin() {
     try {
       setLoading(true);
 
-      await signIn.social(
-        {
-          provider: "google",
-          callbackURL: "/home",
-          errorCallbackURL: "/",
-        },
-        {
-          onRequest: () => console.log("[AUTH] onRequest triggered"),
-          onResponse: () => {
-            console.log("[AUTH] onResponse triggered");
-            setTimeout(() => window.location.reload(), 1000);
-          },
-          onSuccess: () => {
-            console.log("[AUTH] onSuccess triggered");
-            setLoading(false);
-            window.location.href = "/home";
-          },
-          onError: (e) => {
-            console.error("[AUTH] onError", e);
-            setLoading(false);
-            window.location.href = "/";
-          },
-        }
-      );
+      await signIn.social({
+        provider: "google",
+        callbackURL: "/home",
+      });
+
+
     } catch (err) {
-      console.error("[AUTH] catch error", err);
+      console.error("[AUTH] Sign-in error:", err);
       setLoading(false);
-      window.location.href = "/";
+      // Only redirect on actual errors
+      router.push("/auth");
     }
   };
 
