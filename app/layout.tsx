@@ -4,27 +4,23 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ossean - Ocean of Open Source",
+  title: "Ossean - Ocean of Open Source | Find Best GitHub Projects Fast",
   description:
-    "Ossean helps developers discover relevant open source projects in seconds. OSS discovery faster, smarter, and personalized to your needs.",
+    "Discover the best open source projects in seconds. Free OSS discovery platform for developers. Browse GitHub repositories, trending projects, and developer tools.",
   keywords:
-    "ossean, open source discovery, oss projects, find open source projects, github explorer, github trending, github search, open source tools, productivity tools, developer tools, oss search engine, oss recommendation, personalized open source, oss explorer, github projects, github repos, github trending projects, software discovery, open source finder, github discovery, oss discovery tool, open source productivity, time saving tools, built to save time, developer efficiency, ocean of open source, oss directory, explore oss, discover oss, top github projects, free developer tools",
-  // icons: {
-  //   icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>",
-  //   shortcut: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>",
-  // },
+    "open source projects, github search, find github projects, github trending, github repositories, open source software, oss discovery, github explorer, free developer tools, github project finder, open source search engine, github trending projects, best github projects, github repo search, open source tools, developer tools, programming tools, software development tools, github alternatives, open source directory, github discovery tool, find open source libraries, github project discovery, open source finder, github trends, popular github projects, top github repos, github stars, github forks, programming resources, developer resources, coding tools, software libraries, github awesome lists, open source contributions, github projects 2025, trending repositories, developer productivity tools, free programming tools, github search tool, repository finder, code search, programming projects, software projects, github trending today, open source recommendations, github project recommendations, ossean, ocean of open source, oss projects, oss tools, oss search, oss finder, oss directory, oss explorer, github browse, repository browser, code discovery, project discovery, software discovery, find projects fast, discover projects in seconds, fast github search, quick project discovery",
   openGraph: {
-    title: "Ossean - Ocean of Open Source",
+    title: "Ossean - Ocean of Open Source | Find Best GitHub Projects Fast",
     description:
-      "Ossean helps developers discover relevant open source projects in seconds. OSS discovery faster, smarter, and personalized to your needs.",
-    url: "https://ossean.vercel.app",
+      "Discover the best open source projects in seconds. Free OSS discovery platform for developers. Browse GitHub repositories, trending projects, and developer tools.",
+    url: "https://ossean.in",
     siteName: "Ossean",
     images: [
       {
-        url: "https://ossean.vercel.app/ogImage.png",
+        url: "https://ossean.in/ogImage.png",
         width: 1200,
         height: 630,
-        alt: "Ossean OG Image",
+        alt: "Ossean - Find the best open source projects and GitHub repositories",
       },
     ],
     locale: "en_US",
@@ -32,24 +28,54 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ossean",
-    description: "Discover and explore the best open source projects.",
-    images: ["https://ossean.vercel.app/ogImage.png"],
+    title: "Ossean - Find the Best Open Source Projects Fast",
+    description: "Discover the best GitHub repositories and trending projects in seconds. Free developer tools and open source discovery platform.",
+    images: ["https://ossean.in/ogImage.png"],
+    creator: "@ossean",
+    site: "@ossean"
   },
   other: {
-    "twitter:image": "https://ossean.vercel.app/ogImage.png",
+    "twitter:image": "https://ossean.in/ogImage.png",
     "twitter:card": "summary_large_image",
-    "twitter:url": "https://ossean.vercel.app",
-    "twitter:domain": "ossean.vercel.app",
-    "twitter:title": "Ossean - Ocean of Open Source",
+    "twitter:url": "https://ossean.in",
+    "twitter:domain": "ossean.in",
+    "twitter:title": "Ossean - Ocean of Open Source | Find Best GitHub Projects Fast",
     "twitter:description":
-      "Ossean helps developers discover relevant open source projects in seconds. OSS discovery faster, smarter, and personalized to your needs.",
-    "og:url": "https://ossean.vercel.app",
+      "Discover the best open source projects in seconds. Free OSS discovery platform for developers. Browse GitHub repositories, trending projects, and developer tools.",
+    "twitter:creator": "@ossean",
+    "twitter:site": "@ossean",
+    "og:url": "https://ossean.in",
     "og:type": "website",
-    "og:title": "Ossean - Ocean of Open Source",
+    "og:title": "Ossean - Ocean of Open Source | Find Best GitHub Projects Fast",
     "og:description":
-      "Ossean helps developers discover relevant open source projects in seconds. OSS discovery faster, smarter, and personalized to your needs.",
-    "og:image": "https://ossean.vercel.app/ogImage.png",
+      "Discover the best open source projects in seconds. Free OSS discovery platform for developers. Browse GitHub repositories, trending projects, and developer tools.",
+    "og:image": "https://ossean.in/ogImage.png",
+    "og:site_name": "Ossean",
+    "og:locale": "en_US",
+    // Schema.org structured data
+    "application-name": "Ossean",
+    "msapplication-TileColor": "#000000",
+    "theme-color": "#000000",
+    // Additional SEO meta tags
+    "author": "Ossean",
+    "publisher": "Ossean",
+    "copyright": "Ossean",
+    "language": "English",
+    "revisit-after": "1 day",
+    "distribution": "global",
+    "rating": "general",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    // Geo targeting
+    "geo.region": "IN",
+    "geo.country": "India",
+    // Mobile optimization
+    "mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "default",
+    "apple-mobile-web-app-title": "Ossean",
+    // Alternative titles for different contexts
+    "og:title:alt": "Open Source Project Discovery | GitHub Browser | Ossean",
+    "twitter:title:alt": "GitHub Project Explorer | Open Source Discovery Tool",
   },
   robots: {
     index: true,
@@ -64,8 +90,14 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  // Additional metadata for better SEO
+  alternates: {
+    canonical: "https://ossean.in",
+  },
+  // App-specific metadata
+  applicationName: "Ossean",
+  category: "Technology",
 };
-
 const geistSans = Geist({
   subsets: ["latin"],
   display: "swap",
