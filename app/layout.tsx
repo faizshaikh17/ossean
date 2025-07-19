@@ -4,15 +4,15 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ossean - Ocean of Open Source | Find Best GitHub Projects Fast",
+  title: "Ossean - Ocean of Open Source | Find Open Source Projects Fast",
   description:
-    "Discover the best open source projects in seconds. Free OSS discovery platform for developers. Browse GitHub repositories, trending projects, and developer tools.",
+    "Discover the best open source projects in seconds. Free OSS discovery platform for developers. Browse GitHub repositories & trending projects in seconds not minutes.",
   keywords:
     "open source projects, github search, find github projects, github trending, github repositories, open source software, oss discovery, github explorer, free developer tools, github project finder, open source search engine, github trending projects, best github projects, github repo search, open source tools, developer tools, programming tools, software development tools, github alternatives, open source directory, github discovery tool, find open source libraries, github project discovery, open source finder, github trends, popular github projects, top github repos, github stars, github forks, programming resources, developer resources, coding tools, software libraries, github awesome lists, open source contributions, github projects 2025, trending repositories, developer productivity tools, free programming tools, github search tool, repository finder, code search, programming projects, software projects, github trending today, open source recommendations, github project recommendations, ossean, ocean of open source, oss projects, oss tools, oss search, oss finder, oss directory, oss explorer, github browse, repository browser, code discovery, project discovery, software discovery, find projects fast, discover projects in seconds, fast github search, quick project discovery",
   openGraph: {
     title: "Ossean - Ocean of Open Source | Find Best GitHub Projects Fast",
     description:
-      "Discover the best open source projects in seconds. Free OSS discovery platform for developers. Browse GitHub repositories, trending projects, and developer tools.",
+      "Discover the best open source projects in seconds. Free OSS discovery platform for developers. Browse GitHub repositories & trending projects in seconds not minutes.",
     url: "https://ossean.in",
     siteName: "Ossean",
     images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Ossean - Find the Best Open Source Projects Fast",
-    description: "Discover the best GitHub repositories and trending projects in seconds. Free developer tools and open source discovery platform.",
+    description: "Discover the best open source projects in seconds. Free OSS discovery platform for developers. Browse GitHub repositories & trending projects in seconds not minutes.",
     images: ["https://ossean.in/ogImage.png"],
     creator: "@ossean",
     site: "@ossean"
@@ -41,14 +41,14 @@ export const metadata: Metadata = {
     "twitter:domain": "ossean.in",
     "twitter:title": "Ossean - Ocean of Open Source | Find Best GitHub Projects Fast",
     "twitter:description":
-      "Discover the best open source projects in seconds. Free OSS discovery platform for developers. Browse GitHub repositories, trending projects, and developer tools.",
+      "Discover the best open source projects in seconds. Free OSS discovery platform for developers. Browse GitHub repositories & trending projects in seconds not minutes.",
     "twitter:creator": "@ossean",
     "twitter:site": "@ossean",
     "og:url": "https://ossean.in",
     "og:type": "website",
     "og:title": "Ossean - Ocean of Open Source | Find Best GitHub Projects Fast",
     "og:description":
-      "Discover the best open source projects in seconds. Free OSS discovery platform for developers. Browse GitHub repositories, trending projects, and developer tools.",
+      "Discover the best open source projects in seconds. Free OSS discovery platform for developers. Browse GitHub repositories & trending projects in seconds not minutes.",
     "og:image": "https://ossean.in/ogImage.png",
     "og:site_name": "Ossean",
     "og:locale": "en_US",
