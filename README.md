@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Ossean
 
-## Getting Started
+Ocean of Open Source — Discover the best GitHub repositories blazingly fast.
+Ossean is a free and open-source tool to explore trending and curated open source projects across GitHub. Built to help developers quickly find and filter repositories by language, popularity, and more — all without complex GitHub queries or bloated UIs.
+Made for speed. Free for everyone. Open for contributors.
 
-First, run the development server:
+Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Technologies: Next.js + Tailwind CSS + PostgreSQL + GithubAPI
+Auth: BetterAuth
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Prerequisites
+Make sure the following are installed on your system before running the project:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Node.js (v18 or later)
+Bun (v1.2.7 or later) – used for development and script execution
+PostgreSQL – required for database operations via Drizzle ORM
+A package manager – Bun, npm, or pnpm (Bun recommended)
 
-## Learn More
+To verify installation:
+node --version
+bun --version
+psql --version
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Getting Started
+Follow these steps to set up and run the project locally.
+1. Clone the Repository
+git clone https://github.com/faizshaikh17/ossean.git
+cd ossean
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Install Dependencies
+bun install
 
-## Deploy on Vercel
+3. Set Up Environment Variables
+Create a .env file in the root directory and add the following:
+DATABASE_URL=postgresql://:@localhost:5432/ossean
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+NEXTAUTH_SECRET=your-random-secret
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Make sure to replace the placeholders with actual values.
+4. Run Database Migrations
+bunx drizzle-kit push
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This will sync your schema to the PostgreSQL database.
+5. Start the Development Server
+bun run dev
+
+The app will start at:
+http://localhost:3000
+
+
+Usage
+Once the app is running, you can use Ossean to explore GitHub repositories with ease:
+
+Login: Sign in using your Google account via the authentication page to access personalized features.
+Discover YC-Backed Projects: Browse a curated list of Y Combinator-backed open-source projects.
+Explore Trending Projects: View trending repositories based on stars, forks, or recent activity.
+Filter Projects: Use filters to find projects by programming language, popularity, or other criteria directly from the dashboard.
+
+
+Project Structure
+Below is a simplified structure of the Ossean project:
+app/
+├── api/
+│   ├── auth/[...all]/route.ts
+│   ├── githubDiscover/
+│   ├── githubOverview/
+│   ├── githubTrending/
+├── auth/page.tsx
+├── home/
+│   ├── (overview)/
+│   ├── discover/
+│   ├── trending/
+│   └── layout.tsx
+├── globals.css
+├── layout.tsx
+├── page.tsx
+components/
+lib/
+├── db/
+│   └── schema.ts
+├── auth.ts
+├── db.ts
+├── githubTokens.ts
+├── session.ts
+├── YC.json
+public/
+.env
+.gitignore
+drizzle.config.ts
+next.config.ts
+package.json
+README.md
+tsconfig.json
+
+
+Enjoy discovering open-source projects!
