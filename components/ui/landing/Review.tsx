@@ -97,9 +97,9 @@ export default function Review() {
               href={tweet.tweetUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full z-10 flex items-center justify-center bg-neutral-800/50 transition-all duration-300"
+              className="w-full z-10 flex items-center justify-center bg-neutral-900/50 transition-all duration-300"
             >
-              <div className="relative h-full w-full bg-gradient-to-b from-neutral-950 to-neutral-950/30 backdrop-blur-xl border border-white/[0.08] p-6 transition-all duration-700">
+              <div className="relative h-full w-full backdrop-blur-xl border border-white/[0.08] p-6 transition-all duration-700">
                 <div className="absolute top-4 right-4 opacity-15">
                   <Quote className="w-4 h-4 text-white" />
                 </div>
@@ -119,7 +119,9 @@ export default function Review() {
                       <div className="flex flex-col">
                         <div className="flex items-center gap-1">
                           <span className="text-sm font-semibold text-white">{tweet.name}</span>
-                          {tweet.isVerified && <Image src="/premiumPng.png" alt="pre" height={12} width={12} className="rounded-full bg-black" />}
+                          <span className="bg-black rounded-full inline-flex">
+                            {tweet.isVerified && <Image src="/premiumPng.png" alt="pre" height={16} width={16} className="rounded-full" />}
+                          </span>
                         </div>
                         <span className="text-[12px] text-neutral-500 tracking-wide">@{tweet.handle}</span>
                       </div>
