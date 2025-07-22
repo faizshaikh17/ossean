@@ -29,25 +29,6 @@ export default function Video() {
                         className="w-full border border-white/10 mt-6 max-w-[60rem] h-auto z-10  rounded shadow-lg"
                     />
                     <GithubButton />
-                    {/* <div>
-
-                        <div className="flex flex-col mt-32 items-center justify-center gap-4">
-                            <header className="text-2xl flex flex-col items-center justify-center gap-2 sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[100%] animate-fade-in w-fit text-center">
-                                <h1 className="bg-gradient-to-r space-x-1 sm:space-x-2 text-white/90">
-                                    <span>Explore</span>
-                                    <span>&</span>
-                                    <span>Contribute</span>
-                                    <br />
-                                    <span>Start</span>
-                                    <span>Today</span>
-                                </h1>
-                                <p className="text-neutral-400 font-medium leading-5 transition duration-300 text-sm sm:text-base">
-                                    Browse hundreds of OSS projects and  <br /> discover what suits your needs.
-                                </p>
-                            </header>
-                        </div>
-
-                    </div> */}
                 </section>
             </main>
         </>
