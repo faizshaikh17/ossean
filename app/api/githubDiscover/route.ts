@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
   const page = searchParams.get('page') || '1';
 
   const query = `stars:>1${language ? `+language:${language}` : ''}`;
-  const url = `https://api.github.com/search/repositories?q=${query}&sort=stars&order=desc&per_page=50&page=${page}`;
+  const url = `https://api.github.com/search/repositories?q=${query}&sort=forks&order=desc&per_page=100&page=${page}`;
 
   const token = getGithubTokens();
   if (!token) {
