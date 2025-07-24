@@ -85,12 +85,12 @@ const renderCell = (repo: Repo, key: ColumnKey) => {
           className="group flex items-center gap-2 hover:text-yellow-300 transition"
         >
           <Image
-            src={repo.owner.avatar_url}
+            src={`${repo.owner.avatar_url}&s=24`}
             alt={`avatar`}
             width={24}
             height={24}
             className="rounded-full group-hover:opacity-80 transition"
-            priority
+            unoptimized
           />
           <span className="font-medium">{repo.name}</span>
         </Link>
