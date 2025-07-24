@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
         Accept: 'application/vnd.github+json',
         Authorization: `Bearer ${token}`,
       },
-      next: { revalidate: 21600 },
+      next: { revalidate: 600 },
     });
 
     if (!res.ok) {
@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
     const response = NextResponse.json(data);
     response.headers.set(
       'Cache-Control',
-      'public, s-maxage=21600, stale-while-revalidate'
+      'public, s-maxage=600, stale-while-revalidate' // 10 minutes = 600 seconds
     );
 
     return response;

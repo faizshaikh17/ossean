@@ -86,7 +86,7 @@ const renderCell = (repo: Repo, key: ColumnKey) => {
         >
           <Image
             src={repo.owner.avatar_url}
-            alt={`${repo.name} avatar`}
+            alt={`avatar`}
             width={24}
             height={24}
             className="rounded-full group-hover:opacity-80 transition"
