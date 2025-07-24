@@ -90,6 +90,7 @@ const renderCell = (repo: Repo, key: ColumnKey) => {
             width={24}
             height={24}
             className="rounded-full group-hover:opacity-80 transition"
+            priority
           />
           <span className="font-medium">{repo.name}</span>
         </Link>

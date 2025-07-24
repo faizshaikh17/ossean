@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
     const response = NextResponse.json(data);
     response.headers.set(
       'Cache-Control',
-      'public, s-maxage=600, stale-while-revalidate' // 10 minutes = 600 seconds
+      'public, s-maxage=600, stale-while-revalidate'
     );
 
     return response;
