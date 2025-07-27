@@ -22,7 +22,7 @@ export default function Footer() {
 
                         <div className="flex items-center gap-8">
                             <Link
-                                href="https://twitter.com/heisen17berg"
+                                href="https://twitter.com/faizxtwt"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="group flex items-center gap-2 hover:text-white transition-colors duration-200"

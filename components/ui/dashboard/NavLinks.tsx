@@ -41,7 +41,7 @@ const navLinks = [
   {
     title: 'Social',
     items: [
-      { name: 'Twitter', link: 'https://x.com/heisen17berg', icon: Twitter },
+      { name: 'Twitter', link: 'https://x.com/faizxtwt', icon: Twitter },
       { name: 'GitHub', link: 'https://github.com/faizshaikh17', icon: Github },
       { name: 'Email', link: 'mailto:mohdfaiz8101@gmail.com', icon: Mail },
     ],
