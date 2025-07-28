@@ -81,11 +81,12 @@ const renderCell = (
         >
           {record.imgUrl && (
             <Image
-              src={record.imgUrl}
-              alt={`${record.name} avatar`}
+              src={`${record.imgUrl}&s=24`}
+              alt={`avatar`}
               width={24}
               height={24}
               className="rounded-full group-hover:opacity-80 transition"
+              unoptimized
             />
           )}
           <span className="font-medium">{value}</span>
@@ -379,7 +380,7 @@ export default function Page() {
       ) : (
         <div className="text-center text-neutral-300 mt-20">No repositories found...</div>
       )
-    }
+      }
     </main >
   );
 }

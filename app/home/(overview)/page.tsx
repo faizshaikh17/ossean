@@ -75,11 +75,12 @@ const renderCell = (record: Repo, key: ColumnKey) => {
         >
           {record.imgUrl && (
             <Image
-              src={record.imgUrl}
-              alt={`${record.name ?? "Repository"} logo`}
+              src={`${record.imgUrl}&s=24`}
+              alt={`avatar`}
               width={24}
               height={24}
               className="rounded-full group-hover:opacity-80 transition"
+              unoptimized
             />
           )}
           <span className="font-medium">{value || record.repoLink.split("/")[1]}</span>
