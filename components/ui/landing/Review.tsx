@@ -114,6 +114,7 @@ export default function Review() {
                           width={40}
                           alt={tweet.handle}
                           className="rounded-full"
+                          unoptimized
                         />
                       </div>
                       <div className="flex flex-col">
