@@ -26,7 +26,7 @@ export default function Review() {
       name: "Divy",
       handle: "11_devvv",
       tweetUrl: "https://twitter.com/11_devvv/status/1946310463857258550",
-      profileImage: "https://pbs.twimg.com/profile_images/1934191744612179968/aC3ZXQSw_400x400.jpg",
+      profileImage: "https://pbs.twimg.com/profile_images/1948384156129566720/bodOvmVQ_400x400.jpg",
       content: "Looks good brother. Surely gonna use !! Loved the ui 🫡",
       date: "July 18, 2025",
       isVerified: false
@@ -35,7 +35,7 @@ export default function Review() {
       name: "BEEJ",
       handle: "op3kay",
       tweetUrl: "https://twitter.com/op3kay/status/1946133492385124397",
-      profileImage: "https://pbs.twimg.com/profile_images/1941441532499828736/euGvJT1d_400x400.jpg",
+      profileImage: "https://pbs.twimg.com/profile_images/1952757539319246849/-m0L3_Sz_400x400.jpg",
       content: "well built",
       date: "July 18, 2025",
       isVerified: true
