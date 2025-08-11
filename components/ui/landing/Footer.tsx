@@ -12,13 +12,14 @@ export default function Footer() {
                     <div className="flex sm:flex-row flex-col sm:justify-between sm:items-end items-center gap-6">
                         
                         <div className="flex flex-col items-center sm:items-start gap-1">
-                            <div className="text-white text-sm font-medium tracking-wide">
-                                OSSEAN
-                            </div>
                             <div className="text-[10px] uppercase tracking-[0.3em] text-neutral-500">
                                 © 2025 All Rights Reserved
                             </div>
                         </div>
+
+                        <div className="text-white text-sm font-medium tracking-wide">
+                                OSSEAN
+                            </div>
 
                         <div className="flex items-center gap-8">
                             <Link
