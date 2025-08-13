@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { Button as ButtonType } from '../types/buttonType';
 import { SquareArrowOutUpRight } from 'lucide-react';
-import Image from 'next/image';
 
 export default function Button({
     label,

@@ -2,8 +2,11 @@
 # Ossean
 
 **Ocean of Open Source — Discover the best GitHub repositories blazingly fast.**  
+
 Ossean is a free and open-source tool to explore trending and curated open source projects across GitHub. Built to help developers quickly find and filter repositories by language, popularity, and more — all without complex GitHub queries or bloated UIs.  
 Made for speed. Free for everyone. Open for contributors.
+
+<img width="1920" height="1020" alt="dashboard" src="https://github.com/user-attachments/assets/bf1b7d5a-f2e8-41f9-8a42-8c6a1a92c63a" />
 
 ---
 
