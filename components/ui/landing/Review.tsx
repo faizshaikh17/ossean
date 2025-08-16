@@ -97,44 +97,60 @@ export default function Review() {
               href={tweet.tweetUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full z-10 flex items-center justify-center bg-neutral-900/50 transition-all duration-300"
+              className="group w-full z-10 flex items-center justify-center transition-all duration-300 hover:scale-[1.01]"
             >
-              <div className="relative h-full w-full backdrop-blur-xl border border-white/[0.08] p-6 transition-all duration-700">
-                <div className="absolute top-4 right-4 opacity-15">
+              <div className="relative h-full w-full backdrop-blur-xl bg-neutral-900/60 border border-white/[0.08] hover:border-white/[0.12] p-7 transition-all duration-300 hover:shadow-xl">
+
+                <div className="absolute top-5 right-5 opacity-15 group-hover:opacity-25 transition-opacity duration-300">
                   <Quote className="w-4 h-4 text-white" />
                 </div>
 
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center justify-between pt-4">
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-neutral-700 to-neutral-800 rounded-full">
-                        <Image
-                          src={tweet.profileImage}
-                          height={40}
-                          width={40}
-                          alt={tweet.handle}
-                          className="rounded-full"
-                          unoptimized
-                        />
-                      </div>
-                      <div className="flex flex-col">
-                        <div className="flex items-center gap-1">
-                          <span className="text-sm font-semibold text-white">{tweet.name}</span>
-                          <span className="bg-black rounded-full inline-flex">
-                            {tweet.isVerified && <Image src="/premiumPng.png" alt="pre" height={16} width={16} className="rounded-full" />}
+                <div className="flex flex-col gap-5">
+
+                  <div className="flex items-center gap-3 pt-2">
+                    <div className="w-10 h-10 bg-gradient-to-br from-neutral-700 to-neutral-800 rounded-full p-[1px]">
+                      <Image
+                        src={tweet.profileImage}
+                        height={38}
+                        width={38}
+                        alt={tweet.handle}
+                        className="rounded-full w-full h-full object-cover"
+                        unoptimized
+                      />
+                    </div>
+
+                    <div className="flex flex-col">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-semibold text-white">
+                          {tweet.name}
+                        </span>
+                        {tweet.isVerified && (
+                          <span className="bg-neutral-800 rounded-full inline-flex p-0.5">
+                            <Image
+                              src="/premiumPng.png"
+                              alt="Verified"
+                              height={14}
+                              width={14}
+                              className="rounded-full"
+                            />
                           </span>
-                        </div>
-                        <span className="text-[12px] text-neutral-500 tracking-wide">@{tweet.handle}</span>
+                        )}
                       </div>
+                      <span className="text-xs text-neutral-400 tracking-wide">
+                        @{tweet.handle}
+                      </span>
                     </div>
                   </div>
 
-                  <p className="text-neutral-300 font-medium leading-relaxed text-sm sm:text-base">
+                  <p className="text-neutral-200 font-medium leading-relaxed text-sm sm:text-base">
                     {tweet.content}
                   </p>
 
-                  <span className="text-[10px] uppercase tracking-widest text-neutral-600">{tweet.date}</span>
+                  <span className="text-xs uppercase tracking-wider text-neutral-500 font-medium">
+                    {tweet.date}
+                  </span>
                 </div>
+
               </div>
             </Link>
           ))}
