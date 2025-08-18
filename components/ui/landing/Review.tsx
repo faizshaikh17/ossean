@@ -14,6 +14,16 @@ export default function Review() {
 
   const tweets = [
     {
+      "name": "Manu Arora",
+      "handle": "mannupaaji",
+      "tweetUrl": "https://twitter.com/mannupaaji/status/1957363315455230275",
+      "profileImage": "https://pbs.twimg.com/profile_images/1417752099488636931/cs2R59eW_400x400.jpg",
+      "content": "great UX, love it",
+      "date": "August 18, 2025",
+      "isVerified": true
+    }
+    ,
+    {
       name: "Gruz",
       handle: "damnGruz",
       tweetUrl: "https://twitter.com/damnGruz/status/1946154785062674923",
@@ -66,7 +76,27 @@ export default function Review() {
       content: "Nice UI. Do add more open source projects please",
       date: "July 18, 2025",
       isVerified: false
-    }
+    },
+    {
+      "name": "Aditya A.",
+      "handle": "iamAdityaAnjana",
+      "tweetUrl": "https://twitter.com/iamAdityaAnjana/status/1946272068607324318",
+      "profileImage": "https://pbs.twimg.com/profile_images/1944402318729854976/SgGE8uXl_400x400.jpg",
+      "content": "It's so freakin cool",
+      "date": "July 18, 2025",
+      "isVerified": true
+    },
+    {
+      "name": "disha",
+      "handle": "maidishahoon",
+      "tweetUrl": "https://twitter.com/maidishahoon/status/1946410952318161048",
+      "profileImage": "https://pbs.twimg.com/profile_images/1952399058837909504/nhXDu6eU_400x400.jpg",
+      "content": "Very clean very helpful !!!! Thank youuu",
+      "date": "July 19, 2025",
+      "isVerified": true
+    },
+
+
   ];
 
 
@@ -76,7 +106,7 @@ export default function Review() {
 
         <div>
           <div className="flex flex-col mb-14 items-center justify-center gap-4">
-            <header className="text-2xl flex flex-col items-center justify-center gap-2 sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[100%] animate-fade-in w-fit text-center">
+            <header className="text-2xl flex flex-col items-center justify-center gap-3 sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[100%] animate-fade-in w-fit text-center">
               <h1 className="bg-gradient-to-r space-x-1 sm:space-x-2 text-white/90">
                 <span>What</span>
                 <span>People</span>
@@ -125,7 +155,7 @@ export default function Review() {
                           {tweet.name}
                         </span>
                         {tweet.isVerified && (
-                          <span className="bg-neutral-800 rounded-full inline-flex p-0.5">
+                          <span className="rounded-full inline-flex">
                             <Image
                               src="/premiumPng.png"
                               alt="Verified"

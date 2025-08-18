@@ -7,7 +7,7 @@ export default function Video() {
                     <div className="absolute inset-0 z-0 bg-[url('/statue.png')] bg-cover bg-center opacity-60 pointer-events-none" />
 
                     <div className="flex flex-col items-center justify-center gap-4">
-                        <header className="text-2xl flex flex-col items-center justify-center gap-2 sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[100%] animate-fade-in w-fit text-center">
+                        <header className="text-2xl flex flex-col items-center justify-center gap-3 sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[100%] animate-fade-in w-fit text-center">
                             <h1 className="bg-gradient-to-r space-x-1 sm:space-x-2 text-white/90">
                                 <span>See</span>
                                 <span>It</span>
