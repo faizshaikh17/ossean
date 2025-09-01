@@ -127,7 +127,7 @@ export default function Review() {
               href={tweet.tweetUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group w-full z-10 flex items-center justify-center transition-all duration-300 hover:scale-[1.01]"
+              className="group w-full z-10 flex items-center justify-center transition-all duration-300 hover:scale-[1.0]"
             >
               <div className="relative h-full w-full backdrop-blur-xl bg-neutral-900/60 border border-white/[0.08] hover:border-white/[0.12] p-7 transition-all duration-300 hover:shadow-xl">
 

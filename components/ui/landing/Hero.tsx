@@ -84,7 +84,7 @@ export default function Hero() {
               className="object-cover"
             />
           </div>
-          <div className="absolute inset-0 z-0 pointer-events-none opacity-30 animate-fadeIn">
+          {/* <div className="absolute inset-0 z-0 pointer-events-none animate-fadeIn">
             <Image
               src="/bluePurpleYellowGradient2.png"
               alt=""
@@ -93,10 +93,10 @@ export default function Hero() {
               quality={85}
               className="object-cover"
             />
-          </div>
+          </div> */}
 
           <div className="absolute top-4 sm:top-6 md:top-8 left-0 w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 z-10">
-            <Link href="/" className="inline-flex items-center font-mono text-white text-[1.9rem] sm:text-[2.3rem] font-medium leading-none tracking-tight">
+            <Link href="/" className="inline-flex font-instrument items-center font-mono text-white text-[1.9rem] sm:text-[2.5rem] font-medium leading-none tracking-tight">
               <span className="text-white">oss</span>
               <span className="text-neutral-500">ean</span>
             </Link>
@@ -113,34 +113,34 @@ export default function Hero() {
 
           <div className="flex flex-col lg:flex-row w-full justify-between items-center gap-14 lg:gap-4 z-10 mt-24 sm:mt-32 md:mt-20 lg:mt-0 px-4 sm:px-0">
             <div className="flex flex-col gap-6 w-full items-center lg:items-start text-center lg:text-left">
-              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[100%] animate-fade-in w-fit">
-                <span className="bg-gradient-to-r space-x-1 sm:space-x-2 text-white/90">
-                  <span>Ocean</span>
-                  <span>Of</span>
-                  <span>Open</span>
-                  <span>Source</span>
+              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-[100%] animate-fade-in w-fit">
+                <h1 className="bg-gradient-to-r font-medium font-instrument leading-[110%] space-x-1 sm:space-x-2 text-neutral-600">
+                  <span>Discover</span>
+                  <span className="text-white">Open</span>
+                  <span className="text-white">Source</span>
                   <br />
-                  <span>Built</span>
-                  <span>To</span>
-                  <span>Save</span>
+                  <span className="text-white">Save</span>
                   <span>Your</span>
                   <span>Time</span>
-                </span>
+                </h1>
+
                 <div
-                  className="mt-2 sm:mt-3 mx-auto lg:mx-0 px-2 py-1 w-fit text-xs sm:text-sm font-medium text-neutral-500 tracking-tight border-[2px] transition duration-300"
+                  className="mt-2 sm:mt-3 mx-auto lg:mx-0 px-2 py-1 w-fit text-xs sm:text-sm font-medium text-neutral-500 tracking-tight border-[2px] transition-all duration-300"
                   style={{
                     borderImage:
                       'conic-gradient(#d4d4d4 0deg, #171717 90deg, #d4d4d4 180deg, #171717 270deg, #d4d4d4 360deg) 1',
                   }}
+                  role="banner"
+                  aria-label="Project tagline"
                 >
                   Discover OSS Projects in Seconds.
                 </div>
               </div>
 
-              <div className="text-neutral-400 font-medium leading-5 transition duration-300 text-sm sm:text-base">
+              <div className="text-neutral-400 font-medium leading-5 transition-all duration-300 text-sm sm:text-base">
                 <p>
-                  Revolutionized how people <br />
-                  find open source projects, <br />
+                  Revolutionized how people find open source projects,{' '}
+                  <br className="hidden sm:block" />
                   making it more personal and relevant.
                 </p>
               </div>
@@ -149,10 +149,19 @@ export default function Hero() {
                 <Button
                   label="Get started"
                   href="/auth"
-                  className="z-10 transition duration-300 shadow-lg hover:shadow-xl w-fit sm:w-auto"
+                  className="z-10 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 w-fit sm:w-auto"
+                  aria-label="Get started with Ocean of Open Source"
                 />
-                <button className="px-4 py-2 text-sm font-semibold flex items-center border border-neutral-700/30 justify-center sm:justify-between gap-1.5 text-white bg-neutral-800 focus:outline-none transition-colors duration-300 z-10 shadow-lg hover:shadow-xl w-fit sm:w-auto">
-                  Not backed by <span className="text-white bg-orange-500 px-1.5">Y</span>
+
+                <button
+                  className="group px-4 py-2 text-sm font-semibold flex items-center border border-neutral-700/30 justify-center sm:justify-between gap-1.5 text-white bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-600 focus:ring-offset-2 focus:ring-offset-black transition-all duration-300 z-10 shadow-lg hover:shadow-xl w-fit sm:w-auto"
+                  type="button"
+                  aria-label="Information about Y Combinator backing"
+                >
+                  Not backed by{' '}
+                  <span className="text-white bg-orange-500 px-1.5 transition-transform duration-200 group-hover:scale-110">
+                    Y
+                  </span>
                 </button>
               </div>
             </div>
