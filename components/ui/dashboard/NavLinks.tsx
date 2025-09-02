@@ -8,7 +8,6 @@ import {
   Home,
   Flame,
   Search,
-  Hourglass,
   Sparkles,
   Bug,
   Twitter,
@@ -26,10 +25,6 @@ const navLinks = [
       { name: 'Trending', link: '/home/trending', icon: Flame },
       { name: 'Discover', link: '/home/discover', icon: Search },
     ],
-  },
-  {
-    title: 'Coming Soon',
-    items: [{ name: 'Upcoming', link: '/', icon: Hourglass }],
   },
   {
     title: 'Feedback',
@@ -96,8 +91,8 @@ export default function NavLinks({ collapsed, isOpen }: { collapsed?: boolean; i
                     href={item.link}
                     aria-current={isActive ? 'page' : undefined}
                     className={clsx(
-                      'relative z-10 flex items-center gap-2 px-3 py-2 text-xs sm:text-sm font-medium rounded transition duration-300 overflow-hidden',
-                      'hover:bg-neutral-900/30 hover:text-white',
+                      'relative z-10 flex items-center gap-2 px-3 py-2 text-xs sm:text-sm font-medium transition duration-300 overflow-hidden',
+                      'hover:bg-neutral-900/50 hover:text-white',
                       isActive ? 'text-white' : 'text-neutral-400',
                       collapsed ? 'justify-center' : 'justify-between w-full'
                     )}
