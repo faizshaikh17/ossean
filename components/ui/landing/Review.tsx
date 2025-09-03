@@ -140,7 +140,7 @@ export default function Review() {
                   <div className="flex items-center gap-3 pt-2">
                     <div className="w-10 h-10 bg-gradient-to-br from-neutral-700 to-neutral-800 rounded-full p-[1px]">
                       <Image
-                        src={tweet.profileImage}
+                        src={tweet?.profileImage ?? '/statue.png'}
                         height={38}
                         width={38}
                         alt={tweet.handle}
