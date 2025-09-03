@@ -115,13 +115,21 @@ export default function Hero() {
             <div className="flex flex-col gap-6 w-full items-center lg:items-start text-center lg:text-left">
               <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-[100%] animate-fade-in w-fit">
                 <h1 className="bg-gradient-to-r font-medium font-instrument leading-[110%] space-x-1 sm:space-x-2 text-neutral-600">
-                  <span>Discover</span>
+                  {/* <span>Discover</span>
                   <span className="text-white">Open</span>
                   <span className="text-white">Source</span>
                   <br />
                   <span className="text-white">Save</span>
                   <span>Your</span>
-                  <span>Time</span>
+                  <span>Time</span> */}
+                  <span >Open</span>
+                  <span>Source</span>
+                  <span>In</span>
+                  <span className="text-white">Seconds</span>
+                  <br />
+                  <span>Not</span>
+                  <span>In</span>
+                  <span className="text-white">Minutes</span>
                 </h1>
 
                 <div
