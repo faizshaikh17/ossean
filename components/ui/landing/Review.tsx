@@ -90,7 +90,7 @@ export default function Review() {
       "name": "disha",
       "handle": "maidishahoon",
       "tweetUrl": "https://twitter.com/maidishahoon/status/1946410952318161048",
-      "profileImage": "https://pbs.twimg.com/profile_images/1952399058837909504/nhXDu6eU_400x400.jpg",
+      "profileImage": "https://pbs.twimg.com/profile_images/1959707473130160128/_1V3XIxs_400x400.jpg",
       "content": "Very clean very helpful !!!! Thank youuu",
       "date": "July 19, 2025",
       "isVerified": true

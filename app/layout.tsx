@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: "Ossean",
     images: [
       {
-        url: "https://ossean.in/ogImage.png",
+        url: "https://ossean.in/og.png",
         width: 1200,
         height: 630,
         alt: "Ossean - Find the best open source projects and GitHub repositories",
@@ -30,12 +30,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ossean - Find the Best Open Source Projects Fast",
     description: "Discover the best open source projects in seconds. Free OSS discovery platform for developers. Browse GitHub repositories & trending projects in seconds not minutes.",
-    images: ["https://ossean.in/ogImage.png"],
+    images: ["https://ossean.in/og.png"],
     creator: "@ossean",
     site: "@ossean"
   },
   other: {
-    "twitter:image": "https://ossean.in/ogImage.png",
+    "twitter:image": "https://ossean.in/og.png",
     "twitter:card": "summary_large_image",
     "twitter:url": "https://ossean.in",
     "twitter:domain": "ossean.in",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     "og:title": "Ossean - Ocean of Open Source | Find Best GitHub Projects Fast",
     "og:description":
       "Discover the best open source projects in seconds. Free OSS discovery platform for developers. Browse GitHub repositories & trending projects in seconds not minutes.",
-    "og:image": "https://ossean.in/ogImage.png",
+    "og:image": "https://ossean.in/og.png",
     "og:site_name": "Ossean",
     "og:locale": "en_US",
     // Schema.org structured data
