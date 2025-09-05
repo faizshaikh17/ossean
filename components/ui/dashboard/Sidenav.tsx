@@ -70,7 +70,7 @@ export default function Sidenav() {
             role="navigation"
             aria-label="Sidebar"
           >
-            <div className={`${collapsed ? 'px-4' : 'px-4 sm:px-6 md:px-8'}`}>
+            <div className="px-4">
               <NavLinks isOpen={isOpen} collapsed={collapsed} />
             </div>
           </nav>
@@ -112,7 +112,7 @@ export default function Sidenav() {
                 onClick={handleSignOut}
                 disabled={signingOut}
                 className={clsx(
-                  'sm:flex hidden items-center cursor-pointer gap-2 px-3 py-2 text-xs sm:text-sm font-medium rounded transition duration-300 overflow-hidden',
+                  'sm:flex hidden items-center cursor-pointer gap-2 py-2 text-xs sm:text-sm font-medium rounded transition duration-300 overflow-hidden',
                   'hover:bg-neutral-900/30 hover:text-white',
                   'text-neutral-400 disabled:opacity-50'
                 )}
