@@ -72,7 +72,7 @@ export default function Review() {
       name: "Rahul Roy Chowdhury",
       handle: "Rahulstark4",
       tweetUrl: "https://twitter.com/Rahulstark4/status/1946263441037230507",
-      profileImage: "https://pbs.twimg.com/profile_images/1959707473130160128/_1V3XIxs_400x400.jpg",
+      profileImage: "https://pbs.twimg.com/profile_images/1830336479815483392/MqGG4qM4_400x400.jpg",
       content: "Nice UI. Do add more open source projects please",
       date: "July 18, 2025",
       isVerified: false
