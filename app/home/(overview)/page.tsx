@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import { useDebouncedCallback } from 'use-debounce';
 import Select from "@/components/Select";
 
-
 interface Repo {
   name?: string;
   language?: string;
@@ -15,7 +14,8 @@ interface Repo {
   forks_count?: number;
   imgUrl?: string;
   popularity?: "legendary" | "famous" | "popular" | "rising";
-  repoLink?: string; // Add this field to store the repo link
+  repoLink?: string;
+  description?: string;
 }
 
 type ColumnKey = keyof Pick<
@@ -67,24 +67,47 @@ const renderCell = (record: Repo, key: ColumnKey) => {
   switch (key) {
     case "name":
       return record.repoLink ? (
-        <Link
-          href={`https://github.com/${record.repoLink}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-center gap-2 hover:text-yellow-300 transition"
-        >
-          {record.imgUrl && (
-            <Image
-              src={`${record.imgUrl}&s=24`}
-              alt={`avatar`}
-              width={24}
-              height={24}
-              className="rounded-full group-hover:opacity-80 transition"
-              unoptimized
-            />
-          )}
-          <span className="font-medium">{value || record.repoLink.split("/")[1]}</span>
-        </Link>
+        <div className="relative inline-block">
+          <Link
+            href={`https://github.com/${record.repoLink}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 group hover:text-yellow-300 transition"
+          >
+            {record.imgUrl && (
+              <Image
+                src={`${record.imgUrl}&s=24`}
+                alt={`avatar`}
+                width={24}
+                height={24}
+                className="rounded-full group-hover:opacity-80 transition"
+                unoptimized
+              />
+            )}
+            <span className="font-medium group">
+              {value || record.repoLink.split("/")[1]}
+            </span>
+            <div className="absolute left-3/4 top-4 cursor-pointer mt-2 w-64 p-3 rounded-lg bg-gradient-to-br from-neutral-900/95 to-neutral-950/95 backdrop-blur-xl text-neutral-200 text-sm shadow-xl border border-neutral-700/40 opacity-0 scale-95 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out z-20 before:content-[''] before:absolute before:top-0 before:left-6 before:w-0 before:h-0 before:border-l-6 before:border-r-6 before:border-b-6 before:border-l-transparent before:border-r-transparent before:border-b-neutral-900/95 before:-translate-y-1.5">
+
+            <div className="relative">
+              <div className="absolute inset-0 rounded-md blur-md 
+      bg-gradient-to-r from-emerald-400/15 via-sky-400/10 to-purple-500/15 
+      animate-pulse"></div>
+
+              <div className="relative z-10 font-medium leading-relaxed tracking-wide">
+                {record.description || (
+                  <span className="text-neutral-500 italic">
+                    No description available
+                  </span>
+                )}
+              </div>
+
+              <div className="mt-3 h-px bg-gradient-to-r 
+      from-transparent via-neutral-700/70 to-transparent"></div>
+            </div>
+          </div>
+          </Link>
+        </div>
       ) : (
         <span className="text-neutral-400 text-sm">-</span>
       );
@@ -149,7 +172,6 @@ const renderCell = (record: Repo, key: ColumnKey) => {
   }
 };
 
-
 export default function Page() {
   const [results, setResults] = useState<Repo[]>([]);
   const [filtered, setFiltered] = useState<Repo[]>([]);
@@ -183,7 +205,8 @@ export default function Page() {
               stargazers_count: stars,
               forks_count: raw.forks_count,
               imgUrl: raw.owner?.avatar_url,
-              repoLink: repo, // Store the repo link here
+              repoLink: repo,
+              description: raw.description || "No description available", // 👈 default string
               popularity:
                 stars >= 50000 ? "legendary" :
                   stars >= 10000 ? "famous" :
@@ -204,7 +227,6 @@ export default function Page() {
 
     fetchGitHubData();
   }, []);
-
 
   const debouncedFilter = useDebouncedCallback((q: string) => {
     const filteredRepos = results.filter(r => {
@@ -228,7 +250,7 @@ export default function Page() {
 
   useEffect(() => {
     debouncedFilter(query.toLowerCase().trim());
-  }, [language, popularity, debouncedFilter]);
+  }, [language, popularity, debouncedFilter, query]);
 
   return (
     <div className="relative w-full min-h-full p-8 z-10">
@@ -288,78 +310,75 @@ export default function Page() {
         </div>
       </div>
 
-      {
-        isLoading ? (
-          <main className="min-h-screen flex flex-col gap-5 py-[10rem] items-center justify-start bg-transparent backdrop-blur-md text-white relative z-10" aria-busy="true">
-            <div className="w-10 h-10 border-4 border-transparent border-t-yellow-300 rounded-full animate-spin" />
-            <h1 className="text-base sm:text-lg font-medium text-neutral-300 tracking-tight">
-              Banging Hard
-            </h1>
-          </main>
-        ) : filtered.length > 0 ? (
-          <>
-            {/* Desktop Table */}
-            <div className="hidden md:block overflow-x-auto">
-              <table className="min-w-full table-auto border-collapse bg-black/40 backdrop-blur-sm border border-neutral-800/50 overflow-hidden">
-                <thead>
-                  <tr className="border-b border-neutral-800/50">
-                    {columns.map(({ key, label }) => (
-                      <th key={key} className={`${key === "topics" ? "text-center" : "text-left"} py-4 px-6 text-sm font-medium text-neutral-400 bg-neutral-900/30`}>
-                        {label}
-                      </th>
+      {isLoading ? (
+        <main className="min-h-screen flex flex-col gap-5 py-[10rem] items-center justify-start bg-transparent backdrop-blur-md text-white relative z-10" aria-busy="true">
+          <div className="w-10 h-10 border-4 border-transparent border-t-yellow-300 rounded-full animate-spin" />
+          <h1 className="text-base sm:text-lg font-medium text-neutral-300 tracking-tight">
+            Banging Hard
+          </h1>
+        </main>
+      ) : filtered.length > 0 ? (
+        <>
+          {/* Desktop Table */}
+          <div className="hidden md:block overflow-x-auto">
+            <table className="min-w-full table-auto border-collapse bg-black/40 backdrop-blur-sm border border-neutral-800/50 overflow-hidden">
+              <thead>
+                <tr className="border-b border-neutral-800/50">
+                  {columns.map(({ key, label }) => (
+                    <th key={key} className={`${key === "topics" ? "text-center" : "text-left"} py-4 px-6 text-sm font-medium text-neutral-400 bg-neutral-900/30`}>
+                      {label}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.map((record, idx) => (
+                  <tr key={idx} className="border-b border-neutral-800/30 group hover:bg-neutral-900/20 transition">
+                    {columns.map(({ key }) => (
+                      <td key={key} className="py-4 px-6 text-sm">
+                        {renderCell(record, key)}
+                      </td>
                     ))}
                   </tr>
-                </thead>
-                <tbody>
-                  {filtered.map((record, idx) => (
-                    <tr key={idx} className="border-b border-neutral-800/30 group hover:bg-neutral-900/20 transition">
-                      {columns.map(({ key }) => (
-                        <td key={key} className="py-4 px-6 text-sm">
-                          {renderCell(record, key)}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Mobile Cards */}
-            <div className="md:hidden space-y-4">
-              {filtered.map((record, idx) => (
-                <div key={idx} className="border border-neutral-800/50 p-4 bg-black/40 backdrop-blur-sm space-y-5 hover:border-neutral-700 transition">
-                  <div className="flex flex-col gap-2 text-sm text-white font-medium">
-                    {renderCell(record, "name")}
-                    {renderCell(record, "language")}
-                    {renderCell(record, "topics")}
-                    {renderCell(record, "popularity")}
-
-                  </div>
-                  <div className="border-t border-neutral-800/50" />
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    {columns
-                      .filter(({ key }) => ["stargazers_count", "forks_count"].includes(key))
-                      .map(({ key, label }) => (
-                        <div key={key} className="flex flex-col gap-0.5">
-                          <span className="text-neutral-400 font-medium">{label}</span>
-                          <div className="text-white font-semibold">
-                            {renderCell(record, key)}
-                          </div>
-                        </div>
-                      ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>
-        ) : (
-          <div className="text-center py-16">
-            <div className="text-neutral-400 font-medium text-base">
-              No repositories found.
-            </div>
+                ))}
+              </tbody>
+            </table>
           </div>
-        )
-      }
-    </div >
+
+          {/* Mobile Cards */}
+          <div className="md:hidden space-y-4">
+            {filtered.map((record, idx) => (
+              <div key={idx} className="border border-neutral-800/50 p-4 bg-black/40 backdrop-blur-sm space-y-5 hover:border-neutral-700 transition">
+                <div className="flex flex-col gap-2 text-sm text-white font-medium">
+                  {renderCell(record, "name")}
+                  {renderCell(record, "language")}
+                  {renderCell(record, "topics")}
+                  {renderCell(record, "popularity")}
+                </div>
+                <div className="border-t border-neutral-800/50" />
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  {columns
+                    .filter(({ key }) => ["stargazers_count", "forks_count"].includes(key))
+                    .map(({ key, label }) => (
+                      <div key={key} className="flex flex-col gap-0.5">
+                        <span className="text-neutral-400 font-medium">{label}</span>
+                        <div className="text-white font-semibold">
+                          {renderCell(record, key)}
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : (
+        <div className="text-center py-16">
+          <div className="text-neutral-400 font-medium text-base">
+            No repositories found.
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

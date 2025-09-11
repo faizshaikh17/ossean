@@ -15,6 +15,7 @@ interface Repo {
   owner: { avatar_url: string };
   html_url: string;
   popularity?: "legendary" | "famous" | "popular" | "rising";
+  description?: string;
 }
 
 type ColumnKey = keyof Pick<
@@ -82,17 +83,48 @@ const renderCell = (repo: Repo, key: ColumnKey) => {
           href={repo.html_url}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center gap-2 hover:text-yellow-300 transition"
+          className="flex items-center gap-2 transition"
         >
           <Image
             src={`${repo.owner.avatar_url}&s=24`}
             alt={`avatar`}
             width={24}
             height={24}
-            className="rounded-full group-hover:opacity-80 transition"
+            className="rounded-full hover:opacity-80 transition"
             unoptimized
           />
-          <span className="font-medium">{repo.name}</span>
+          <span className="relative font-medium group hover:text-yellow-300 transition">
+            {repo.name}
+            <div
+              className="absolute left-1/2 top-full mt-2 w-64 p-3 rounded-lg 
+                bg-gradient-to-br from-neutral-900/95 to-neutral-950/95 
+                backdrop-blur-xl text-neutral-200 text-sm shadow-xl 
+                border border-neutral-700/40 
+                opacity-0 scale-95 translate-y-1 
+                group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
+                transition-all duration-300 ease-out z-20
+                before:content-[''] before:absolute before:top-0 before:left-1/2 
+                before:-translate-x-1/2 before:w-0 before:h-0 
+                before:border-l-6 before:border-r-6 before:border-b-6 
+                before:border-l-transparent before:border-r-transparent 
+                before:border-b-neutral-900/95 before:-translate-y-1.5"
+            >
+              <div className="relative">
+                <div className="absolute inset-0 rounded-md blur-md 
+                  bg-gradient-to-r from-emerald-400/15 via-sky-400/10 to-purple-500/15 
+                  animate-pulse"></div>
+                <div className="relative z-10 font-medium leading-relaxed tracking-wide">
+                  {repo.description || (
+                    <span className="text-neutral-500 italic">
+                      No description available
+                    </span>
+                  )}
+                </div>
+                <div className="mt-3 h-px bg-gradient-to-r 
+                  from-transparent via-neutral-700/70 to-transparent"></div>
+              </div>
+            </div>
+          </span>
         </Link>
       );
 
