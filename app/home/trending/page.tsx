@@ -123,7 +123,7 @@ const renderCell = (
                 </div>
 
 
-                <div className="mt-3 h-px bg-gradient-to-r 
+                <div className="mt-2 h-px bg-gradient-to-r 
               from-transparent via-neutral-700/70 to-transparent"></div>
               </div>
             </div>
