@@ -27,7 +27,7 @@ export default function Review() {
       name: "Gruz",
       handle: "damnGruz",
       tweetUrl: "https://twitter.com/damnGruz/status/1946154785062674923",
-      profileImage: "https://pbs.twimg.com/profile_images/1943308327573950466/qlQX0Xv0_400x400.jpg",
+      profileImage: "https://pbs.twimg.com/profile_images/1980880215657123840/CBEgFfiX_400x400.jpg",
       content: "damn the UI",
       date: "July 18, 2025",
       isVerified: true
@@ -120,7 +120,7 @@ export default function Review() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 z-10 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 z-10 max-w-7xl w-full">
           {tweets.map((tweet, idx) => (
             <Link
               key={idx}
@@ -140,7 +140,7 @@ export default function Review() {
                   <div className="flex items-center gap-3 pt-2">
                     <div className="w-10 h-10 bg-gradient-to-br from-neutral-700 to-neutral-800 rounded-full p-[1px]">
                       <Image
-                        src={tweet?.profileImage ?? '/statue.png'}
+                        src={tweet?.handle ? `${tweet.handle}.jpg` : '/statue.png'}
                         height={38}
                         width={38}
                         alt={tweet.handle}

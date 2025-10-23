@@ -181,7 +181,7 @@ export default function Hero() {
                 fill
                 priority
                 quality={85}
-                className="object-contain lg:object-cover"
+                className="object-contain"
               />
               {pings.map((pos, i) => (
                 <span
