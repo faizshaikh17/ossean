@@ -17,7 +17,6 @@ export default function Review() {
       "name": "Manu Arora",
       "handle": "mannupaaji",
       "tweetUrl": "https://twitter.com/mannupaaji/status/1957363315455230275",
-      "profileImage": "https://pbs.twimg.com/profile_images/1417752099488636931/cs2R59eW_400x400.jpg",
       "content": "great UX, love it",
       "date": "August 18, 2025",
       "isVerified": true
@@ -27,7 +26,6 @@ export default function Review() {
       name: "Gruz",
       handle: "damnGruz",
       tweetUrl: "https://twitter.com/damnGruz/status/1946154785062674923",
-      profileImage: "https://pbs.twimg.com/profile_images/1980880215657123840/CBEgFfiX_400x400.jpg",
       content: "damn the UI",
       date: "July 18, 2025",
       isVerified: true
@@ -36,7 +34,6 @@ export default function Review() {
       name: "Divy",
       handle: "11_devvv",
       tweetUrl: "https://twitter.com/11_devvv/status/1946310463857258550",
-      profileImage: "https://pbs.twimg.com/profile_images/1948384156129566720/bodOvmVQ_400x400.jpg",
       content: "Looks good brother. Surely gonna use !! Loved the ui 🫡",
       date: "July 18, 2025",
       isVerified: false
@@ -45,7 +42,6 @@ export default function Review() {
       name: "BEEJ",
       handle: "op3kay",
       tweetUrl: "https://twitter.com/op3kay/status/1946133492385124397",
-      profileImage: "https://pbs.twimg.com/profile_images/1952757539319246849/-m0L3_Sz_400x400.jpg",
       content: "well built",
       date: "July 18, 2025",
       isVerified: true
@@ -54,7 +50,6 @@ export default function Review() {
       name: "Tobi",
       handle: "rayidashraf",
       tweetUrl: "https://twitter.com/rayidashraf/status/1946474553016033602",
-      profileImage: "https://pbs.twimg.com/profile_images/1915323511914336256/YZoU50OY_400x400.jpg",
       content: "Can we submit os projects on it?",
       date: "July 19, 2025",
       isVerified: false
@@ -63,7 +58,6 @@ export default function Review() {
       name: "Bikash",
       handle: "bikash1376",
       tweetUrl: "https://twitter.com/bikash1376/status/1946273689827242381",
-      profileImage: "https://pbs.twimg.com/profile_images/1955986645083414530/TuSQgeNX_400x400.jpg",
       content: "Fk @ajeetunc this is dem good\nBtw how about putting infinity scroll",
       date: "July 18, 2025",
       isVerified: false
@@ -72,31 +66,28 @@ export default function Review() {
       name: "Rahul Roy Chowdhury",
       handle: "Rahulstark4",
       tweetUrl: "https://twitter.com/Rahulstark4/status/1946263441037230507",
-      profileImage: "https://pbs.twimg.com/profile_images/1830336479815483392/MqGG4qM4_400x400.jpg",
       content: "Nice UI. Do add more open source projects please",
       date: "July 18, 2025",
       isVerified: false
     },
     {
-      "name": "Aditya A.",
-      "handle": "iamAdityaAnjana",
-      "tweetUrl": "https://twitter.com/iamAdityaAnjana/status/1946272068607324318",
-      "profileImage": "https://pbs.twimg.com/profile_images/1944402318729854976/SgGE8uXl_400x400.jpg",
-      "content": "It's so freakin cool",
-      "date": "July 18, 2025",
-      "isVerified": true
+      name: "Aditya A.",
+      handle: "iamAdityaAnjana",
+      tweetUrl: "https://twitter.com/iamAdityaAnjana/status/1946272068607324318",
+      profileImage: "https://pbs.twimg.com/profile_images/1944402318729854976/SgGE8uXl_400x400.jpg",
+      content: "It's so freakin cool",
+      date: "July 18, 2025",
+      isVerified: true
     },
     {
-      "name": "disha",
-      "handle": "maidishahoon",
-      "tweetUrl": "https://twitter.com/maidishahoon/status/1946410952318161048",
-      "profileImage": "https://pbs.twimg.com/profile_images/1959707473130160128/_1V3XIxs_400x400.jpg",
-      "content": "Very clean very helpful !!!! Thank youuu",
-      "date": "July 19, 2025",
-      "isVerified": true
+      name: "disha",
+      handle: "maidishahoon",
+      tweetUrl: "https://twitter.com/maidishahoon/status/1946410952318161048",
+      profileImage: "https://pbs.twimg.com/profile_images/1959707473130160128/_1V3XIxs_400x400.jpg",
+      content: "Very clean very helpful !!!! Thank youuu",
+      date: "July 19, 2025",
+      isVerified: true
     },
-
-
   ];
 
 
