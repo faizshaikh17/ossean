@@ -65,6 +65,6 @@ export const auth = betterAuth({
   },
 
   trustedOrigins: isProd
-    ? ["https://ossean.in"]
+    ? ["https://ossean.in", "https://www.ossean.in"]
     : ["http://localhost:3000"]
 });
